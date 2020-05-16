@@ -19,3 +19,6 @@ for zipName in listOfZips:
         break # for now, it will run for single zip only
 
 
+
+# Quick Submit Link: https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25
+# Login Link: https://onlinejudge.org/
