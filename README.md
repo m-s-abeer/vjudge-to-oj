@@ -7,7 +7,7 @@ How it should work:
 4. Login to your UVa when asked
 
 To-do:
-1. Being able to read all the submissions
+1. Being able to read and extract all the submissions
 2. Submission object:
     1. judgeSlug(mapped from the folder name. i.e: Submissions>UVA)
     2. problemId(collected from subfolder of judge submissions. i.e: Submissions>UVA>104)
