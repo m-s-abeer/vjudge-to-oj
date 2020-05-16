@@ -14,8 +14,8 @@ def extractZip(sourcePath, destinationPath, folderName = ""):
 listOfZips = os.listdir(zipDir)
 for zipName in listOfZips:
     # folderName = zipName.split('.')[0]
-    extractZip(zipDir + os.sep + zipName, extractedDir + os.sep)
-    
-    break # for now, it will run for single zip only
+    if(zipName.endswith(".zip")):
+        extractZip(zipDir + os.sep + zipName, extractedDir + os.sep)
+        break # for now, it will run for single zip only
 
 
