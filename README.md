@@ -12,6 +12,7 @@ Current solution will only work for UVa. With enough response or your contributi
 Hope you enjoy.
 
 ##How it should work:
+
 0. Install all the dependencies and required packages and get the environment ready
 1. Run main.py
 2. Insert Vjudge handle and password
@@ -20,6 +21,7 @@ Hope you enjoy.
 5. Show you the status report.(Not completely done yet)
 
 ###To-do(for basic version, UVa):
+
 1. Being able to login to vjudge, download and extract all the submissions(Done)
 2. Problem object sketch:(Done)
     1. judgeSlug(mapped from the folder name. i.e: Submissions>UVA)
