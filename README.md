@@ -7,11 +7,15 @@ However, there can be scenarios where you'd like to add vjudge solutions to the 
 I personally felt the need of it along with some of my friends and colleagues.
 It's a tiresome job to submit all the solved problems of vjudge to the actual judge. This here is a small approach to get such works done easily.
 
-Current solution will only work for UVa. With enough response or your contribution I hope to add some more judges as well.
+Current solution will only work for UVa. With enough response or your contribution I hope to add some more judges as well. Huge thanks to @mehedi-shafi for contributing to all my fun projects.
 
-Hope you enjoy.
+Hope you enjoy. <3
 
-##How it should work:
+
+<hr>
+
+
+## How it should work:
 
 0. Install all the dependencies and required packages and get the environment ready
 1. Run main.py
@@ -20,7 +24,9 @@ Hope you enjoy.
 4. The program will automatically submit accepted solutions from vjudge one by one and store the accepted solutions to another folder when it get ac on judge as well
 5. Show you the status report.(Not completely done yet)
 
-###To-do(for basic version, UVa):
+* No checker added for UVa login status. Make sure you're using correct username and password.
+
+### To-do for myself(basic version, UVa):
 
 1. Being able to login to vjudge, download and extract all the submissions(Done)
 2. Problem object sketch:(Done)
