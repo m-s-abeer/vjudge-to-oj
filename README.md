@@ -1,4 +1,4 @@
-# vjudge-to-uva
+# vjudge-to-oj
 
 Competitive programmers spend thousands of hours practicing programming problems and participating contests.
 Vjudge has been an amazing platform for participating/hosting programming contests and problem-solving.
@@ -26,7 +26,9 @@ Hope you enjoy. <3
 
 * No checker added for UVa login status. Make sure you're using correct username and password.
 
-### To-do for myself(basic version, UVa):
+
+
+##### To-do for myself(basic version, UVa):
 
 1. Being able to login to vjudge, download and extract all the submissions(Done)
 2. Problem object sketch:(Done)
