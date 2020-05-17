@@ -1,7 +1,9 @@
 from . import apiHandler
 import os
+import errno
 
 apicaller = apiHandler.ApiCaller()
+path = os.path.dirname(__file__)
 
 class Problem:
     # 1. judgeSlug(mapped from the folder name. i.e: Submissions>UVA)
@@ -12,17 +14,14 @@ class Problem:
     #     2. Language mapping(from solution extention. i.e: Submissions>UVA>104>1231123.cpp)
 
     judgeSlug = str()
-    problemId = str()
-    problemName = str()
+    problemNumber = str()
     solutions = list()
+    localDir = str()
 
-    def __init__(self, problemDir, judgeSlug = "UVA", problemId = ""):
+    def __init__(self, problemDir, problemNumber, judgeSlug = "UVA"):
+        self.localDir = problemDir
         self.judgeSlug = judgeSlug
-        self.problemId = problemId
-        self.problemName = apicaller.getProblemNameFromNumber(problemId)
-        print(problemDir)
-        for subName in os.listdir(problemDir):
-            self.solutions.append(Solution(problemDir + os.sep + subName, problemId))
+        self.problemNumber = problemNumber
 
     def getName(self):
         return self.judgeSlug + " - " + self.problemName
@@ -31,13 +30,51 @@ class Problem:
         return self.judgeSlug + " - " + self.problemName + str(self.solutions.len)
 
 class Solution:
-    problemId = str()
+    problemNumber = str()
     solutionExt = str()
     solutionCode = str()
 
-    def __init__(self, submissionDir, problemId):
-        self.problemId = problemId
+    def __init__(self, submissionDir, problemNumber, problemName):
+        self.problemNumber = problemNumber
+        self.problemName = problemName
         self.solutionExt = submissionDir.split('.')[-1]
-        print(submissionDir)
         with open(submissionDir, 'r') as code:
             self.solutionCode = code.read()
+
+    def __str__(self):
+        return self.problemNumber + " - " + self.problemName
+
+class UvaProblem(Problem):
+    problemId = str()
+    problemName = str()
+    savingPath = path + os.sep + "Submitted" + os.sep + "UVA"
+
+    def __init__(self, problemDir, problemNumber, judgeSlug = "UVA"):
+        super().__init__(problemDir, problemNumber, judgeSlug)
+        problemData = apicaller.getUvaProblemData(problemNumber)
+        self.problemId = str(problemData['pid'])
+        self.problemName = str(problemData['title'])
+        solCnt = 0
+        for subName in os.listdir(problemDir):
+            self.solutions.append(list([Solution(problemDir + os.sep + subName, problemNumber, self.problemName), solCnt]))
+            solCnt = solCnt + 1
+    
+    def mkdir_p(self, path):
+        try:
+            os.makedirs(path)
+        except OSError as exc: # Python >2.5
+            if exc.errno == errno.EEXIST and os.path.isdir(path):
+                pass
+            else: raise
+
+    def safe_open_w(self, path):
+        ''' Open "path" for writing, creating any parent directories as needed.
+        '''
+        self.mkdir_p(os.path.dirname(path))
+        return open(path, 'w')
+
+    def saveSolution(self, solutionId, submissionId):
+        savePath = self.savingPath + os.sep + self.problemNumber + " - " + self.problemName
+        savePath = savePath + "(" + str(solutionId) + ", " + str(submissionId) + ")." + self.solutions[solutionId][0].solutionExt
+        with self.safe_open_w(savePath) as f:
+            f.write(self.solutions[solutionId][0].solutionCode)

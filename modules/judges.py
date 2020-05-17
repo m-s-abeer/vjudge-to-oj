@@ -1,10 +1,12 @@
-from .submissions import Solution
+from .submissions import *
+from .apiHandler import ApiCaller
 from requests import session
 from zipfile import ZipFile
 import http.cookiejar
 import mechanize
 import shutil
 import pickle
+import time
 import os
 
 path = os.path.dirname(__file__)
@@ -19,6 +21,7 @@ class Vjudge:
     password = str()
     zipUrl = str()
     s = session()
+    loggedIn = bool()
     # Browser
 
     def clearSolutions(self):
@@ -27,12 +30,13 @@ class Vjudge:
             shutil.rmtree(solutionsDir)
         except OSError as e:
             print ("Error: %s - %s." % (e.filename, e.strerror))
+            pass
         os.mkdir(solutionsDir)
 
     def __init__(self, username = "", password = ""):
         self.username = username
         self.password = password
-        # self.login()
+        self.login()
     
     # Thanks to Mehedi Imam Shafi for this Vjudge sign-in approach
     def login(self):
@@ -48,12 +52,29 @@ class Vjudge:
             self.s = session()
             login_url = f"{self.rootUrl}{self.loginUrl}"
             r = self.s.post(login_url, data=payLoad)
-
-            with open(user_data_path, 'wb') as file:
-                pickle.dump(self.s, file)
-            print(r.text, r)
+            if(r.text == "success"):
+                with open(user_data_path, 'wb') as file:
+                    pickle.dump(self.s, file)
+                self.loggedIn = True
+            else:
+                print(r.text)
+            # print(r.text, r)
 
         # print(s.cookies.get_dict())
+
+    def downloadSubmissions(self):
+        if(self.loggedIn == False):
+            print("Sorry, can't download data. You are not logged into Vjudge.")
+            return None
+        self.zipUrl = path + os.sep + "zip-files" + os.sep + self.username + '.zip'
+        if os.path.exists(self.zipUrl):
+            os.remove(self.zipUrl)
+
+        self.clearSolutions()
+        source_dowload_url = f"{self.rootUrl}{self.acSubmissionsUrl}"
+        self.downloadUrl(source_dowload_url, self.s, self.zipUrl)
+        self.extractZip()
+        print("Solutions downloaded and extracted.")
     
     def downloadUrl(self, url, sess, save_path, chunk_size=128):
         r = sess.get(url, stream=True)
@@ -61,13 +82,7 @@ class Vjudge:
             for chunk in r.iter_content(chunk_size=chunk_size):
                 fd.write(chunk)
 
-    def downloadSubmissions(self):
-        self.zipUrl = path + os.sep + "zip-files" + os.sep + self.username + '.zip'
-        source_dowload_url = f"{self.rootUrl}{self.acSubmissionsUrl}"
-        self.downloadUrl(source_dowload_url, self.s, self.zipUrl)
-
     def extractZip(self, sourcePath = ""):
-        self.clearSolutions()
         sourcePath = self.zipUrl if not sourcePath else sourcePath
         destinationPath = path + os.sep + "solutions"
         with ZipFile(sourcePath, 'r') as zipFile:
@@ -80,8 +95,10 @@ class UVA:
     judgeSlug = "UVA"
     loginURL = "https://onlinejudge.org/"
     submissionURL = "https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25"
+    localSubsURL = path + os.sep + "solutions" + os.sep + "UVA"
     username = str()
     password = str()
+    userid = str()
     extentionId = {
         "c" : "1",
         "java" : "2",
@@ -91,11 +108,12 @@ class UVA:
     }
     # Browser
     br = mechanize.Browser()
+    solvedProblemIds = set()
 
     def __init__(self, username = "", password = ""):
-
         self.username = username
         self.password = password
+        self.userid = apicaller.getUvaIdFromUsername(username)
 
         # Cookie Jar
         cj = http.cookiejar.LWPCookieJar()
@@ -111,6 +129,7 @@ class UVA:
 
         self.br.addheaders = [('User-agent', 'Chrome')]
         self.login()
+        self.saveSolveData()
     
     def login(self):
         # The site we will navigate into, handling it's session
@@ -122,14 +141,74 @@ class UVA:
 
         # Select the second (index one) form (the first form is a search query box)
         self.br.select_form(nr=0)
-
-        # # User credentials
         self.br.form['username'] = self.username
         self.br.form['passwd'] = self.password
-
-        # # Login
         res = self.br.submit()
         # print(res.geturl())
+
+    '''
+    saveSolveData
+    Get The Bit-Encoded-Problem IDs that Has Been Solved by Some Authors
+    URL : /api/solved-bits/{user-ids-csv}.
+
+    Returns an array each contains: { uid:the-user-id, solved:[bit-encoded-solved-pids] }.
+
+    The bit-encoded-solved-pids is an array where the ith bit of the jth element (0-based) represents whether the particular user has solved the problem with pid = (j*32)+i.
+    '''
+    def saveSolveData(self):
+        apicaller = ApiCaller()
+        solveData = apicaller.getUvaSolveData(self.userid)
+        i = 0
+        for x in solveData:
+            for j in range(0, 32):
+                if(((x>>j)&1) == 1):
+                    self.solvedProblemIds.add(str(i*32+j))
+            i = i+1
+
+    def isSolved(self, problemNumber):
+        return (str(uvaProblem.problemId) in self.solvedProblemIds)
+
+    def submitAll(self, submitSolvedOnes = False, limitSubmissionCount = 10):
+        successfullySubmitted = 0
+        for problemNumber in os.listdir(self.localSubsURL):
+            problemLocalUrl = self.localSubsURL + os.sep + problemNumber
+            problem = UvaProblem(problemLocalUrl, problemNumber)
+            if((submitSolvedOnes == True) or (self.isSolved(problem.problemId) == False)):
+                for solve, solveId in problem.solutions:
+
+                    if(successfullySubmitted == limitSubmissionCount):
+                        print("SubmissionLimitReached. Please run again")
+                        return None
+                    
+                    print(f"Trying Problem: {solve}, {solveId}")
+                    sid = str(self.submitSolution(solve))
+                    while(sid == ""):
+                        print("Submission failed. Trying again after 10 secs.")
+                        time.sleep(10)
+                        sid = str(self.submitSolution(solve))
+                    else:
+                        print(f"Problem submitted: sid = {sid}")
+                        problem.saveSolution(solveId, sid)
+                    successfullySubmitted  = successfullySubmitted + 1
+                    # check verdict and verify
+                    # timeout = 
+                    # while(1)
+                
+
+        pass
+
+# Specific Users' Submissions on Specific Problems
+# Returns all the submissions of the users on specific problems.
+
+# URL : /api/subs-pids/{user-ids-csv}/{pids-csv}/{min-subs-id}.
+
+# The {user-ids-csv} is the user ids presented as comma-separated-values. Similarly, the {pids-csv} is the problem ids presented in comma-separated-values. The numbers in the both csvs are limited to 100 numbers. The {min-subs-id} is the minimum submission id to be returned (that is, to show all submissions set this value to zero, to see latest submissions, set it higher as appropriate).
+
+# The result is a hash map with the key is the user id and the value is the submissions of that user that associated with one of the specified problem ids. The format of the submissions is identical with the above description.
+
+# URL : /api/subs-nums/{user-ids-csv}/{nums-csv}/{min-subs-id}.
+
+# This is exactly the same as before, except that the problems is given in problem numbers, not problem ids.
     
     def submitSolution(self, solution):
         
@@ -138,11 +217,12 @@ class UVA:
         #     print(f)
 
         self.br.select_form(nr=1)
-        self.br.form['localid'] = solution.problemId
+        self.br.form['localid'] = str(solution.problemNumber)
         self.br.form.find_control(name="language").value = [self.extentionId[solution.solutionExt]]
         self.br.form.find_control(name="code").value = solution.solutionCode
         res = self.br.submit()
         submissionId = res.geturl().split('+')[-1]
+        return submissionId
 
         # then we should check if the verdict has been given
         # should check repeatedly delaying 5-10 secs and stop when a verdict is given
