@@ -9,7 +9,7 @@ It's a tiresome job to submit all the solved problems of vjudge to the actual ju
 
 Current solution will only work for UVa. It's roughly written and tested. But hey, it works!
 
-With enough response or your contribution I hope to add some more judges here as well. Huge thanks to @mehedi-shafi for contributing to all my fun projects.
+With enough response and your contribution I hope to add some more judges here as well. Huge thanks to @mehedi-shafi for contributing to all my fun projects.
 
 Let me know if you have any questions/suggestions/feedbacks or simply if you liked it.
 
