@@ -9,9 +9,12 @@ It's a tiresome job to submit all the solved problems of vjudge to the actual ju
 
 Current solution will only work for UVa. With enough response or your contribution I hope to add some more judges as well. Huge thanks to @mehedi-shafi for contributing to all my fun projects.
 
+Let me know if you have any suggestions/feedbacks or simply if you liked it.
+
+Email: mahmudsajjad.abeer@gmail.com
+
+
 Hope you enjoy. <3
-
-
 <hr>
 
 
