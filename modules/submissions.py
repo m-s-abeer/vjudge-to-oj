@@ -1,9 +1,9 @@
-import apiHandler
+from . import apiHandler
 import os
 
 apicaller = apiHandler.ApiCaller()
 
-class Submission:
+class Problem:
     # 1. judgeSlug(mapped from the folder name. i.e: Submissions>UVA)
     # 2. problemId(collected from subfolder of judge submissions. i.e: Submissions>UVA>104)
     # 3. problemName(collected from UVa api)
@@ -22,7 +22,7 @@ class Submission:
         self.problemName = apicaller.getProblemNameFromNumber(problemId)
         print(problemDir)
         for subName in os.listdir(problemDir):
-            self.solutions.append(Solution(problemDir + os.sep + subName))
+            self.solutions.append(Solution(problemDir + os.sep + subName, problemId))
 
     def getName(self):
         return self.judgeSlug + " - " + self.problemName
@@ -31,10 +31,12 @@ class Submission:
         return self.judgeSlug + " - " + self.problemName + str(self.solutions.len)
 
 class Solution:
-    solutionCode = str()
+    problemId = str()
     solutionExt = str()
+    solutionCode = str()
 
-    def __init__(self, submissionDir):
+    def __init__(self, submissionDir, problemId):
+        self.problemId = problemId
         self.solutionExt = submissionDir.split('.')[-1]
         print(submissionDir)
         with open(submissionDir, 'r') as code:

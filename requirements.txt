@@ -3,5 +3,5 @@ json
 requests
 os
 mechanize
-beautifulsoup4
 cookiejar
+pickle

@@ -1,71 +1,91 @@
-import os
-from objects import Submission
-from requests import session
+# import os
+# from modules.submissions import Submission
+# from requests import session
 
-# Quick Submit Link: https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25
-# Login Link: https://onlinejudge.org/
-# stackoverflow.com/questions/20039643/how-to-scrape-a-website-that-requires-login-first-with-python
+# # Quick Submit Link: https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25
+# # Login Link: https://onlinejudge.org/
+# # stackoverflow.com/questions/20039643/how-to-scrape-a-website-that-requires-login-first-with-python
 
-# rootDir = os.getcwd()
-# extractedDir = rootDir + os.sep + "files" + os.sep + "extracted"
-# problemDir = extractedDir + os.sep + "UVA" + os.sep + "104"
+# # rootDir = os.getcwd()
+# # extractedDir = rootDir + os.sep + "files" + os.sep + "extracted"
+# # problemDir = extractedDir + os.sep + "UVA" + os.sep + "104"
 
-# lol = Submission(problemDir, "UVA", "104")
+# # lol = Submission(problemDir, "UVA", "104")
 
-# payload = {
-#     'action': 'Submit',
-#     'mod_login_username': "abeer6764",
-#     'mod_login_passwordtext': "testpass"
-# }
+# import mechanize
+# from bs4 import BeautifulSoup
+# import http.cookiejar
 
-# with session() as c:
-#     tmp = c.post('https://onlinejudge.org/', data=payload)
-#     response = c.get('https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25')
-#     # print(response.headers)
-#     # print(response.text)
-#     with open('h.htm', "w") as f:
-#         f.write(response.text)
+# # Browser
+# br = mechanize.Browser()
 
-##################################### Method 1
-import mechanize
-from bs4 import BeautifulSoup
-import http.cookiejar
+# # Cookie Jar
+# cj = http.cookiejar.LWPCookieJar()
+# br.set_cookiejar(cj)
 
-# Browser
-br = mechanize.Browser()
+# # Browser options
+# br.set_handle_equiv(True)
+# br.set_handle_gzip(True)
+# br.set_handle_redirect(True)
+# br.set_handle_referer(True)
+# br.set_handle_robots(False)
+# br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
 
-# Cookie Jar
-cj = http.cookiejar.LWPCookieJar()
-br.set_cookiejar(cj)
+# br.addheaders = [('User-agent', 'Chrome')]
 
-# Browser options
-br.set_handle_equiv(True)
-br.set_handle_gzip(True)
-br.set_handle_redirect(True)
-br.set_handle_referer(True)
-br.set_handle_robots(False)
-br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
+# # The site we will navigate into, handling it's session
+# br.open('https://onlinejudge.org/')
 
-br.addheaders = [('User-agent', 'Chrome')]
+# # View available forms
+# # for f in br.forms():
+# #     print(f)
 
-# The site we will navigate into, handling it's session
-br.open('https://onlinejudge.org/')
+# # Select the second (index one) form (the first form is a search query box)
+# br.select_form(nr=0)
 
-# View available forms
+# # # User credentials
+# br.form['username'] = 'abeer6764'
+# br.form['passwd'] = 'testpass'
+
+# # # Login
+# res = br.submit()
+# # print(res.geturl())
+
+# # with open('h.htm', "w") as f:
+# #     f.write(res.read().decode("utf-8"))
+
+# br.open('https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25')
 # for f in br.forms():
 #     print(f)
 
-# Select the second (index one) form (the first form is a search query box)
-br.select_form(nr=0)
+# br.select_form(nr=1)
+# br.form['localid'] = "100"
+# br.form.find_control(name="language").value = ["5"]
+# br.form.find_control(name="code").value = "abc"
+# res = br.submit()
+# submissionId = res.geturl().split('+')[-1]
+# # # print(h)
+# # with open('h.htm', "w") as f:
+# #     f.write(h.decode("utf-8"))
 
-# # User credentials
-br.form['username'] = 'abeer6764'
-br.form['passwd'] = 'testpass'
+# # import time
+# # from wrapt_timeout_decorator import *
 
-# # Login
-res = br.submit()
+# # @timeout(5)
+# # def mytest(message):
+# #     # this example does NOT work on windows, please check the section
+# #     # "use with Windows" in the README.rst
+# #     print(message)
+# #     for i in range(1,10):
+# #         time.sleep(1)
+# #         print('{} seconds have passed'.format(i))
 
-h = br.open('https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25').read()
-# print(h)
-with open('h.htm', "w") as f:
-    f.write(h.decode("utf-8"))
+# # if __name__ == '__main__':
+# #     mytest('starting')
+# sys.path.append('modules')
+# from modules.judges import Vjudge
+
+# lol = Vjudge("abeer6764", "testpass")
+# lol.login()
+# lol.downloadSubmissions()
+# lol.extractZip()
