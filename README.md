@@ -33,7 +33,7 @@ Hope you enjoy. <3
 * default parameters of submitAll() function is -> uvaUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10). Change as you need.
 * No checker added for UVa login status. Make sure you're using correct username and password.
 
-
+<br>
 ##### To-do for myself(basic version, UVa):
 
 1. Being able to login to vjudge, download and extract all the submissions(Done)
