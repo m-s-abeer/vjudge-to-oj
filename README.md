@@ -27,6 +27,7 @@ Hope you enjoy. <3
 4. The program will automatically submit accepted solutions from vjudge one by one and store the accepted solutions to another folder(modules>Submitted>) while testing if it's already accepted in UVa or not.
 5. Show you the status report.(Not completely done yet)
 
+* Remember to test before using your main vjudge and uva accounts. I'll update this note if enough of you give positive feedbacks.
 * default parameters of submitAll() function is -> uvaUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10). Change as you need.
 * No checker added for UVa login status. Make sure you're using correct username and password.
 
