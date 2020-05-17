@@ -1,13 +1,25 @@
 # vjudge-to-uva
 
-How it should work:
+Competitive programmers spend thousands of hours practicing programming problems and participating contests.
+Vjudge has been an amazing platform for participating/hosting programming contests and problem-solving.
+
+However, there can be scenarios where you'd like to add vjudge solutions to the actual judge profiles specifically.
+I personally felt the need of it along with some of my friends and colleagues.
+It's a tiresome job to submit all the solved problems of vjudge to the actual judge. This here is a small approach to get such works done easily.
+
+Current solution will only work for UVa. With enough response or your contribution I hope to add some more judges as well.
+
+Hope you enjoy.
+
+##How it should work:
+0. Install all the dependencies and required packages and get the environment ready
 1. Run main.py
 2. Insert Vjudge handle and password
 3. Insert Judge(UVa) handle and password
 4. The program will automatically submit accepted solutions from vjudge one by one and store the accepted solutions to another folder when it get ac on judge as well
-5. Show you the status report.
+5. Show you the status report.(Not completely done yet)
 
-To-do:
+###To-do(for basic version, UVa):
 1. Being able to login to vjudge, download and extract all the submissions(Done)
 2. Problem object sketch:(Done)
     1. judgeSlug(mapped from the folder name. i.e: Submissions>UVA)
