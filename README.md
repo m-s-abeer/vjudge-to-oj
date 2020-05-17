@@ -25,13 +25,13 @@ Hope you enjoy. <3
 1. Run main.py
 2. Insert Vjudge handle and password
 3. Insert Judge(UVa) handle and password
-4. The program will automatically submit accepted solutions from vjudge one by one and store the accepted solutions to another folder(modules>Submitted>) while testing if it's already accepted in UVa or not.
+4. The program will automatically download your Accepted solutions from vjudge and then submit them one by one and store the accepted solutions to another folder(modules>Submitted>) while testing if it's already accepted in UVa or not.
 5. Show you the status report.(Not completely done yet)
 
+* Just FYI, none of the activities/data are tracked or bypassed to any other sources. But if you want to stay on the safe side, empty the zip-files and cookies(used for reducing redundent login time) folder.
 * Remember to test before using your main vjudge and uva accounts. I'll update this note if enough of you give positive feedbacks.
 * default parameters of submitAll() function is -> uvaUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10). Change as you need.
 * No checker added for UVa login status. Make sure you're using correct username and password.
-
 
 
 ##### To-do for myself(basic version, UVa):
