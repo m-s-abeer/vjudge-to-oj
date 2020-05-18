@@ -18,6 +18,8 @@ Email: mahmudsajjad.abeer@gmail.com
 Hope you enjoy. <3
 <hr>
 
+## Installation Guide:
+Will be added soon
 
 ## How it should work:
 
@@ -30,27 +32,8 @@ Hope you enjoy. <3
 
 * As there are two versions of C++(C++ and C++11) in UVa and vjudge doesn't export that information, it's only submitted to C++11. There's a work-around I guess but it would be more complex. At least a large portion of submissions would surely get AC.
 * Just FYI, none of the activities/data are tracked or bypassed to any other sources. But if you want to stay on the safe side, empty the cookies(used for reducing redundent login time) folder.
-* Remember to test before using your main vjudge and uva accounts. I'll update this note if enough of you give positive feedbacks.
+~~* Remember to test before using your main vjudge and uva accounts. I'll update this note if enough of you give positive feedbacks.~~
 * Default parameters of uvaUser.submitAll() function is -> submitAll(submitSolvedOnes = False, limitSubmissionCount = 10). Change as you need.
 * No checker added for UVa login status. Make sure you're using correct username and password.
 
 <hr>
-
-##### To-do for myself(basic version, UVa):
-
-1. Being able to login to vjudge, download and extract all the submissions(Done)
-2. Problem object sketch:(Done)
-    1. judgeSlug(mapped from the folder name. i.e: Submissions>UVA)
-    2. problemId(collected from subfolder of judge submissions. i.e: Submissions>UVA>104)
-    3. problemName(collected from UVa api)
-    4. Solutions
-        1. Submission Code(all the files inside a problem id. i.e: Submissions>UVA>104>123124.cpp)
-        2. Language(from solution extention. i.e: Submissions>UVA>104>1231123.cpp)
-3. Being able to open login link in browser(Done)
-4. Being able to write on submission link(Done)
-5. Being able to press submit button automatically(Done)
-6. Submitting all the solutions automatically(Done)
-7. Store the submitted solution locally in a specific format("104 - Arbitrage.cpp")(Done)
-8. Preparing status report
-9. Checking if the problem is already solved on judge(Done)
-10. verify if the submitted solutions got AC
