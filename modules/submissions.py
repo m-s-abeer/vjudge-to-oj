@@ -97,7 +97,7 @@ class UvaProblem(Problem):
     """
 
     def fileNameCleaner(self, fileName):
-        forbidden = {'/', '<', '>', ':', '"', '\\', '|', '?', '*'}
+        forbidden = {'/', '<', '>', ':', '"', '|', '?', '*'}
         newName = ""
         for c in fileName:
             if(c not in forbidden):
@@ -108,5 +108,6 @@ class UvaProblem(Problem):
         savePath = self.savingPath + os.sep + self.problemNumber + " - " + self.problemName
         savePath = savePath + "(" + str(solutionId) + ", " + str(submissionId) + ")." + self.solutions[solutionId][0].solutionExt
         savePath = self.fileNameCleaner(savePath)
+        print("Saved on : ", savePath)
         with self.safe_open_w(savePath) as f:
             f.write(self.solutions[solutionId][0].solutionCode)
