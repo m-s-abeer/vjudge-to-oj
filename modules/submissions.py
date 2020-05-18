@@ -61,20 +61,6 @@ class UvaProblem(Problem):
         for subName in os.listdir(problemDir):
             self.solutions.append(list([Solution(problemDir + os.sep + subName, problemNumber, self.problemName), solCnt]))
             solCnt = solCnt + 1
-    
-    def mkdir_p(self, path):
-        try:
-            os.makedirs(path)
-        except OSError as exc: # Python >2.5
-            if exc.errno == errno.EEXIST and os.path.isdir(path):
-                pass
-            else: raise
-
-    def safe_open_w(self, path):
-        ''' Open "path" for writing, creating any parent directories as needed.
-        '''
-        self.mkdir_p(os.path.dirname(path))
-        return open(path, 'w')
 
     """
     Important when saving solution.
@@ -97,7 +83,7 @@ class UvaProblem(Problem):
     """
 
     def fileNameCleaner(self, fileName):
-        forbidden = {'/', '<', '>', ':', '"', '|', '?', '*'}
+        forbidden = {'/', '\\', '<', '>', ':', '"', '|', '?', '*'}
         newName = ""
         for c in fileName:
             if(c not in forbidden):
@@ -105,9 +91,29 @@ class UvaProblem(Problem):
         return newName
 
     def saveSolution(self, solutionId, submissionId):
-        savePath = self.savingPath + os.sep + self.problemNumber + " - " + self.problemName
-        savePath = savePath + "(" + str(solutionId) + ", " + str(submissionId) + ")." + self.solutions[solutionId][0].solutionExt
-        savePath = self.fileNameCleaner(savePath)
-        print("Saved on : ", savePath)
+        fileName = self.problemNumber + " - " + self.problemName
+        fileName = fileName + "(" + str(solutionId) + ", " + str(submissionId) + ")." + self.solutions[solutionId][0].solutionExt
+        fileName = self.fileNameCleaner(fileName)
+        savePath = self.savingPath + os.sep + fileName
+        print("Saving on : ", savePath)
         with self.safe_open_w(savePath) as f:
             f.write(self.solutions[solutionId][0].solutionCode)
+
+    def mkdir_p(self, path):
+        try:
+            os.makedirs(path)
+            if(os.path.exists(path)):
+                print("path created on ", path)
+            else:
+                print("path not created")
+            
+        except OSError as exc: # Python >2.5
+            if exc.errno == errno.EEXIST and os.path.isdir(path):
+                pass
+            else: raise
+
+    def safe_open_w(self, path):
+        ''' Open "path" for writing, creating any parent directories as needed.
+        '''
+        self.mkdir_p(os.path.dirname(path))
+        return open(path, 'w')
