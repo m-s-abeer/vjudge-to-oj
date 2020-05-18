@@ -28,9 +28,10 @@ Hope you enjoy. <3
 4. The program will automatically download your Accepted solutions from vjudge and then submit them one by one and store the accepted solutions to another folder(modules>Submitted>) while testing if it's already accepted in UVa or not.
 5. Show you the status report.(Not completely done yet)
 
+* As there are two versions of C++(C++ and C++11) in UVa and vjudge doesn't export that information, it's only submitted to C++11. There's a work-around I guess but it would be more complex. At least a large portion of submissions would surely get AC.
 * Just FYI, none of the activities/data are tracked or bypassed to any other sources. But if you want to stay on the safe side, empty the cookies(used for reducing redundent login time) folder.
 * Remember to test before using your main vjudge and uva accounts. I'll update this note if enough of you give positive feedbacks.
-* default parameters of uvaUser.submitAll() function is -> submitAll(submitSolvedOnes = False, limitSubmissionCount = 10). Change as you need.
+* Default parameters of uvaUser.submitAll() function is -> submitAll(submitSolvedOnes = False, limitSubmissionCount = 10). Change as you need.
 * No checker added for UVa login status. Make sure you're using correct username and password.
 
 <hr>
