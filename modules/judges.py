@@ -200,6 +200,7 @@ class UVA:
                     # while(1)
             elif((submitSolvedOnes == False)):
                 print(problem.getName(), " - solved already")
+            print()
 
         pass
 

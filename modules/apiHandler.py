@@ -30,6 +30,7 @@ class ApiCaller:
         data = self.getUvaProblemDataUsingProblemId(problemId)
         if(data):
             return data['num']
+        return None
     
     def getUvaIdFromUsername(self, username):
         response = requests.get(rootUVA + f"/api/uname2uid/{username}")
@@ -44,6 +45,7 @@ class ApiCaller:
         if response.status_code == 200:
             data = json.loads(response.content.decode('utf-8'))
             # print(data)
+            print(f"Solve data of {userid} fetched from uHunt")
             return data[0]['solved']
             # return data['solved']
         else:

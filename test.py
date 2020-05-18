@@ -1,6 +1,6 @@
 from modules import judges
-UVaUserName = "abeer676"
-UVaPassword = "pass"
+UVaUserName = "abeer6764"
+UVaPassword = "abc"
 
 uvaUser = judges.UVA(UVaUserName, UVaPassword)
-uvaUser.submitAll()
+uvaUser.submitAll(submitSolvedOnes=True)

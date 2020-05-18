@@ -22,6 +22,7 @@ class Problem:
         self.localDir = problemDir
         self.judgeSlug = judgeSlug
         self.problemNumber = problemNumber
+        self.solutions.clear()
 
     def getName(self):
         return self.judgeSlug + " " + self.problemNumber + " - " + self.problemName
@@ -31,10 +32,12 @@ class Problem:
 
 class Solution:
     problemNumber = str()
+    problemName = str()
     solutionExt = str()
     solutionCode = str()
 
     def __init__(self, submissionDir, problemNumber, problemName):
+        print(f"{problemNumber} submission dir: " + submissionDir)
         self.problemNumber = problemNumber
         self.problemName = problemName
         self.solutionExt = submissionDir.split('.')[-1]
@@ -73,8 +76,37 @@ class UvaProblem(Problem):
         self.mkdir_p(os.path.dirname(path))
         return open(path, 'w')
 
+    """
+    Important when saving solution.
+    Fobidden printable ascii characters while saving:-
+
+    Linux/Unix:
+    / (forward slash)
+    
+    Windows:
+    < (less than)
+    > (greater than)
+    : (colon - sometimes works, but is actually NTFS Alternate Data Streams)
+    " (double quote)
+    / (forward slash)
+    \ (backslash)
+    | (vertical bar or pipe)
+    ? (question mark)
+    * (asterisk)
+
+    """
+
+    def fileNameCleaner(self, fileName):
+        forbidden = {'/', '<', '>', ':', '"', '\\', '|', '?', '*'}
+        newName = ""
+        for c in fileName:
+            if(c not in forbidden):
+                newName = newName + str(c)
+        return newName
+
     def saveSolution(self, solutionId, submissionId):
         savePath = self.savingPath + os.sep + self.problemNumber + " - " + self.problemName
         savePath = savePath + "(" + str(solutionId) + ", " + str(submissionId) + ")." + self.solutions[solutionId][0].solutionExt
+        savePath = self.fileNameCleaner(savePath)
         with self.safe_open_w(savePath) as f:
             f.write(self.solutions[solutionId][0].solutionCode)
