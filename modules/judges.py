@@ -164,9 +164,11 @@ class UVA:
                 if(((x>>j)&1) == 1):
                     self.solvedProblemIds.add(str(i*32+j))
             i = i+1
+        print("Solved problems added to consideration")
+        print(sorted(self.solvedProblemIds))
 
-    def isSolved(self, problemNumber):
-        return (str(uvaProblem.problemId) in self.solvedProblemIds)
+    def isSolved(self, problemId):
+        return (str(problemId) in self.solvedProblemIds)
 
     def submitAll(self, submitSolvedOnes = False, limitSubmissionCount = 10):
         successfullySubmitted = 0
@@ -182,7 +184,7 @@ class UVA:
                     
                     print(f"Trying Problem: {solve}, {solveId}")
                     sid = str(self.submitSolution(solve))
-                    while(sid == ""):
+                    while(str(sid) == ""):
                         print("Submission failed. Trying again after 10 secs.")
                         time.sleep(10)
                         sid = str(self.submitSolution(solve))
@@ -193,7 +195,8 @@ class UVA:
                     # check verdict and verify
                     # timeout = 
                     # while(1)
-                
+            elif((submitSolvedOnes == False)):
+                print(problem.getName(), " - solved already")
 
         pass
 

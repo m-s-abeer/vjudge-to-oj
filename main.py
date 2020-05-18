@@ -10,5 +10,5 @@ UVaUserName = input("Please enter your UVa username: ")
 UVaPassword = input("Please enter your UVa password: ")
 
 uvaUser = judges.UVA(UVaUserName, UVaPassword)
-uvaUser.submitAll()
+uvaUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)
 

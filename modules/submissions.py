@@ -27,7 +27,7 @@ class Problem:
         return self.judgeSlug + " - " + self.problemName
 
     def __str__(self):
-        return self.judgeSlug + " - " + self.problemName + str(self.solutions.len)
+        return self.judgeSlug + " - " + self.problemName + " (sols: " + str(len(self.solutions)) + ")"
 
 class Solution:
     problemNumber = str()
@@ -51,7 +51,7 @@ class UvaProblem(Problem):
 
     def __init__(self, problemDir, problemNumber, judgeSlug = "UVA"):
         super().__init__(problemDir, problemNumber, judgeSlug)
-        problemData = apicaller.getUvaProblemData(problemNumber)
+        problemData = apicaller.getUvaProblemDataUsingProblemNumber(problemNumber)
         self.problemId = str(problemData['pid'])
         self.problemName = str(problemData['title'])
         solCnt = 0
