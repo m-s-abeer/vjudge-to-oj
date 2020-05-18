@@ -21,7 +21,7 @@ class Vjudge:
     password = str()
     zipUrl = str()
     s = session()
-    loggedIn = bool()
+    loggedIn = False
     # Browser
 
     def clearSolutions(self):
@@ -31,6 +31,7 @@ class Vjudge:
         except OSError as e:
             print ("Error: %s - %s." % (e.filename, e.strerror))
             pass
+        time.sleep(2)
         os.mkdir(solutionsDir)
 
     def __init__(self, username = "", password = ""):
@@ -48,6 +49,8 @@ class Vjudge:
 
         if os.path.exists(user_data_path):
             self.s = pickle.load(open(user_data_path, 'rb'))
+            self.loggedIn = True
+            print("Logged in from cookies")
         else:
             self.s = session()
             login_url = f"{self.rootUrl}{self.loginUrl}"
@@ -185,8 +188,8 @@ class UVA:
                     print(f"Trying Problem: {solve}, {solveId}")
                     sid = str(self.submitSolution(solve))
                     while(str(sid) == ""):
-                        print("Submission failed. Trying again after 10 secs.")
-                        time.sleep(10)
+                        print("Submission failed. Trying again after 2 secs.")
+                        time.sleep(2)
                         sid = str(self.submitSolution(solve))
                     else:
                         print(f"Problem submitted: sid = {sid}")

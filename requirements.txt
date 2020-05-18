@@ -2,3 +2,4 @@ cookiejar==0.0.3
 mechanize==0.4.5
 pathlib==1.0.1
 requests==2.23.0
+http.client
