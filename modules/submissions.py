@@ -24,7 +24,7 @@ class Problem:
         self.problemNumber = problemNumber
 
     def getName(self):
-        return self.judgeSlug + " - " + self.problemName
+        return self.judgeSlug + " " + self.problemNumber + " - " + self.problemName
 
     def __str__(self):
         return self.judgeSlug + " - " + self.problemName + " (sols: " + str(len(self.solutions)) + ")"
