@@ -14,8 +14,8 @@ from modules import apiHandler
 # uvaUser.submitAll(submitSolvedOnes=True)
 
 
-apicaller = apiHandler.ApiCaller()
+# apicaller = apiHandler.ApiCaller()
 
 # apicaller.refreshUvaProblemList()
 
-print(apicaller.getUvaProblemDataUsingProblemNumberOffline("100"))
+# print(apicaller.getUvaProblemDataUsingProblemNumberOffline("100"))

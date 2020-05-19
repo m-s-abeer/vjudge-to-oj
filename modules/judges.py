@@ -10,7 +10,7 @@ import time
 import os
 
 path = os.path.dirname(__file__)
-apicaller = ApiCaller(loadOffline = False)
+apicaller = ApiCaller()
 
 class Vjudge:
     judgeSlug = "Vjudge"
@@ -103,6 +103,7 @@ class UVA:
     username = str()
     password = str()
     userid = str()
+    loggedIn = bool()
     extentionId = {
         "c" : "1",
         "java" : "2",
@@ -132,8 +133,8 @@ class UVA:
         self.br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
 
         self.br.addheaders = [('User-agent', 'Chrome')]
-        self.login()
-        self.saveSolveData()
+        if(self.login()):
+            self.saveSolveData()
     
     def login(self):
         # The site we will navigate into, handling it's session
@@ -145,10 +146,18 @@ class UVA:
 
         # Select the second (index one) form (the first form is a search query box)
         self.br.select_form(nr=0)
+        self.loggedIn = True
         self.br.form['username'] = self.username
         self.br.form['passwd'] = self.password
         res = self.br.submit()
-        # print(res.geturl())
+        if(res.geturl() == self.loginURL):
+            print("Logged In Successfully")
+            return True
+        else:
+            print("UVA: Sorry, wrong username/password. Please try again.")
+            self.loggedIn = False
+            return False
+        return True
 
     '''
     saveSolveData
@@ -168,22 +177,28 @@ class UVA:
                     self.solvedProblemIds.add(str(i*32+j))
             i = i+1
         print("Solved problems added to consideration")
-        print(sorted(self.solvedProblemIds))
+        # print(sorted(self.solvedProblemIds))
 
     def isSolved(self, problemId):
         return (str(problemId) in self.solvedProblemIds)
 
     def submitAll(self, submitSolvedOnes = False, limitSubmissionCount = 10):
+        if(self.loggedIn == False):
+            print("Not logged into UVa. Can't submit.")            
+            return None
         successfullySubmitted = 0
         for problemNumber in os.listdir(self.localSubsURL):
             problemLocalUrl = self.localSubsURL + os.sep + problemNumber
-            if((submitSolvedOnes == True) or (self.isSolved(apicaller.getUvaProblemDataUsingProblemNumberOffline(problemNumber)['pid']) == False)):
+            problemDetails = apicaller.getUvaProblemDataUsingProblemNumberOffline(problemNumber)
+            # print(problemNumber, problemDetails, type(problemDetails))
+            if((submitSolvedOnes == True) or (self.isSolved(problemDetails[0]) == False)):
                 problem = UvaProblem(problemLocalUrl, problemNumber)
                 for solve, solveId in problem.solutions:
                     if(successfullySubmitted == limitSubmissionCount):
                         print("SubmissionLimitReached. Please run again")
                         return None
                     
+                    print(solve)
                     print(f"Trying Problem: {solve}, {solveId}")
                     sid = str(self.submitSolution(solve))
                     while(str(sid) == ""):
@@ -193,13 +208,14 @@ class UVA:
                     else:
                         print(f"Problem submitted: sid = {sid}")
                         problem.saveSolution(solveId, sid)
+                        print()
+
                     successfullySubmitted  = successfullySubmitted + 1
                     # check verdict and verify
                     # timeout = 
                     # while(1)
             elif((submitSolvedOnes == False)):
-                print(problem.getName(), " - solved already")
-            print()
+                print(problemNumber + " - " + problemDetails[1] + " -> solved already")
 
         pass
 
@@ -217,11 +233,9 @@ class UVA:
 # This is exactly the same as before, except that the problems is given in problem numbers, not problem ids.
     
     def submitSolution(self, solution):
-        
         self.br.open(self.submissionURL)
         # for f in br.forms():
         #     print(f)
-
         self.br.select_form(nr=1)
         self.br.form['localid'] = str(solution.problemNumber)
         self.br.form.find_control(name="language").value = [self.extentionId[solution.solutionExt]]

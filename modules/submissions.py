@@ -55,8 +55,8 @@ class UvaProblem(Problem):
     def __init__(self, problemDir, problemNumber, judgeSlug = "UVA"):
         super().__init__(problemDir, problemNumber, judgeSlug)
         problemData = apicaller.getUvaProblemDataUsingProblemNumberOffline(problemNumber)
-        self.problemId = str(problemData['pid'])
-        self.problemName = str(problemData['title'])
+        self.problemId = str(problemData[0])
+        self.problemName = str(problemData[1])
         solCnt = 0
         for subName in os.listdir(problemDir):
             self.solutions.append(list([Solution(problemDir + os.sep + subName, problemNumber, self.problemName), solCnt]))

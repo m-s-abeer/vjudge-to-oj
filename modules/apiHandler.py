@@ -4,8 +4,8 @@ import json
 import os
 
 path = os.path.dirname(__file__)
-pidDataPath = str()
-pnumDataPath = str()
+pidDataPath = path + os.sep + "offline_problem_data" + os.sep + "pDataWithPid.json"
+pnumDataPath = path + os.sep + "offline_problem_data" + os.sep + "pDataWithPnum.json"
 
 rootUVA = "https://uhunt.onlinejudge.org"
 '''
@@ -29,30 +29,33 @@ class ApiCaller:
             if os.path.exists(pidDataPath):
                 self.pidData = list()
                 leng = int(0)
-                with json.load(open(pidDataPath, 'r')) as f:
-                    for pid, data in f:
-                        tmp = int(pid)
-                        while(leng<=tmp):
-                            self.pidData.append()
-                            leng = leng + 1
-                        else:
-                            self.pidData[-1] = data
+                f = json.load(open(pidDataPath, 'r'))
+                for pid, data in f.items():
+                    d = [data['pnum'], data['title']]
+                    tmp = int(pid)
+                    while(leng<=tmp):
+                        self.pidData.append([])
+                        leng = leng + 1
+                    else:
+                        self.pidData[tmp] = d
             else:
                 self.dataLoaded = False
 
             if os.path.exists(pnumDataPath):
                 self.pnumData = list()
                 leng = int(0)
-                with json.load(open(pnumDataPath, 'r')) as f:
-                    for pnum, data in f:
-                        tmp = int(pnum)
-                        while(leng<=tmp):
-                            self.pnumData.append()
-                            leng = leng + 1
-                        else:
-                            self.pnumData[-1] = data
+                f = json.load(open(pnumDataPath, 'r'))
+                for pnum, data in f.items():
+                    data = [data['pid'], data['title']]
+                    tmp = int(pnum)
+                    while(leng<=tmp):
+                        self.pnumData.append([])
+                        leng = leng + 1
+                    else:
+                        self.pnumData[tmp] = data
             else:
                 self.dataLoaded = False
+            print("UVa Problem Data Loaded")
 
     #Online
     def getUvaProblemDataUsingProblemNumber(self, problemNumber):
@@ -136,9 +139,6 @@ class ApiCaller:
             for x in data:
                 problemListWithPid[str(x[0])] = {"pnum":str(x[1]), "title":str(x[2])}
                 problemListWithPnum[str(x[1])] = {"pid":str(x[0]), "title":str(x[2])}
-            
-            pidDataPath = path + os.sep + "offline_problem_data" + os.sep + "pDataWithPid.json"
-            pnumDataPath = path + os.sep + "offline_problem_data" + os.sep + "pDataWithPnum.json"
             with open(pidDataPath, "w") as outfile:  
                 json.dump(problemListWithPid, outfile, indent=4) 
             with open(pnumDataPath, "w") as outfile:  
