@@ -1,8 +1,8 @@
 # vjudge-to-oj
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![GitHub license](https://img.shields.io/github/license/M-S-Abeer/vjudge-to-oj.svg)](https://github.com/M-S-Abeer/vjudge-to-oj/blob/master/LICENSE)
-[![GitHub forks](https://img.shields.io/github/forks/M-S-Abeer/vjudge-to-oj.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/M-S-Abeer/vjudge-to-oj)
-[![GitHub stars](https://img.shields.io/github/stars/M-S-Abeer/vjudge-to-oj.svg?style=social&label=Star&maxAge=2592000)](https://github.com/M-S-Abeer/vjudge-to-oj)
+[![GitHub forks](https://img.shields.io/github/forks/M-S-Abeer/vjudge-to-oj.svg?style=social&label=Fork)](https://github.com/M-S-Abeer/vjudge-to-oj)
+[![GitHub stars](https://img.shields.io/github/stars/M-S-Abeer/vjudge-to-oj.svg?style=social&label=Stars)](https://github.com/M-S-Abeer/vjudge-to-oj)
 [![HitCount](http://hits.dwyl.io/M-S-Abeer/badges.svg)](http://hits.dwyl.io/M-S-Abeer/badges)
 
 Competitive programmers spend thousands of hours practicing programming problems and participating contests.
