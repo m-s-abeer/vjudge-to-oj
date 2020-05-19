@@ -47,6 +47,7 @@ vjUserName = "yourVjudgeHandle"
 vjPassword = "yourVjudgePassword"
 ```
 if you don't like writing your username and password everytime you run it.
+
 3. Insert Judge(UVa) handle and password when asked or set it as mentioned above.
 4. The program will automatically download your Accepted solutions from vjudge and then submit them one by one and store the submitted solutions to another folder(modules>Submitted>UVA>).
 5. It'll show you the status report as it runs.
