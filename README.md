@@ -41,4 +41,3 @@ Hope you enjoy. <3
   * limitSubmissionCount is set to 10 for safety. It means it will submit upto 10 solutions and then stop the program. Change as required.
 * It can automatically detect languages(C, C/C++, Java, Python) But as there are two versions of C++(C++ and C++11) in UVa and vjudge doesn't export that information, it's only submitted to C++11. There's a work-around I guess but it would be more complex. At least a large portion of submissions would surely get AC.
 * Just FYI, none of the activities/data are tracked or bypassed to any other sources. But if you want to stay on the safe side, empty the cookies(used for reducing redundent login time) folder.
-* No checker added for UVa login status. Make sure you're using correct username and password.
