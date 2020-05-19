@@ -29,13 +29,17 @@ Hope you enjoy. <3
   * If you have git write```git clone https://github.com/M-S-Abeer/vjudge-to-oj.git``` opening cmd from the project directory.
   * Otherwise just download the repository normally.
 1. Download python 3(version 3.7 or above preferred) or anaconda if you're comfortable with it. Direct python download link: https://www.python.org/downloads/.
-1. If python package installer (pip) is working install the requirements. For that, open CLI/cmd/powershell inside "vjudge-to-oj" folder and run ```pip install -r requirements.txt```. This should install most of the dependencies/packages.
-1. That should do the work, check out the next section. If it says a package is missing, try installing it with pip from cmd. i.e: ```pip install foo-package-name```.
+1. If python package installer (pip) is working install the requirements. For that, get inside extracted project folder of "vjudge-to-oj"(i.e: `C:\projects\vjudge-to-oj\`), write `cmd` clearing the addressbar.
+1. Then write ```pip install -r requirements.txt``` on cmd. This should install most of the dependencies/packages.
+1. That should do the work, check out the next section. Anywhere in the next section if it says a package is missing, try installing that package with pip from cmd. i.e: ```pip install foo-package-name```. Ignore this for now.
+
+Here is a sample for 3rd and 4th step:
+![3rd and 4th step](http://g.recordit.co/4yQY4rhqBS.gif)
 
 ## How it should work:
 
 0. Install all the dependencies and required packages and get the environment ready(Explained above)
-1. Open cmd inside project directory and write ```python main.py```
+1. Open cmd inside project directory again and write ```python main.py```
 2. Insert Vjudge handle and password when asked or change
 ```
 vjUserName = input("Please enter your vjudge username: ")
@@ -56,6 +60,9 @@ inside main.py in case you don't like writing your username and password everyti
   * If submitSolvedOnes is set to True, it'll submit the solution regardless of your solve status to actual judge.
   * limitSubmissionCount is set to 10 for safety. It means it will submit upto 10 solutions and then stop the program. Change as required.
 * It can automatically detect languages(C, C/C++, Java, Python) But as there are two versions of C++(C++ and C++11) in UVa and vjudge doesn't export that information, it's only submitted to C++11. There's a work-around I guess but it would be more complex. At least a large portion of submissions would surely get AC.
+* No login data is bypassed/redirected to anywhere else. Vjudge login data is stored inside "vjudge-to-oj>modules>cookies" this directory. You can empty that folder if you're concerned.
+
+**Please don't run it when UVa is already busy and many submissions are already in queue. This program is in no way meant to hamper the solving environment.**
 
 ## If you want to contribute
 
