@@ -26,11 +26,11 @@ Hope you enjoy. <3
 
 ## Installation Guide:
 1. Download/clone the repository from github.
-  1. If you have git write```git clone https://github.com/M-S-Abeer/vjudge-to-oj.git``` opening cmd from the project directory.
-  2. Otherwise just download the repository normally.
-2. Download python 3(version 3.7 or above preferred) or anaconda if you're comfortable with it. Direct python download link: https://www.python.org/downloads/.
-3. If python package installer (pip) is working install the requirements. For that, open CLI/cmd/powershell inside "vjudge-to-oj" folder and run ```pip install -r requirements.txt```. This should install most of the dependencies/packages.
-4. That should do the work, check out the next section. If it says a package is missing, try installing it with pip from cmd. i.e: ```pip install foo-package-name```.
+  * If you have git write```git clone https://github.com/M-S-Abeer/vjudge-to-oj.git``` opening cmd from the project directory.
+  * Otherwise just download the repository normally.
+1. Download python 3(version 3.7 or above preferred) or anaconda if you're comfortable with it. Direct python download link: https://www.python.org/downloads/.
+1. If python package installer (pip) is working install the requirements. For that, open CLI/cmd/powershell inside "vjudge-to-oj" folder and run ```pip install -r requirements.txt```. This should install most of the dependencies/packages.
+1. That should do the work, check out the next section. If it says a package is missing, try installing it with pip from cmd. i.e: ```pip install foo-package-name```.
 
 ## How it should work:
 
