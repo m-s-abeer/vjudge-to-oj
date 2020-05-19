@@ -198,7 +198,6 @@ class UVA:
                         print("SubmissionLimitReached. Please run again")
                         return None
                     
-                    print(solve)
                     print(f"Trying Problem: {solve}, {solveId}")
                     sid = str(self.submitSolution(solve))
                     while(str(sid) == ""):
