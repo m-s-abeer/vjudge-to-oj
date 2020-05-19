@@ -29,11 +29,11 @@ Hope you enjoy. <3
   * If you have git write```git clone https://github.com/M-S-Abeer/vjudge-to-oj.git``` opening cmd from the project directory.
   * Otherwise just download the repository normally.
 1. Download python 3(version 3.7 or above preferred) or anaconda if you're comfortable with it. Direct python download link: https://www.python.org/downloads/.
-1. If python package installer (pip) is working install the requirements. For that, get inside extracted project folder of "vjudge-to-oj"(i.e: `C:\projects\vjudge-to-oj\`), write `cmd` clearing the addressbar.
+1. If python package installer (pip) is working install the requirements. For that, get inside extracted project folder of "vjudge-to-oj"(i.e: `C:\projects\vjudge-to-oj\`), write `cmd` clearing the addressbar if you are on Windows OS.
 1. Then write ```pip install -r requirements.txt``` on cmd. This should install most of the dependencies/packages.
 1. That should do the work, check out the next section. Anywhere in the next section if it says a package is missing, try installing that package with pip from cmd. i.e: ```pip install foo-package-name```. Ignore this for now.
 
-Here is an example for 3rd and 4th step:
+Here is an example for 2nd and 3rd step:
 ![3rd and 4th step](http://g.recordit.co/4yQY4rhqBS.gif)
 
 ## How it should work:
