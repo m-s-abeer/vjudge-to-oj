@@ -10,6 +10,7 @@ import time
 import os
 
 path = os.path.dirname(__file__)
+apicaller = ApiCaller(loadOffline = False)
 
 class Vjudge:
     judgeSlug = "Vjudge"
@@ -159,7 +160,6 @@ class UVA:
     The bit-encoded-solved-pids is an array where the ith bit of the jth element (0-based) represents whether the particular user has solved the problem with pid = (j*32)+i.
     '''
     def saveSolveData(self):
-        apicaller = ApiCaller()
         solveData = apicaller.getUvaSolveData(self.userid)
         i = 0
         for x in solveData:
