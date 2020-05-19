@@ -18,20 +18,41 @@ class ApiCaller:
 
     pidData = {}
     pnumData = {}
-    dataLoaded = True
+    dataLoaded = bool()
 
     def __init__(self, loadOffline = True):
+        self.pidData = {}
+        self.pnumData = {}
+        self.dataLoaded = False
         if(loadOffline):
+            self.dataLoaded = True
             if os.path.exists(pidDataPath):
-                self.pidData = json.load(open(pidDataPath, 'r'))
+                self.pidData = list()
+                leng = int(0)
+                with json.load(open(pidDataPath, 'r')) as f:
+                    for pid, data in f:
+                        tmp = int(pid)
+                        while(leng<=tmp):
+                            self.pidData.append()
+                            leng = leng + 1
+                        else:
+                            self.pidData[-1] = data
             else:
                 self.dataLoaded = False
 
             if os.path.exists(pnumDataPath):
-                self.pnumData = json.load(open(pnumDataPath, 'r'))
+                self.pnumData = list()
+                leng = int(0)
+                with json.load(open(pnumDataPath, 'r')) as f:
+                    for pnum, data in f:
+                        tmp = int(pnum)
+                        while(leng<=tmp):
+                            self.pnumData.append()
+                            leng = leng + 1
+                        else:
+                            self.pnumData[-1] = data
             else:
                 self.dataLoaded = False
-        
 
     #Online
     def getUvaProblemDataUsingProblemNumber(self, problemNumber):
@@ -44,9 +65,13 @@ class ApiCaller:
     
     def getUvaProblemDataUsingProblemNumberOffline(self, problemNumber):
         if(self.dataLoaded):
-            return pnumData[str(problemNumber)]
+            if(int(problemNumber) < len(self.pnumData)):
+                return self.pnumData[int(problemNumber)]
+            else:
+                print(problemNumber, " doesn't exist")
+                return None
         else:
-            return getUvaProblemDataUsingProblemNumber(problemNumber)
+            return self.getUvaProblemDataUsingProblemNumber(problemNumber)
 
     #Online
     def getUvaProblemDataUsingProblemId(self, problemId):
@@ -57,11 +82,15 @@ class ApiCaller:
         else:
             return None
 
-    def getUvaProblemDataUsingProblemIdOffline(self, problemNumber):
+    def getUvaProblemDataUsingProblemIdOffline(self, problemId):
         if(self.dataLoaded):
-            return pnumData[str(problemNumber)]
+            if(int(problemId) < len(self.pidData)):
+                return self.pidData[int(problemId)]
+            else:
+                print(problemId, " doesn't exist")
+                return None
         else:
-            return getUvaProblemDataUsingProblemId(problemNumber)
+            return self.getUvaProblemDataUsingProblemId(problemId)
 
     #Online
     def getUvaProblemNumberFromProblemId(self, problemId):

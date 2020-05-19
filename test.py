@@ -16,4 +16,6 @@ from modules import apiHandler
 
 apicaller = apiHandler.ApiCaller()
 
-apicaller.refreshUvaProblemList()
+# apicaller.refreshUvaProblemList()
+
+print(apicaller.getUvaProblemDataUsingProblemNumberOffline("100"))

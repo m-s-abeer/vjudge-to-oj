@@ -1,4 +1,5 @@
 from modules import judges
+from modules.apiHandler import ApiCaller as apicaller
 
 vjUserName = input("Please enter your vjudge username: ")
 vjPassword = input("Please enter your vjudge password: ")
