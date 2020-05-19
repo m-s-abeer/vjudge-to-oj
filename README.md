@@ -33,7 +33,7 @@ Hope you enjoy. <3
 1. Then write ```pip install -r requirements.txt``` on cmd. This should install most of the dependencies/packages.
 1. That should do the work, check out the next section. Anywhere in the next section if it says a package is missing, try installing that package with pip from cmd. i.e: ```pip install foo-package-name```. Ignore this for now.
 
-Here is a sample for 3rd and 4th step:
+Here is an example for 3rd and 4th step:
 ![3rd and 4th step](http://g.recordit.co/4yQY4rhqBS.gif)
 
 ## How it should work:
