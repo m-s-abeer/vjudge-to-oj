@@ -177,10 +177,9 @@ class UVA:
         successfullySubmitted = 0
         for problemNumber in os.listdir(self.localSubsURL):
             problemLocalUrl = self.localSubsURL + os.sep + problemNumber
-            problem = UvaProblem(problemLocalUrl, problemNumber)
-            if((submitSolvedOnes == True) or (self.isSolved(problem.problemId) == False)):
+            if((submitSolvedOnes == True) or (self.isSolved(apicaller.getUvaProblemDataUsingProblemNumberOffline(problemNumber)['pid']) == False)):
+                problem = UvaProblem(problemLocalUrl, problemNumber)
                 for solve, solveId in problem.solutions:
-
                     if(successfullySubmitted == limitSubmissionCount):
                         print("SubmissionLimitReached. Please run again")
                         return None
