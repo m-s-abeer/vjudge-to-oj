@@ -251,7 +251,7 @@ class CF:
     judgeSlug = "CF"
     judgeURL = "https://codeforces.com/"
     loginURL = "https://codeforces.com/enter"
-    submissionURL = "https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25"
+    submissionURL = "https://codeforces.com/problemset/submit"
     localSubsURL = path + os.sep + "solutions" + os.sep + "CodeForces"
     username = str()
     password = str()
@@ -314,3 +314,43 @@ class CF:
         print("Solved problems added to consideration")
         print(self.solvedProblemIds)
         # print(sorted(self.solvedProblemIds))
+
+    def isSolved(self, problemId):
+        return (str(problemId) in self.solvedProblemIds)
+
+    ###################################################################### yet to be implemented
+    def submitAll(self, submitSolvedOnes = False, limitSubmissionCount = 10):
+        if(self.loggedIn == False):
+            print("Not logged into CF. Can't submit.")
+            return None
+        successfullySubmitted = 0
+        for problemNumber in os.listdir(self.localSubsURL):
+            problemLocalUrl = self.localSubsURL + os.sep + problemNumber
+            problemDetails = apicaller.getUvaProblemDataUsingProblemNumberOffline(problemNumber)
+            # print(problemNumber, problemDetails, type(problemDetails))
+            if((submitSolvedOnes == True) or (self.isSolved(problemDetails[0]) == False)):
+                problem = UvaProblem(problemLocalUrl, problemNumber)
+                for solve, solveId in problem.solutions:
+                    if(successfullySubmitted == limitSubmissionCount):
+                        print("SubmissionLimitReached. Please run again")
+                        return None
+                    
+                    print(f"Trying Problem: {solve}, {solveId}")
+                    sid = str(self.submitSolution(solve))
+                    while(str(sid) == ""):
+                        print("Submission failed. Trying again after 2 secs.")
+                        time.sleep(2)
+                        sid = str(self.submitSolution(solve))
+                    else:
+                        print(f"Problem submitted: sid = {sid}")
+                        problem.saveSolution(solveId, sid)
+                        print()
+
+                    successfullySubmitted  = successfullySubmitted + 1
+                    # check verdict and verify
+                    # timeout = 
+                    # while(1)
+            elif((submitSolvedOnes == False)):
+                print(problemNumber + " - " + problemDetails[1] + " -> solved already")
+
+        pass

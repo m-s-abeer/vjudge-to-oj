@@ -6,8 +6,10 @@ import os
 path = os.path.dirname(__file__)
 pidDataPath = path + os.sep + "offline_problem_data" + os.sep + "pDataWithPid.json"
 pnumDataPath = path + os.sep + "offline_problem_data" + os.sep + "pDataWithPnum.json"
+cfDataPath = path + os.sep + "offline_problem_data" + os.sep + "cfProblemData.json"
 
 rootUVA = "https://uhunt.onlinejudge.org"
+rootCF = "https://codeforces.com/"
 '''
 uHunt Problem object:-
 pid: problemId
@@ -18,14 +20,18 @@ class ApiCaller:
 
     pidData = {}
     pnumData = {}
-    dataLoaded = bool()
+    uvaDataLoaded = bool()
+    cfData = {}
+    cfDataLoaded = bool()
 
     def __init__(self, loadOffline = True):
         self.pidData = {}
         self.pnumData = {}
-        self.dataLoaded = False
+        self.uvaDataLoaded = False
+        self.cfDataLoaded = False
         if(loadOffline):
-            self.dataLoaded = True
+            ### For UVa data loading
+            self.uvaDataLoaded = True
             if os.path.exists(pidDataPath):
                 self.pidData = list()
                 leng = int(0)
@@ -39,7 +45,7 @@ class ApiCaller:
                     else:
                         self.pidData[tmp] = d
             else:
-                self.dataLoaded = False
+                self.uvaDataLoaded = False
 
             if os.path.exists(pnumDataPath):
                 self.pnumData = list()
@@ -54,8 +60,18 @@ class ApiCaller:
                     else:
                         self.pnumData[tmp] = data
             else:
-                self.dataLoaded = False
+                self.uvaDataLoaded = False
             print("UVa Problem Data Loaded")
+
+            ### For CodeForces data loading
+            self.cfDataLoaded = True
+            if os.path.exists(cfDataPath):
+                self.cfData = dict()
+                f = json.load(open(cfDataPath, 'r'))
+                for pid, pname in f.items():
+                    self.cfData[pid] = pname
+            else:
+                self.cfDataLoaded = False
 
     #Online
     def getUvaProblemDataUsingProblemNumber(self, problemNumber):
@@ -67,7 +83,7 @@ class ApiCaller:
             return None
     
     def getUvaProblemDataUsingProblemNumberOffline(self, problemNumber):
-        if(self.dataLoaded):
+        if(self.uvaDataLoaded):
             if(int(problemNumber) < len(self.pnumData)):
                 return self.pnumData[int(problemNumber)]
             else:
@@ -86,7 +102,7 @@ class ApiCaller:
             return None
 
     def getUvaProblemDataUsingProblemIdOffline(self, problemId):
-        if(self.dataLoaded):
+        if(self.uvaDataLoaded):
             if(int(problemId) < len(self.pidData)):
                 return self.pidData[int(problemId)]
             else:
@@ -149,7 +165,7 @@ class ApiCaller:
         else:
             print("There's a problem. No problem data fetched.")
 
-
+    # Online
     def getCfSolveData(self, username):
         print("Requesting submissions for: " + username)
         response = requests.get("https://codeforces.com/api/user.status?handle="+username+"&from=1&count=1000000")
@@ -168,3 +184,26 @@ class ApiCaller:
         else:
             print("Couldn't fetch submissions.")
             return None
+
+    def getCfProblemList(self):
+        print("Fetching CodeForces Problem List.")
+        response = requests.get(rootCF + "/api/problemset.problems")
+        if response.status_code == 200:
+            data = json.loads(response.content.decode('utf-8'))
+            return data
+        else:
+            return None
+
+    def refreshCfProblemList(self):
+        data = self.getCfProblemList()
+        if(data):
+            cfProblemList = dict()
+            for x in data['result']['problems']:
+                cfProblemList[str(x['contestId']) + str(x['index'])] = x['name']
+            with open(cfDataPath, "w", encoding='utf8') as outfile:  
+                json.dump(cfProblemList, outfile, indent=4, ensure_ascii=False)
+
+            print(len(cfProblemList), " problem data saved offline.")
+            # self.__init__()
+        else:
+            print("There's a problem. No problem data fetched.")
