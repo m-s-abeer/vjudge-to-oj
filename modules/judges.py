@@ -245,3 +245,72 @@ class UVA:
 
         # then we should check if the verdict has been given
         # should check repeatedly delaying 5-10 secs and stop when a verdict is given
+
+
+class CF:
+    judgeSlug = "CF"
+    judgeURL = "https://codeforces.com/"
+    loginURL = "https://codeforces.com/enter"
+    submissionURL = "https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25"
+    localSubsURL = path + os.sep + "solutions" + os.sep + "CodeForces"
+    username = str()
+    password = str()
+    loggedIn = bool()
+    extentionId = {
+        "c" : "1",
+        "java" : "2",
+        "cpp" : "5",
+        "c++" : "5",
+        "py" : "6"
+    }
+    br = mechanize.Browser()
+    solvedProblemIds = set()
+
+    def __init__(self, username = "", password = ""):
+        self.username = username
+        self.password = password
+
+        # Cookie Jar
+        cj = http.cookiejar.LWPCookieJar()
+        self.br.set_cookiejar(cj)
+
+        # Browser options
+        self.br.set_handle_equiv(True)
+        self.br.set_handle_gzip(True)
+        self.br.set_handle_redirect(True)
+        self.br.set_handle_referer(True)
+        self.br.set_handle_robots(False)
+        self.br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
+
+        self.br.addheaders = [('User-agent', 'Chrome')]
+        if(self.login()):
+            self.saveSolveData()
+
+    def login(self):
+        # The site we will navigate into, handling it's session
+        self.br.open(self.loginURL)
+
+        # View available forms
+        # for f in self.br.forms():
+        #     print(f)
+
+        # Select the second (index one) form (the first form is a search query box)
+        self.br.select_form(nr=1)
+        self.loggedIn = True
+        self.br.form['handleOrEmail'] = self.username
+        self.br.form['password'] = self.password
+        res = self.br.submit()
+        if(res.geturl() == self.judgeURL):
+            print("Logged In Successfully")
+            return True
+        else:
+            print("CF: Sorry, wrong username/password. Please try again.")
+            self.loggedIn = False
+            return False
+        return True
+
+    def saveSolveData(self):
+        self.solvedProblemIds = apicaller.getCfSolveData(self.username)
+        print("Solved problems added to consideration")
+        print(self.solvedProblemIds)
+        # print(sorted(self.solvedProblemIds))

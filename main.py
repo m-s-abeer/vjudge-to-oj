@@ -15,3 +15,8 @@ UVaPassword = input("Please enter your UVa password: ")
 uvaUser = judges.UVA(UVaUserName, UVaPassword)
 uvaUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)
 
+CfUserName = input("Please enter your CodeForces username: ")
+CfPassword = input("Please enter your CodeForces password: ")
+
+cfUser = judges.CF(CfUserName, CfPassword)
+# cfUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)

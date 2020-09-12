@@ -148,3 +148,23 @@ class ApiCaller:
             self.__init__()
         else:
             print("There's a problem. No problem data fetched.")
+
+
+    def getCfSolveData(self, username):
+        print("Requesting submissions for: " + username)
+        response = requests.get("https://codeforces.com/api/user.status?handle="+username+"&from=1&count=1000000")
+        if response.status_code == 200:
+            print("CodeForces submissions received.")
+            data = json.loads(response.content.decode('utf-8'))
+            data = data['result']
+            solves = set()
+            for submission in data:
+                verdict = submission['verdict']
+                if(verdict == "OK"):
+                    contestId = submission['problem']['contestId']
+                    problemId = submission['problem']['index']
+                    solves.add(str(contestId) + str(problemId))
+            return solves
+        else:
+            print("Couldn't fetch submissions.")
+            return None
