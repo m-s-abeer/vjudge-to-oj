@@ -47,14 +47,14 @@ class Solution:
     def __str__(self):
         return self.problemNumber + " - " + self.problemName
 
-class UvaProblem(Problem):
+class CodeForcesProblem(Problem):
     problemId = str()
     problemName = str()
-    savingPath = path + os.sep + "Submitted" + os.sep + "UVA"
+    savingPath = path + os.sep + "Submitted" + os.sep + "CodeForces"
 
-    def __init__(self, problemDir, problemNumber, judgeSlug = "UVA"):
+    def __init__(self, problemDir, problemNumber, judgeSlug = "CodeForces"):
         super().__init__(problemDir, problemNumber, judgeSlug)
-        problemData = apicaller.getUvaProblemDataUsingProblemNumberOffline(problemNumber)
+        problemData = apicaller.getCodeForcesProblemDataUsingProblemNumber(problemNumber)
         self.problemId = str(problemData[0])
         self.problemName = str(problemData[1])
         solCnt = 0

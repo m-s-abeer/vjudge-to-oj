@@ -1,9 +1,9 @@
 from modules import judges
 from modules.apiHandler import ApiCaller
 
-'''
-Refresh offline data
-'''
+# '''
+# Refresh offline data
+# '''
 # apicaller = ApiCaller()
 # apicaller.refreshUvaProblemList() # run only if you think UVa has added new problems
 
@@ -41,4 +41,4 @@ CfUserName = input("Please enter your CodeForces username: ")
 CfPassword = input("Please enter your CodeForces password: ")
 
 cfUser = judges.CF(CfUserName, CfPassword)
-# cfUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)
+cfUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)

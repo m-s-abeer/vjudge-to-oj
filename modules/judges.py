@@ -257,11 +257,11 @@ class CF:
     password = str()
     loggedIn = bool()
     extentionId = {
-        "c" : "1",
-        "java" : "2",
-        "cpp" : "5",
-        "c++" : "5",
-        "py" : "6"
+        "c" : "43", #GNU GCC C11 5.1.0
+        "java" : "36", #Java 1.8.0_241
+        "cpp" : "42", #GNU G++11 5.1.0
+        "c++" : "42", #GNU G++11 5.1.0
+        "py" : "41" #PyPy 3.6 (7.2.0)
     }
     br = mechanize.Browser()
     solvedProblemIds = set()
@@ -271,8 +271,8 @@ class CF:
         self.password = password
 
         # Cookie Jar
-        cj = http.cookiejar.LWPCookieJar()
-        self.br.set_cookiejar(cj)
+        # cj = http.cookiejar.LWPCookieJar()
+        # self.br.set_cookiejar(cj)
 
         # Browser options
         self.br.set_handle_equiv(True)
@@ -287,6 +287,7 @@ class CF:
             self.saveSolveData()
 
     def login(self):
+        print("Trying to log into CodeForces: " + self.username)
         # The site we will navigate into, handling it's session
         self.br.open(self.loginURL)
 
@@ -312,7 +313,7 @@ class CF:
     def saveSolveData(self):
         self.solvedProblemIds = apicaller.getCfSolveData(self.username)
         print("Solved problems added to consideration")
-        print(self.solvedProblemIds)
+        # print(self.solvedProblemIds)
         # print(sorted(self.solvedProblemIds))
 
     def isSolved(self, problemId):
@@ -326,10 +327,10 @@ class CF:
         successfullySubmitted = 0
         for problemNumber in os.listdir(self.localSubsURL):
             problemLocalUrl = self.localSubsURL + os.sep + problemNumber
-            problemDetails = apicaller.getUvaProblemDataUsingProblemNumberOffline(problemNumber)
+            problemDetails = apicaller.getCodeForcesProblemDataUsingProblemNumber(problemNumber)
             # print(problemNumber, problemDetails, type(problemDetails))
             if((submitSolvedOnes == True) or (self.isSolved(problemDetails[0]) == False)):
-                problem = UvaProblem(problemLocalUrl, problemNumber)
+                problem = CodeForcesProblem(problemLocalUrl, problemNumber)
                 for solve, solveId in problem.solutions:
                     if(successfullySubmitted == limitSubmissionCount):
                         print("SubmissionLimitReached. Please run again")
@@ -337,10 +338,10 @@ class CF:
                     
                     print(f"Trying Problem: {solve}, {solveId}")
                     sid = str(self.submitSolution(solve))
-                    while(str(sid) == ""):
+                    while(sid == ""):
                         print("Submission failed. Trying again after 2 secs.")
                         time.sleep(2)
-                        sid = str(self.submitSolution(solve))
+                        sid = str(self.submitSolution(solve)) # no easy way to get sid
                     else:
                         print(f"Problem submitted: sid = {sid}")
                         problem.saveSolution(solveId, sid)
@@ -354,3 +355,21 @@ class CF:
                 print(problemNumber + " - " + problemDetails[1] + " -> solved already")
 
         pass
+
+    def submitSolution(self, solution):
+        self.br.open(self.submissionURL)
+        # for f in br.forms():
+        #     print(f)
+        self.br.select_form(nr=1)
+        self.br.form['submittedProblemCode'] = str(solution.problemNumber)
+        self.br.form.find_control(name="programTypeId").value = [self.extentionId[solution.solutionExt]]
+        self.br.form.find_control(name="source").value = solution.solutionCode
+        res = self.br.submit()
+        print(str(res.geturl()))
+        if("https://codeforces.com/problemset/status?my=on" != str(res.geturl())):
+            return ""
+        sid = apicaller.getCodeForcesLastSubmissionId(self.username)
+        return sid
+
+        # then we should check if the verdict has been given
+        # should check repeatedly delaying 5-10 secs and stop when a verdict is given

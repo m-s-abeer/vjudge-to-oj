@@ -30,6 +30,7 @@ class ApiCaller:
         self.uvaDataLoaded = False
         self.cfDataLoaded = False
         if(loadOffline):
+            print("Loading offline problem data...")
             ### For UVa data loading
             self.uvaDataLoaded = True
             if os.path.exists(pidDataPath):
@@ -61,17 +62,18 @@ class ApiCaller:
                         self.pnumData[tmp] = data
             else:
                 self.uvaDataLoaded = False
-            print("UVa Problem Data Loaded")
+            print("UVa Problem Data Loaded.")
 
             ### For CodeForces data loading
             self.cfDataLoaded = True
             if os.path.exists(cfDataPath):
                 self.cfData = dict()
-                f = json.load(open(cfDataPath, 'r'))
+                f = json.load(open(cfDataPath, 'r', encoding='utf-8'))
                 for pid, pname in f.items():
                     self.cfData[pid] = pname
             else:
                 self.cfDataLoaded = False
+            print("CodeForces Problem Data Loaded.")
 
     #Online
     def getUvaProblemDataUsingProblemNumber(self, problemNumber):
@@ -185,6 +187,7 @@ class ApiCaller:
             print("Couldn't fetch submissions.")
             return None
 
+    # Online
     def getCfProblemList(self):
         print("Fetching CodeForces Problem List.")
         response = requests.get(rootCF + "/api/problemset.problems")
@@ -194,6 +197,7 @@ class ApiCaller:
         else:
             return None
 
+    # Online
     def refreshCfProblemList(self):
         data = self.getCfProblemList()
         if(data):
@@ -204,6 +208,27 @@ class ApiCaller:
                 json.dump(cfProblemList, outfile, indent=4, ensure_ascii=False)
 
             print(len(cfProblemList), " problem data saved offline.")
-            # self.__init__()
+            self.__init__()
         else:
             print("There's a problem. No problem data fetched.")
+
+    def getCodeForcesProblemDataUsingProblemNumber(self, problemNumber):
+        if(self.cfDataLoaded):
+            try:
+                return [problemNumber, self.cfData[problemNumber]]
+            except KeyError:
+                self.refreshCfProblemList()
+                return self.getCodeForcesProblemDataUsingProblemNumber(problemNumber)
+        else:
+            self.refreshCfProblemList()
+            return self.getCodeForcesProblemDataUsingProblemNumber(problemNumber)
+
+    def getCodeForcesLastSubmissionId(self, username):
+        response = requests.get("https://codeforces.com/api/user.status?handle="+username+"&from=1&count=1")
+        if response.status_code == 200:
+            data = json.loads(response.content.decode('utf-8'))
+            data = data['result'][0]['id']
+            return data
+        else:
+            print("Could't get submission id. Please try this problem again later.")
+            return ""
