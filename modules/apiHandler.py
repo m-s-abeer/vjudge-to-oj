@@ -36,7 +36,7 @@ class ApiCaller:
             if os.path.exists(pidDataPath):
                 self.pidData = list()
                 leng = int(0)
-                f = json.load(open(pidDataPath, 'r'))
+                f = json.load(open(pidDataPath, 'r', encoding='utf-8'))
                 for pid, data in f.items():
                     d = [data['pnum'], data['title']]
                     tmp = int(pid)
@@ -51,7 +51,7 @@ class ApiCaller:
             if os.path.exists(pnumDataPath):
                 self.pnumData = list()
                 leng = int(0)
-                f = json.load(open(pnumDataPath, 'r'))
+                f = json.load(open(pnumDataPath, 'r', encoding='utf-8'))
                 for pnum, data in f.items():
                     data = [data['pid'], data['title']]
                     tmp = int(pnum)
