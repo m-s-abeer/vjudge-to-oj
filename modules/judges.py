@@ -47,7 +47,8 @@ class Vjudge:
             'username': self.username,
             'password': self.password
         }
-        user_data_path = path + os.sep + "cookies" + os.sep + f'{self.username}_login_session.dat'
+        user_data_directory = path + os.sep + "cookies"
+        user_data_path = user_data_directory + os.sep + f'{self.username}_login_session.dat'
 
         if os.path.exists(user_data_path):
             self.s = pickle.load(open(user_data_path, 'rb'))
@@ -58,7 +59,7 @@ class Vjudge:
             login_url = f"{self.rootUrl}{self.loginUrl}"
             r = self.s.post(login_url, data=payLoad)
             if(r.text == "success"):
-                pathlib.Path(user_data_path).mkdir(parents=True, exist_ok=True) # creates the path if not exists
+                pathlib.Path(user_data_directory).mkdir(parents=True, exist_ok=True) # creates the path if not exists
                 with open(user_data_path, 'wb') as file:
                     pickle.dump(self.s, file)
                 self.loggedIn = True
@@ -75,6 +76,9 @@ class Vjudge:
         self.zipUrl = path + os.sep + "zip-files" + os.sep + self.username + '.zip'
         if os.path.exists(self.zipUrl):
             os.remove(self.zipUrl)
+        else:
+            pathlib.Path(path + os.sep + "zip-files").mkdir(parents=True, exist_ok=True) # creates the path if not exists
+
 
         self.clearSolutions()
         source_dowload_url = f"{self.rootUrl}{self.acSubmissionsUrl}"
@@ -84,7 +88,6 @@ class Vjudge:
     
     def downloadUrl(self, url, sess, save_path, chunk_size=128):
         r = sess.get(url, stream=True)
-        pathlib.Path(save_path).mkdir(parents=True, exist_ok=True) # creates the path if not exists
         with open(save_path, 'wb') as fd:
             for chunk in r.iter_content(chunk_size=chunk_size):
                 fd.write(chunk)
