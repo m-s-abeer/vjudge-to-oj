@@ -345,10 +345,8 @@ class CF:
                     
                     print(f"Trying Problem: {solve}, {solveId}")
                     sid = str(self.submitSolution(solve))
-                    while(sid == ""):
-                        print("Submission failed. Trying again after 2 secs.")
-                        time.sleep(2)
-                        sid = str(self.submitSolution(solve)) # no easy way to get sid
+                    if(sid == ""):
+                        print("Submission failed. Try again later for this problem.")
                     else:
                         print(f"Problem submitted: sid = {sid}")
                         problem.saveSolution(solveId, sid)

@@ -217,8 +217,8 @@ class ApiCaller:
             try:
                 return [problemNumber, self.cfData[problemNumber]]
             except KeyError:
-                self.refreshCfProblemList()
-                return self.getCodeForcesProblemDataUsingProblemNumber(problemNumber)
+                print("Problem ID not found from CF. Try refreshing CF problem list from main.py once. Otherwise, it may be an issue of problem id of concurrent contest problems.")
+                return [problemNumber, "No name from CF api list"]
         else:
             self.refreshCfProblemList()
             return self.getCodeForcesProblemDataUsingProblemNumber(problemNumber)
