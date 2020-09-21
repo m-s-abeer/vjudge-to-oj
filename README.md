@@ -10,10 +10,10 @@ Vjudge has been an amazing platform for participating/hosting programming contes
 
 However, there can be scenarios where you'd like to add vjudge solutions to the actual judge profiles specifically.
 I personally felt the need of it along with some of my friends and colleagues.
-It's a tiresome job to submit all the solved problems of vjudge to the actual judge. This here is a small approach to get such works done easily.
+It's a tiresome job to submit all the solved problems of vjudge to the actual judges. This here is a small approach to get such works done easily.
 
-Current solution will only work for UVa. 
-So far it's pretty much stable and working just fine. It's roughly written and tested. But hey, it works!!!
+Current solution will only work for **UVa** and **CodeForces**. 
+So far, it's pretty much stable and working just fine. It's roughly written and tested. But hey, it works!!!
 
 With enough response and your contribution I hope to add some more judges here as well. Huge thanks to @mehedi-shafi for contributing to all my fun projects.
 
@@ -52,22 +52,14 @@ vjPassword = "yourVjudgePassword"
 ```
 inside main.py in case you don't like writing your username and password everytime you run it.
 
-3. Insert Judge(UVa) handle and password when asked or set it as mentioned above.
+3. Insert Judge(UVa, CodeForces) handle and password when asked or set it as mentioned above.
 4. The program will automatically download your Accepted solutions from vjudge and then submit them one by one and store the submitted solutions to another folder(modules>Submitted>UVA>).
-5. It'll show you the status report as it runs.
+5. It'll show you the status report as it runs. It may look messy but it actually helps you see what's going on.
 
-* Default parameters of uvaUser.submitAll() function is ```submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)```. Change as you need. In case anything goes wrong, close the command prompt.
+* Default parameters of uvaUser.submitAll() and cfUser.submitAll() function is ```submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)```. Change as you need. In case anything goes wrong, close the command prompt.
   * If submitSolvedOnes is set to True, it'll submit the solution regardless of your solve status to actual judge.
   * limitSubmissionCount is set to 10 for safety. It means it will submit upto 10 solutions and then stop the program. Change as required.
 * It can automatically detect languages(C, C/C++, Java, Python) But as there are two versions of C++(C++ and C++11) in UVa and vjudge doesn't export that information, it's only submitted to C++11. There's a work-around I guess but it would be more complex. At least a large portion of submissions would surely get AC.
-* No login data is bypassed/redirected to anywhere else. Vjudge login data is stored inside "vjudge-to-oj>modules>cookies" this directory. You can empty that folder if you're concerned.
+* No login data is bypassed/redirected to anywhere else. Vjudge login data is stored inside "vjudge-to-oj>modules>cookies" this directory. You can empty that folder if you're concerned or have issues loggin in.
 
-**Please don't run it when UVa is already busy and many submissions are already in queue. This program is in no way meant to hamper the solving environment.**
-
-## If you want to contribute
-
-1. Fork it (https://github.com/M-S-Abeer/vjudge-to-oj/fork)
-2. Create your feature branch (`git checkout -b feature/fooBar`)
-3. Commit your changes (`git commit -am 'Add some fooBar'`)
-4. Push to the branch (`git push origin feature/fooBar`)
-5. Create a new Pull Request
+**Please don't run it when UVa, CodeForces is already busy and many submissions are already in queue. It's built only for personal uses. This program is in no way meant to hamper the solving environment of a judging platform.**
