@@ -179,9 +179,10 @@ class ApiCaller:
             for submission in data:
                 verdict = submission['verdict']
                 if(verdict == "OK"):
-                    contestId = submission['problem']['contestId']
-                    problemId = submission['problem']['index']
-                    solves.add(str(contestId) + str(problemId))
+                    if submission['problem'].get('contestId'):
+                        contestId = submission['problem']['contestId']
+                        problemId = submission['problem']['index']
+                        solves.add(str(contestId) + str(problemId))
             return solves
         else:
             print("Couldn't fetch submissions.")
