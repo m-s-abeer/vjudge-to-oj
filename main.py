@@ -44,6 +44,7 @@ cfUser = judges.CF(CfUserName, CfPassword)
 cfUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)
 
 
+
 '''
 SPOJ Login
 '''
