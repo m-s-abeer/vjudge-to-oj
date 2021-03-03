@@ -2,4 +2,8 @@ cookiejar==0.0.3
 mechanize==0.4.5
 pathlib==1.0.1
 requests==2.23.0
-http.client
+http-client==0.1.22
+lxml==4.6.2
+pycurl==7.43.0.5
+numpy==1.20.1
+beautifulsoup4==4.6.0

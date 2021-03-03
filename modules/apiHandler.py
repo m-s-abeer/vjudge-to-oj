@@ -2,6 +2,8 @@
 import requests
 import json
 import os
+import bs4
+import numpy as np
 
 path = os.path.dirname(__file__)
 pidDataPath = path + os.sep + "offline_problem_data" + os.sep + "pDataWithPid.json"
@@ -233,3 +235,59 @@ class ApiCaller:
         else:
             print("Could't get submission id. Please try this problem again later.")
             return ""
+
+    # Online
+    def getSPOJSolveData(self, username):
+        """
+            This will be used in retrive already solved problem list of user
+        """
+        start = 0
+        self.submissions = []
+        previd = -1
+        currid = 0
+
+        for i in range(1000):
+            flag = 0
+            url = "https://www.spoj.com/status/" + \
+                  username + \
+                  "/all/start=" + \
+                  str(start)
+
+            start += 20
+
+            t = requests.get(url)
+
+            soup = bs4.BeautifulSoup(t.text, "lxml")
+            table_body = soup.find("tbody")
+
+            # Check if the page retrieved has no submissions
+            if len(table_body) == 1:
+                return self.submissions
+
+            row = 0
+            for i in table_body:
+                if isinstance(i, bs4.element.Tag):
+                    if row == 0:
+                        currid = i.contents[1].contents[0]
+                        if currid == previd:
+                            flag = 1
+                            break
+                    row += 1
+                    previd = currid
+
+
+                    # Problem Name/URL
+                    uri = i.contents[5].contents[0]
+
+                    problem_id = uri["href"].split('/')
+                    problem_id = problem_id[2]
+                    # Problem Status
+                    status = str(i.contents[6])
+                    if status.__contains__("accepted"):
+                        self.submissions.append(problem_id)
+
+            if flag == 1:
+                break
+        self.submissions = np.unique(self.submissions)
+        # print(self.submissions)
+        return self.submissions

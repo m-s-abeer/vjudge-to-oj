@@ -378,3 +378,128 @@ class CF:
 
         # then we should check if the verdict has been given
         # should check repeatedly delaying 5-10 secs and stop when a verdict is given
+
+class SPOJ:
+    judgeSlug = "SPOJ"
+    judgeURL = "https://www.spoj.com/"
+    loginURL = "https://www.spoj.com/login/"
+    submissionURL = "https://www.spoj.com/submit/"
+    localSubsURL = path + os.sep + "solutions" + os.sep + "SPOJ"
+    username = str()
+    password = str()
+    loggedIn = bool()
+    extentionId = {
+        "c": "11",  # GNU GCC 8.3
+        "java": "10",  # Java Hotspot 12
+        "cpp": "1",  # GNU GCC 8.3
+        "c++": "44",  # GNU G++ 4.3.2
+        "py": "116"  # Python 3 (python  3.7.3)
+    }
+    br = mechanize.Browser()
+    solvedProblemIds = set()
+
+    def __init__(self, username="", password=""):
+        self.username = username
+        self.password = password
+
+        # Cookie Jar
+        cj = http.cookiejar.LWPCookieJar()
+        self.br.set_cookiejar(cj)
+
+        # Browser options
+        self.br.set_handle_equiv(True)
+        self.br.set_handle_gzip(True)
+        self.br.set_handle_redirect(True)
+        self.br.set_handle_referer(True)
+        self.br.set_handle_robots(False)
+        self.br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
+
+        self.br.addheaders = [('User-agent', 'Chrome')]
+        if (self.login()):
+            self.saveSolveData()
+
+    def login(self):
+        print("Trying to log into SPOJ: " + self.username)
+        # The site we will navigate into, handling it's session
+        self.br.open(self.loginURL)
+
+        # View available forms
+        # for f in self.br.forms():
+        #     print(f)
+
+        # Select the second (index one) form (the first form is a search query box)
+        self.br.select_form(nr=1)
+        self.loggedIn = True
+        self.br.form['login_user'] = self.username
+        self.br.form['password'] = self.password
+        res = self.br.submit()
+        if (res.geturl() == self.judgeURL):
+            print("Logged In Successfully")
+            return True
+        else:
+            print("SPOJ: Sorry, wrong username/password. Please try again.")
+            self.loggedIn = False
+            return False
+        return True
+
+    def saveSolveData(self):
+        self.solvedProblemIds = apicaller.getSPOJSolveData(self.username)
+        print("Solved problems added to consideration")
+        # print(self.solvedProblemIds)
+        # print(sorted(self.solvedProblemIds))
+
+    def isSolved(self, problemId):
+        return (str(problemId) in self.solvedProblemIds)
+
+    # ###################################################################### yet to be implemented
+    def submitAll(self, submitSolvedOnes=False, limitSubmissionCount=20):
+        if (self.loggedIn == False):
+            print("Not logged into SPOJ. Can't submit.")
+            return None
+        successfullySubmitted = 0
+        for problemNumber in os.listdir(self.localSubsURL):
+            problemLocalUrl = self.localSubsURL + os.sep + problemNumber
+
+
+            if ((submitSolvedOnes == True) or (self.isSolved(problemNumber) == False)):
+                problem = SpojProblem(problemLocalUrl, problemNumber)
+                for solve, solveId in problem.solutions:
+                    if (successfullySubmitted == limitSubmissionCount):
+                        print("SubmissionLimit Reached. Please run again")
+                        return None
+
+                    print(f"Trying Problem: {solve}")
+
+                    if(self.submitSolution(solve) == True):
+                        print(f"Problem submitted: problem id = {solve.problemNumber}")
+                        problem.saveSolution(solve)
+                        print()
+                    else:
+                        print(f"Submission failed for {solve.problemNumber} Try again later for this problem.")
+
+
+                    successfullySubmitted = successfullySubmitted + 1
+                    # check verdict and verify
+                    # timeout =
+                    # while(1)
+            elif ((submitSolvedOnes == False)):
+                print(problemNumber + " -> solved already")
+
+        pass
+
+    def submitSolution(self, solution):
+        self.br.open(self.submissionURL + solution.problemNumber)
+        # for f in self.br.forms():
+        #     print(f)
+        self.br.select_form(nr=0)
+
+        self.br.form.find_control(name="lang").value = [self.extentionId[solution.solutionExt]]
+        self.br.form.find_control(name="file").value = solution.solutionCode
+
+        res = self.br.submit()
+        if (self.submissionURL + solution.problemNumber == str(res.geturl())):
+            return False
+        return True
+
+        # then we should check if the verdict has been given
+        # should check repeatedly delaying 5-10 secs and stop when a verdict is given
