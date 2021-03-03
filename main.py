@@ -4,11 +4,11 @@ from modules.apiHandler import ApiCaller
 # '''
 # Refresh offline data
 # '''
-apicaller = ApiCaller()
-apicaller.refreshUvaProblemList() # run only if you think UVa has added new problems
+# apicaller = ApiCaller()
+# apicaller.refreshUvaProblemList() # run only if you think UVa has added new problems
 
-apicaller = ApiCaller()
-apicaller.refreshCfProblemList() # run only if you've solved from CF's newly added problems
+# apicaller = ApiCaller()
+# apicaller.refreshCfProblemList() # run only if you've solved from CF's newly added problems
 
 
 
