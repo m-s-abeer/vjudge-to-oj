@@ -53,7 +53,7 @@ class Vjudge:
         if os.path.exists(user_data_path):
             self.s = pickle.load(open(user_data_path, 'rb'))
             self.loggedIn = True
-            print("Logged in from cookies")
+            print("UVA: Logged in from cookies")
         else:
             self.s = session()
             login_url = f"{self.rootUrl}{self.loginUrl}"

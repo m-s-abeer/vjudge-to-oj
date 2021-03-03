@@ -239,50 +239,52 @@ class ApiCaller:
     # Online
     def getSPOJSolveData(self, username):
         """
-            This will be used in retrive already solved problem list of user
+            This will be use in retrive already solved problem list of user in Spoj
         """
-        start = 0
+        start = 0 #We want to check from very last submission
         self.submissions = []
         previd = -1
         currid = 0
 
-        for i in range(1000):
+        # We assuming an user has at most 1000 page of submission on spoj (a single page has 20 submission history)
+        for page in range(1000):
             flag = 0
-            url = "https://www.spoj.com/status/" + \
-                  username + \
-                  "/all/start=" + \
-                  str(start)
+            url = "https://www.spoj.com/status/" + username + "/all/start=" + str(start)
 
-            start += 20
+            start += 20 #Spoj show 20 submission list in a single page
 
-            t = requests.get(url)
+            pageData = requests.get(url)
 
-            soup = bs4.BeautifulSoup(t.text, "lxml")
+            soup = bs4.BeautifulSoup(pageData.text, "lxml")
             table_body = soup.find("tbody")
 
             # Check if the page retrieved has no submissions
             if len(table_body) == 1:
                 return self.submissions
 
-            row = 0
-            for i in table_body:
-                if isinstance(i, bs4.element.Tag):
-                    if row == 0:
-                        currid = i.contents[1].contents[0]
+            rowCnt = 0
+            for row in table_body:
+                if isinstance(row, bs4.element.Tag):
+                    if rowCnt == 0:
+                        currid = row.contents[1].contents[0]
+
+                        # if we reached the last submission before page 1000 then it showing same submission of last valid page
+                        # we want to ignore them and break the loop
                         if currid == previd:
                             flag = 1
                             break
-                    row += 1
+
+                    rowCnt += 1
                     previd = currid
 
 
                     # Problem Name/URL
-                    uri = i.contents[5].contents[0]
+                    uri = row.contents[5].contents[0]
 
                     problem_id = uri["href"].split('/')
                     problem_id = problem_id[2]
                     # Problem Status
-                    status = str(i.contents[6])
+                    status = str(row.contents[6])
                     if status.__contains__("accepted"):
                         self.submissions.append(problem_id)
 
