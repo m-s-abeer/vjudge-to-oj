@@ -42,3 +42,14 @@ CfPassword = input("Please enter your CodeForces password: ")
 
 cfUser = judges.CF(CfUserName, CfPassword)
 cfUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)
+
+
+
+'''
+SPOJ Login
+'''
+SpojUserName = input("Please enter your SPOJ username: ")
+SpojPassword = input("Please enter your SPOJ password: ")
+
+SpojUser = judges.SPOJ(SpojUserName, SpojPassword)
+SpojUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 20)
