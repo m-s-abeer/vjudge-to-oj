@@ -80,6 +80,27 @@ class ApiCaller:
                 self.cfDataLoaded = False
             print("CodeForces Problem Data Loaded.")
 
+    def printProgressBar(self, iteration, total, prefix='', suffix='', decimals=1, length=100, fill='█', printEnd="\r"):
+        """
+        Call in a loop to create terminal progress bar
+        @params:
+            iteration   - Required  : current iteration (Int)
+            total       - Required  : total iterations (Int)
+            prefix      - Optional  : prefix string (Str)
+            suffix      - Optional  : suffix string (Str)
+            decimals    - Optional  : positive number of decimals in percent complete (Int)
+            length      - Optional  : character length of bar (Int)
+            fill        - Optional  : bar fill character (Str)
+            printEnd    - Optional  : end character (e.g. "\r", "\r\n") (Str)
+        """
+        percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+        filledLength = int(length * iteration // total)
+        bar = fill * filledLength + '-' * (length - filledLength)
+        print(f'\r{prefix} |{bar}| {percent}% {suffix}', end=printEnd)
+        # Print New Line on Complete
+        if iteration == total:
+            print()
+
     # Online
     def getUvaProblemDataUsingProblemNumber(self, problemNumber):
         response = requests.get(rootUVA + f"/api/p/num/{problemNumber}")
@@ -205,6 +226,7 @@ class ApiCaller:
 
     # Online
     def getCfGymContestList(self):
+        print("Fetching CodeForces Gym Contest List.")
         previousContestId = -1
         currentContestId = 0
         isLastPage = False
@@ -241,12 +263,16 @@ class ApiCaller:
 
     # Online
     def getCfGymProblemList(self):
-        print("Fetching CodeForces Gym Problem List (This may take upto 20 minutes)")
         contestList = self.getCfGymContestList()
+        print("Fetching CodeForces Gym Problem List (This may take upto 20 minutes)")
+        numberOfContest  = len(contestList)
+        self.printProgressBar(0, numberOfContest, prefix='Progress:', suffix='Complete', length=50)  # Initializing Progress Bar
 
+        no=0
         skipped = 0
         problemList = dict()
         for contestID in contestList:
+            no +=1
             contestProblemListPageURL = 'https://codeforces.com/gym/' + contestID
             try:
                 pageRowData = requests.get(contestProblemListPageURL, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0'})
@@ -260,11 +286,13 @@ class ApiCaller:
                         problemList[problemID] = problemName
                         # print(problemID)
             except requests.exceptions.ConnectionError:
-                print('Network connection failed. Check your internet connection. Trying next contest.')
+                print('Network connection failed on contest ' + contestID + '. Check your internet connection. Trying next contest.')
                 skipped += 1
             except TimeoutError:
                 print('Timeout on contest ' + contestID + ', trying next contest.')
                 skipped += 1
+
+            self.printProgressBar(no, numberOfContest, prefix='Progress:', suffix='Complete', length=50)
 
         print(skipped, ' CF Gym contest skipped.')
 
