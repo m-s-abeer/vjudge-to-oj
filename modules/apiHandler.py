@@ -78,7 +78,7 @@ class ApiCaller:
                 self.cfDataLoaded = False
             print("CodeForces Problem Data Loaded.")
 
-    def printProgressBar(self, iteration, total, prefix='', suffix='', decimals=1, length=100, fill='█', printEnd="\r"):
+    def printProgressBar(self, iteration, total, prefix='', suffix='', decimals=1, length=100, fill='█', printEnd="\r"):  # Progress bar loader
         """
         Call in a loop to create terminal progress bar
         @params:
@@ -223,33 +223,33 @@ class ApiCaller:
             return None
 
     # Online
-    def getCfGymContestList(self):
+    def getCfGymContestList(self):    # Scrapping because CF has no API for Gym contest
         print("Fetching CodeForces Gym Contest List.")
         previousContestId = -1
         currentContestId = 0
-        isLastPage = False
+        isLastPage = False  # We will break if we reached last page before 100 number page
 
         contestList = set()
-        for page in range(100):
+        for page in range(100):     # We are assuming CF has at most 100 page of contest list
             pageURL = 'https://codeforces.com/gyms/page/' + str(page+1) + '?searchByProblem=false'
-            pageRowdata = requests.get(pageURL)
-            soup = bs4.BeautifulSoup(pageRowdata.text, "lxml")
+            pageRawdata = requests.get(pageURL)
+            soup = bs4.BeautifulSoup(pageRawdata.text, "lxml")
 
             rowCount = 0
-            for tr_tag in soup.find_all('tr'):
-                for td_tag in tr_tag.find_all('td', attrs={'class': 'state'}):
-                    for a_tag in td_tag.find_all('a'):
+            for tr_tag in soup.find_all('tr'):              # Finding all 'tr' in page raw data
+                for td_tag in tr_tag.find_all('td', attrs={'class': 'state'}):        # Finding all 'td' which has 'state' class in each 'tr'
+                    for a_tag in td_tag.find_all('a'):          # finding all link in each selected 'td'
                         each_a = a_tag['href'].split('/')
                         contestID = each_a[2]
                         if(rowCount == 0):
                             currentContestId = contestID
                             rowCount += 1
-                            if currentContestId == previousContestId:
+                            if currentContestId == previousContestId:     # If reached last page of contest list we need to break the loop
                                 isLastPage = True
                                 break
 
                         contestList.add(contestID)
-                        previousContestId = currentContestId
+                        previousContestId = currentContestId            # Updating previous contest id with current contest id
 
                 if isLastPage:
                     break
@@ -260,24 +260,24 @@ class ApiCaller:
         return contestList
 
     # Online
-    def getCfGymProblemList(self):
-        contestList = self.getCfGymContestList()
-        print("Fetching CodeForces Gym Problem List (This may take upto 20 minutes)")
+    def getCfGymProblemList(self):  # scrapping because CF has no API for Gym Problem data
+        contestList = self.getCfGymContestList()   # We need gym contest list for find all gym problem data
+        print("Fetching CodeForces Gym Problem List (This may take upto 20 minutes):")
         numberOfContest  = len(contestList)
         self.printProgressBar(0, numberOfContest, prefix='Progress:', suffix='Complete', length=50)  # Initializing Progress Bar
 
         contestNumber=0
-        skipped = 0
+        skipped = 0         # a counter variable, if any contest skipped for some error then it will be updated
         problemList = dict()
         for contestID in contestList:
-            contestNumber +=1
+            contestNumber += 1
             contestProblemListPageURL = 'https://codeforces.com/gym/' + contestID
             try:
                 pageRowData = requests.get(contestProblemListPageURL, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0'})
 
                 soup = bs4.BeautifulSoup(pageRowData.text, "lxml")
-                for div in soup.find_all('div', attrs={'style': 'float: left;'}):
-                    for a_tag in div.find_all('a'):
+                for div in soup.find_all('div', attrs={'style': 'float: left;'}):    # Finding a specific 'div' which has inline style css withh attribute float: left
+                    for a_tag in div.find_all('a'):  # Finding all link in each selected 'div'
                         href = a_tag['href'].split('/')
                         problemID = href[2] + href[4]
                         problemName = a_tag.get_text()
@@ -290,9 +290,10 @@ class ApiCaller:
                 print('Timeout on contest ' + contestID + ', trying next contest.')
                 skipped += 1
 
-            self.printProgressBar(contestNumber, numberOfContest, prefix='Progress:', suffix='Complete', length=50)
+            self.printProgressBar(contestNumber, numberOfContest, prefix='Progress:', suffix='Complete', length=50)         # Updating progress Bar
 
-        print(skipped, ' CF Gym contest skipped.')
+        if skipped > 0:
+            print(skipped, ' CF Gym contest skipped.')
 
         return problemList
 
@@ -303,7 +304,7 @@ class ApiCaller:
             cfProblemList = dict()
             for problem in data['result']['problems']:
                 cfProblemList[str(problem['contestId']) + str(problem['index'])] = problem['name']
-            for problem in gymProblemList:
+            for problem in gymProblemList:          # Adding Gym problem data with regular CF Problem data
                 cfProblemList[problem] = gymProblemList[problem]
             with open(cfDataPath, "w", encoding='utf8') as outfile:
                 json.dump(cfProblemList, outfile, indent=4, ensure_ascii=False)
