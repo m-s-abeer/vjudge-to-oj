@@ -89,6 +89,7 @@ class Vjudge:
             print("Solutions downloaded and extracted.")
             self.moveGymSolToCF()
         else:
+            print("Bad Zip file. Run again")
             exit(1)  # If its a bad zip file then exiting
     
     def downloadUrl(self, url, sess, save_path, chunk_size=128):
@@ -108,7 +109,6 @@ class Vjudge:
         else:
             user_data_directory = path + os.sep + "cookies"
             shutil.rmtree(user_data_directory)   # Deleting 'cookies' folder because bad zip file downloaded for some cookie problem
-            print("Bad Zip file. Run again")
             return False
 
     def moveGymSolToCF(self):
