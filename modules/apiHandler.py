@@ -1,5 +1,3 @@
-import random
-from datetime import datetime
 import requests
 import json
 import os
@@ -268,11 +266,11 @@ class ApiCaller:
         numberOfContest  = len(contestList)
         self.printProgressBar(0, numberOfContest, prefix='Progress:', suffix='Complete', length=50)  # Initializing Progress Bar
 
-        no=0
+        contestNumber=0
         skipped = 0
         problemList = dict()
         for contestID in contestList:
-            no +=1
+            contestNumber +=1
             contestProblemListPageURL = 'https://codeforces.com/gym/' + contestID
             try:
                 pageRowData = requests.get(contestProblemListPageURL, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0'})
@@ -292,7 +290,7 @@ class ApiCaller:
                 print('Timeout on contest ' + contestID + ', trying next contest.')
                 skipped += 1
 
-            self.printProgressBar(no, numberOfContest, prefix='Progress:', suffix='Complete', length=50)
+            self.printProgressBar(contestNumber, numberOfContest, prefix='Progress:', suffix='Complete', length=50)
 
         print(skipped, ' CF Gym contest skipped.')
 
