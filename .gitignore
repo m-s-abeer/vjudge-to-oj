@@ -4,4 +4,5 @@ modules/cookies/
 modules/solutions/
 modules/zip-files/
 modules/offline_problem_data/
+modules/Submitted/
 /test.py
