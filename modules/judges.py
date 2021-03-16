@@ -85,6 +85,7 @@ class Vjudge:
         self.downloadUrl(source_dowload_url, self.s, self.zipUrl)
         self.extractZip()
         print("Solutions downloaded and extracted.")
+        self.moveGymSolToCF()
     
     def downloadUrl(self, url, sess, save_path, chunk_size=128):
         r = sess.get(url, stream=True)
@@ -99,6 +100,16 @@ class Vjudge:
         with ZipFile(sourcePath, 'r') as zipFile:
             zipFile.extractall(destinationPath)
 
+    def moveGymSolToCF(self):
+        cfLocalSubsURL = path + os.sep + "solutions" + os.sep + "CodeForces"
+        gymLocalSubsURL = path + os.sep + "solutions" + os.sep + "Gym"
+        for eachSolution in os.listdir(gymLocalSubsURL):
+            try:
+                shutil.move(os.path.join(gymLocalSubsURL, eachSolution), cfLocalSubsURL)
+            except OSError:
+                # This specific solution already moved. nothing to do!
+                pass
+        os.rmdir(gymLocalSubsURL)  # Removing Gym folder from solution folder
 '''
 
 '''

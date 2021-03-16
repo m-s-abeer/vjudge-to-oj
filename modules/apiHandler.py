@@ -1,3 +1,5 @@
+import random
+from datetime import datetime
 import requests
 import json
 import os
@@ -11,6 +13,7 @@ cfDataPath = path + os.sep + "offline_problem_data" + os.sep + "cfProblemData.js
 
 rootUVA = "https://uhunt.onlinejudge.org"
 rootCF = "https://codeforces.com/"
+
 '''
 uHunt Problem object:-
 pid: problemId
@@ -201,16 +204,85 @@ class ApiCaller:
             return None
 
     # Online
+    def getCfGymContestList(self):
+        previousContestId = -1
+        currentContestId = 0
+        isLastPage = False
+
+        contestList = set()
+        for page in range(100):
+            pageURL = 'https://codeforces.com/gyms/page/' + str(page+1) + '?searchByProblem=false'
+            pageRowdata = requests.get(pageURL)
+            soup = bs4.BeautifulSoup(pageRowdata.text, "lxml")
+
+            rowCount = 0
+            for tr_tag in soup.find_all('tr'):
+                for td_tag in tr_tag.find_all('td', attrs={'class': 'state'}):
+                    for a_tag in td_tag.find_all('a'):
+                        each_a = a_tag['href'].split('/')
+                        contestID = each_a[2]
+                        if(rowCount == 0):
+                            currentContestId = contestID
+                            rowCount += 1
+                            if currentContestId == previousContestId:
+                                isLastPage = True
+                                break
+
+                        contestList.add(contestID)
+                        previousContestId = currentContestId
+
+                if isLastPage:
+                    break
+
+            if isLastPage:
+                break
+
+        return contestList
+
+    # Online
+    def getCfGymProblemList(self):
+        print("Fetching CodeForces Gym Problem List (This may take upto 20 minutes)")
+        contestList = self.getCfGymContestList()
+
+        skipped = 0
+        problemList = dict()
+        for contestID in contestList:
+            contestProblemListPageURL = 'https://codeforces.com/gym/' + contestID
+            try:
+                pageRowData = requests.get(contestProblemListPageURL, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0'})
+
+                soup = bs4.BeautifulSoup(pageRowData.text, "lxml")
+                for div in soup.find_all('div', attrs={'style': 'float: left;'}):
+                    for a_tag in div.find_all('a'):
+                        href = a_tag['href'].split('/')
+                        problemID = href[2] + href[4]
+                        problemName = a_tag.get_text()
+                        problemList[problemID] = problemName
+                        # print(problemID)
+            except requests.exceptions.ConnectionError:
+                print('Network connection failed. Check your internet connection. Trying next contest.')
+                skipped += 1
+            except TimeoutError:
+                print('Timeout on contest ' + contestID + ', trying next contest.')
+                skipped += 1
+
+        print(skipped, ' CF Gym contest skipped.')
+
+        return problemList
+
     def refreshCfProblemList(self):
         data = self.getCfProblemList()
+        gymProblemList = self.getCfGymProblemList()
         if (data):
             cfProblemList = dict()
-            for x in data['result']['problems']:
-                cfProblemList[str(x['contestId']) + str(x['index'])] = x['name']
+            for problem in data['result']['problems']:
+                cfProblemList[str(problem['contestId']) + str(problem['index'])] = problem['name']
+            for problem in gymProblemList:
+                cfProblemList[problem] = gymProblemList[problem]
             with open(cfDataPath, "w", encoding='utf8') as outfile:
                 json.dump(cfProblemList, outfile, indent=4, ensure_ascii=False)
 
-            print(len(cfProblemList), " problem data saved offline.")
+            print(len(cfProblemList), " CF problem data saved offline.")
             self.__init__()
         else:
             print("There's a problem. No problem data fetched.")
