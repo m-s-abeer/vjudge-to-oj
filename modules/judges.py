@@ -10,11 +10,11 @@ import time
 import os
 import pathlib
 import zipfile
-from modules import scraper
+from modules import scrapers
 
 path = os.path.dirname(__file__)
 apicaller = ApiCaller()
-scrape = scraper.ScraperCaller()
+scrape = scrapers.ScraperCaller()
 
 class Vjudge:
     judgeSlug = "Vjudge"

@@ -1,7 +1,7 @@
 import requests
 import json
 import os
-from modules import scraper
+from modules import scrapers
 
 path = os.path.dirname(__file__)
 pidDataPath = path + os.sep + "offline_problem_data" + os.sep + "pDataWithPid.json"
@@ -11,7 +11,7 @@ cfDataPath = path + os.sep + "offline_problem_data" + os.sep + "cfProblemData.js
 rootUVA = "https://uhunt.onlinejudge.org"
 rootCF = "https://codeforces.com/"
 
-scrape = scraper.ScraperCaller()
+scrape = scrapers.ScraperCaller()
 '''
 uHunt Problem object:-
 pid: problemId
