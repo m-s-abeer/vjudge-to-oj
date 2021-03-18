@@ -10,9 +10,11 @@ import time
 import os
 import pathlib
 import zipfile
+from modules import scraper
 
 path = os.path.dirname(__file__)
 apicaller = ApiCaller()
+scrape = scraper.ScraperCaller()
 
 class Vjudge:
     judgeSlug = "Vjudge"
@@ -465,7 +467,7 @@ class SPOJ:
         return True
 
     def saveSolveData(self):
-        self.solvedProblemIds = apicaller.getSPOJSolveData(self.username)
+        self.solvedProblemIds = scrape.getSPOJSolveData(self.username)
         print("Solved problems added to consideration")
         # print(self.solvedProblemIds)
         # print(sorted(self.solvedProblemIds))
