@@ -9,9 +9,12 @@ import pickle
 import time
 import os
 import pathlib
+import zipfile
+from modules import scrapers
 
 path = os.path.dirname(__file__)
 apicaller = ApiCaller()
+scrape = scrapers.ScraperCaller()
 
 class Vjudge:
     judgeSlug = "Vjudge"
@@ -83,8 +86,13 @@ class Vjudge:
         self.clearSolutions()
         source_dowload_url = f"{self.rootUrl}{self.acSubmissionsUrl}"
         self.downloadUrl(source_dowload_url, self.s, self.zipUrl)
-        self.extractZip()
-        print("Solutions downloaded and extracted.")
+
+        if self.extractZip():
+            print("Solutions downloaded and extracted.")
+            self.moveGymSolToCF()
+        else:
+            print("Bad Zip file. Run again")
+            exit(1)  # If its a bad zip file then exiting
     
     def downloadUrl(self, url, sess, save_path, chunk_size=128):
         r = sess.get(url, stream=True)
@@ -96,9 +104,25 @@ class Vjudge:
         sourcePath = self.zipUrl if not sourcePath else sourcePath
         destinationPath = path + os.sep + "solutions"
         pathlib.Path(destinationPath).mkdir(parents=True, exist_ok=True) # creates the path if not exists
-        with ZipFile(sourcePath, 'r') as zipFile:
-            zipFile.extractall(destinationPath)
+        if zipfile.is_zipfile(sourcePath):   # Checking is it a Good zip file or not
+            with ZipFile(sourcePath, 'r') as zipFile:
+                zipFile.extractall(destinationPath)
+            return True
+        else:
+            user_data_directory = path + os.sep + "cookies"
+            shutil.rmtree(user_data_directory)   # Deleting 'cookies' folder because bad zip file downloaded for some cookie problem
+            return False
 
+    def moveGymSolToCF(self):
+        cfLocalSubsURL = path + os.sep + "solutions" + os.sep + "CodeForces"
+        gymLocalSubsURL = path + os.sep + "solutions" + os.sep + "Gym"
+        for eachSolution in os.listdir(gymLocalSubsURL):
+            try:
+                shutil.move(os.path.join(gymLocalSubsURL, eachSolution), cfLocalSubsURL)
+            except OSError:
+                # This specific solution already moved. nothing to do!
+                pass
+        os.rmdir(gymLocalSubsURL)  # Removing Gym folder from solution folder
 '''
 
 '''
@@ -443,7 +467,7 @@ class SPOJ:
         return True
 
     def saveSolveData(self):
-        self.solvedProblemIds = apicaller.getSPOJSolveData(self.username)
+        self.solvedProblemIds = scrape.getSPOJSolveData(self.username)
         print("Solved problems added to consideration")
         # print(self.solvedProblemIds)
         # print(sorted(self.solvedProblemIds))
