@@ -1,8 +1,7 @@
 import requests
 import json
 import os
-import bs4
-import numpy as np
+from modules import scrapers
 
 path = os.path.dirname(__file__)
 pidDataPath = path + os.sep + "offline_problem_data" + os.sep + "pDataWithPid.json"
@@ -11,6 +10,8 @@ cfDataPath = path + os.sep + "offline_problem_data" + os.sep + "cfProblemData.js
 
 rootUVA = "https://uhunt.onlinejudge.org"
 rootCF = "https://codeforces.com/"
+
+scrape = scrapers.ScraperCaller()
 '''
 uHunt Problem object:-
 pid: problemId
@@ -200,17 +201,19 @@ class ApiCaller:
         else:
             return None
 
-    # Online
     def refreshCfProblemList(self):
         data = self.getCfProblemList()
+        gymProblemList = scrape.getCfGymProblemList()  # Getting data from scrapper
         if (data):
             cfProblemList = dict()
-            for x in data['result']['problems']:
-                cfProblemList[str(x['contestId']) + str(x['index'])] = x['name']
+            for problem in data['result']['problems']:
+                cfProblemList[str(problem['contestId']) + str(problem['index'])] = problem['name']
+            for problem in gymProblemList:          # Adding Gym problem data with regular CF Problem data
+                cfProblemList[problem] = gymProblemList[problem]
             with open(cfDataPath, "w", encoding='utf8') as outfile:
                 json.dump(cfProblemList, outfile, indent=4, ensure_ascii=False)
 
-            print(len(cfProblemList), " problem data saved offline.")
+            print(len(cfProblemList), " CF problem data saved offline.")
             self.__init__()
         else:
             print("There's a problem. No problem data fetched.")
@@ -236,61 +239,3 @@ class ApiCaller:
         else:
             print("Could't get submission id. Please try this problem again later.")
             return ""
-
-    # Online
-    def getSPOJSolveData(self, username):
-        """
-            This will be use in retrive already solved problem list of user in Spoj
-        """
-        start = 0  # We want to check from very last submission
-        self.submissions = []
-        previous_Submission_ID = -1
-        current_Submission_ID = 0
-
-        isLastPage = False
-
-        # We assuming an user has at most 1000 page of submission on spoj (a single page has 20 submission history)
-        for page in range(1000):
-            url = "https://www.spoj.com/status/" + username + "/all/start=" + str(start)
-
-            start += 20  # Spoj show 20 submission list in a single page
-
-            pageData = requests.get(url)
-
-            soup = bs4.BeautifulSoup(pageData.text, "lxml")
-            table_body = soup.find("tbody")
-
-            # Check if the page retrieved has no submissions
-            if len(table_body) == 1:
-                return self.submissions
-
-            rowCnt = 0
-            for row in table_body:
-                if isinstance(row, bs4.element.Tag):
-                    if rowCnt == 0:
-                        current_Submission_ID = row.contents[1].contents[0]
-
-                        # if we reached the last submission before page 1000 then it showing same submission of last valid page
-                        # we want to ignore them and break the loop
-                        if current_Submission_ID == previous_Submission_ID:
-                            isLastPage = True
-                            break
-
-                    rowCnt += 1
-                    previous_Submission_ID = current_Submission_ID
-
-                    # Problem Name/URL
-                    uri = row.contents[5].contents[0]
-
-                    problem_id = uri["href"].split('/')
-                    problem_id = problem_id[2]
-                    # Problem Status
-                    status = str(row.contents[6])
-                    if status.__contains__("accepted"):
-                        self.submissions.append(problem_id)
-
-            if isLastPage:
-                break
-        self.submissions = np.unique(self.submissions)
-        # print(self.submissions)
-        return self.submissions
