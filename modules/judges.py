@@ -15,6 +15,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtNetwork import QNetworkCookie
+from time import sleep
 from modules import scrapers
 
 path = os.path.dirname(__file__)
@@ -608,7 +609,7 @@ class LOJ:
                 problem = LightojProblem(problemLocalUrl, problemNumber)
                 for solve, solveId in problem.solutions:
                     if (successfullySubmitted == limitSubmissionCount):
-                        print("SubmissionLimit Reached. Please run again")
+                        print("Submission Limit Reached. Please run again")
                         return None
 
                     print(f"Trying Problem: {solve}, {solveId}")
@@ -619,8 +620,8 @@ class LOJ:
                         print(f"Problem submitted: submission id = {sid}")
                         problem.saveSolution(solveId, sid)
                         print()
-
-                    successfullySubmitted = successfullySubmitted + 1
+                        successfullySubmitted = successfullySubmitted + 1
+                        sleep(5)
             elif ((submitSolvedOnes == False)):
                 print(problemNumber + " - " + problemDetails['name'] + " -> solved already")
 
