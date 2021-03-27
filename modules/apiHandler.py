@@ -84,6 +84,14 @@ class ApiCaller:
                 self.cfDataLoaded = False
             print("CodeForces Problem Data Loaded.")
 
+            # For Lightoj data loading
+            self.lojDataLoaded = True
+            if os.path.exists(lojDataPath):
+                self.lojData = json.load(open(lojDataPath, 'r', encoding='utf-8'))
+            else:
+                self.lojDataLoaded = False
+            print("LightOJ Problem Data Loaded.")
+
     # Online
     def getUvaProblemDataUsingProblemNumber(self, problemNumber):
         response = requests.get(rootUVA + f"/api/p/num/{problemNumber}")
