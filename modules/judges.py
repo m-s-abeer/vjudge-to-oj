@@ -574,7 +574,8 @@ class LojLogin(QMainWindow):
     def update_url(self, currentUrl):
         if currentUrl.toString() == "https://lightoj.com/home":
             print("Successfully Logged in to Lightoj")
-            self.close()
+            # self.close()
+        elif currentUrl.toString == "https://lightoj.com/"
 
 class LOJ:
     judgeSlug = "LightOJ"
@@ -605,7 +606,7 @@ class LOJ:
             problemDetails = apicaller.getLojProblemDataUsingProblemNumber(problemNumber)
             if(problemDetails['handle']=='error'):
                 print("Problem " + problemNumber + " Skipped")
-            elif ((submitSolvedOnes == True) or (apicaller.lojIsProblemSolved(problemDetails['handle']) == False)):
+            elif ((submitSolvedOnes == True) or (apicaller.lojIsProblemSolved(problemDetails['handle']) == 'notSolved')):
                 problem = LightojProblem(problemLocalUrl, problemNumber)
                 for solve, solveId in problem.solutions:
                     if (successfullySubmitted == limitSubmissionCount):
@@ -622,6 +623,9 @@ class LOJ:
                         print()
                         successfullySubmitted = successfullySubmitted + 1
                         sleep(5)
+            elif (apicaller.lojIsProblemSolved(problemDetails['handle']) == 'error'):
+                print("\nNot logged into LightOJ. Can't submit.")
+                break
             elif ((submitSolvedOnes == False)):
                 print(problemNumber + " - " + problemDetails['name'] + " -> solved already")
 
