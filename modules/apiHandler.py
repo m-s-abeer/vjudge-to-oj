@@ -2,11 +2,14 @@ import requests
 import json
 import os
 from modules import scrapers
+from modules import judges
 
 path = os.path.dirname(__file__)
 pidDataPath = path + os.sep + "offline_problem_data" + os.sep + "pDataWithPid.json"
 pnumDataPath = path + os.sep + "offline_problem_data" + os.sep + "pDataWithPnum.json"
 cfDataPath = path + os.sep + "offline_problem_data" + os.sep + "cfProblemData.json"
+lojDataPath = path + os.sep + "offline_problem_data" + os.sep + "LojProblemData.json"
+lojCookiePath = path + os.sep + "cookies" + os.sep + "lojUserCookie.json"
 
 rootUVA = "https://uhunt.onlinejudge.org"
 rootCF = "https://codeforces.com/"
@@ -26,6 +29,9 @@ class ApiCaller:
     uvaDataLoaded = bool()
     cfData = {}
     cfDataLoaded = bool()
+    lojDataLoaded = bool()
+    lojData = dict()
+    lojCookieStr = str()
 
     def __init__(self, loadOffline=True):
         self.pidData = {}
@@ -217,6 +223,75 @@ class ApiCaller:
             self.__init__()
         else:
             print("There's a problem. No problem data fetched.")
+
+    def lojCookieSet(self):
+        jsonFile = open(lojCookiePath, )
+        data = json.load(jsonFile)
+        cookieStr = str()
+        for cookie in data:
+            if "lightoj.com" in cookie.values():
+                for name in cookie:
+                    if name == 'name':
+                        cookieStr += cookie[name] + '='
+                        if cookie[name] == 'lightoj-session-values':
+                            judges.lojLoggedIn = True
+                    elif name == 'value':
+                        cookieStr += cookie[name] + '; '
+
+        self.lojCookieStr = cookieStr
+
+    # Online
+    def refreshLojProblemList(self):
+        api = "https://lightoj.com/api/v1/problems/loj"
+        rawProblemData = requests.get(api)
+        rawProblemDataJson = rawProblemData.json()
+        if rawProblemDataJson:
+            lojProblemList = dict()
+            for childrenCategories in rawProblemDataJson['data']['category']['childrenCategories']:
+                for problem in childrenCategories['volumeProblems']:
+                    lojProblemList[problem['oldIdStr']] = {'name': problem['problemTitleStr'],
+                                                           'handle': problem['problemHandleStr']}
+
+            with open(lojDataPath, "w", encoding='utf8') as outfile:
+                json.dump(lojProblemList, outfile, indent=4, ensure_ascii=False)
+
+            print(len(lojProblemList), "LightOJ problem data saved offline.")
+            self.__init__()
+        else:
+            print("LightOJ: There's a problem. No problem data fetched.")
+
+    # Online
+    def lojIsProblemSolved(self, problemHandle):
+        api = "https://lightoj.com/api/v1/problem/" + problemHandle + "/my-submissions"
+        submissionData = requests.get(api, headers={"Cookie": self.lojCookieStr})
+        submissionDataJson = submissionData.json()
+        for submission in submissionDataJson['data']['userSubmissions']['data']:
+            if submission['verdictId'] == 1:
+                return True
+        return False
+
+    # Online
+    def lojSubmit(self, lang, code, handle):
+        api = "https://lightoj.com/api/v1/problem/" + handle + "/submission"
+        playload = {'codeStr': code, 'progLangStr': lang, 'submissionTypeStr': 'regular'}
+        result = requests.post(api, data=playload, headers={"Cookie": self.lojCookieStr})
+        json = result.json()
+        if json['success'] == False:
+            return '-1'
+        else:
+            return json['data']['submission']['submissionId']
+
+    def getLojProblemDataUsingProblemNumber(self, problemNumber):
+        if (self.lojDataLoaded):
+            try:
+                return self.lojData[problemNumber]
+            except:
+                print(
+                    "Problem ID not found from LightOJ. Try refreshing LightOJ problem list from main.py once and run again. \n Otherwise, it may be an issue of problem id of concurrent contest problems.")
+                return {"name": "error", "handle": "error"}
+        else:
+            self.refreshLojProblemList()
+            return self.getLojProblemDataUsingProblemNumber(problemNumber)
 
     def getCodeForcesProblemDataUsingProblemNumber(self, problemNumber):
         if (self.cfDataLoaded):
