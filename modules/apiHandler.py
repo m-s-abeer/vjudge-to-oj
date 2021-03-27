@@ -279,14 +279,11 @@ class ApiCaller:
     def lojIsProblemSolved(self, problemHandle):
         api = "https://lightoj.com/api/v1/problem/" + problemHandle + "/my-submissions"
         submissionData = requests.get(api, headers={"Cookie": self.lojCookieStr})
-        try:
-            submissionDataJson = submissionData.json()
-            for submission in submissionDataJson['data']['userSubmissions']['data']:
-                if submission['verdictId'] == 1:
-                    return 'solved'
-            return 'notSolved'
-        except:
-            return 'error'
+        submissionDataJson = submissionData.json()
+        for submission in submissionDataJson['data']['userSubmissions']['data']:
+            if submission['verdictId'] == 1:
+                return True
+        return False
 
     # Online
     def lojSubmit(self, lang, code, handle):
