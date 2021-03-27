@@ -241,12 +241,19 @@ class ApiCaller:
                 for name in cookie:
                     if name == 'name':
                         cookieStr += cookie[name] + '='
-                        if cookie[name] == 'lightoj-session-values':
-                            judges.lojLoggedIn = True
                     elif name == 'value':
                         cookieStr += cookie[name] + '; '
 
         self.lojCookieStr = cookieStr
+
+    def lojLoginChecker(self):
+        api = 'https://lightoj.com/api/v1/user'
+        response = requests.get(api, headers={"Cookie": self.lojCookieStr})
+        try:
+            json = response.json()
+            return True
+        except:
+            return False
 
     # Online
     def refreshLojProblemList(self):

@@ -20,7 +20,6 @@ from modules import scrapers
 
 path = os.path.dirname(__file__)
 lojCookiePath = path + os.sep + "cookies" + os.sep + "lojUserCookie.json"
-lojLoggedIn = bool()
 
 apicaller = ApiCaller()
 scrape = scrapers.ScraperCaller()
@@ -578,7 +577,6 @@ class LojLogin(QMainWindow):
 
 class LOJ:
     judgeSlug = "LightOJ"
-    lojLoggedIn = False
     localSubsURL = path + os.sep + "solutions" + os.sep + "LightOJ"
     extentionStr = {
         "c": "c",
@@ -594,9 +592,11 @@ class LOJ:
         app.exec_()
         apicaller.lojCookieSet()
 
+    def loginErrorMsg(self):
+        print("\nCan't log into LightOJ. Submission aborted!")
 
     def submitAll(self, submitSolvedOnes=False, limitSubmissionCount=10):
-        if (lojLoggedIn == False):
+        if (apicaller.lojLoginChecker() == False):
             print("Not logged into LightOJ. Can't submit.")
             return None
         successfullySubmitted = 0
@@ -605,7 +605,7 @@ class LOJ:
             problemDetails = apicaller.getLojProblemDataUsingProblemNumber(problemNumber)
             if(problemDetails['handle']=='error'):
                 print("Problem " + problemNumber + " Skipped")
-            elif ((submitSolvedOnes == True) or (apicaller.lojIsProblemSolved(problemDetails['handle']) == 'notSolved')):
+            elif ((submitSolvedOnes == True) or (apicaller.lojIsProblemSolved(problemDetails['handle']) == False)):
                 problem = LightojProblem(problemLocalUrl, problemNumber)
                 for solve, solveId in problem.solutions:
                     if (successfullySubmitted == limitSubmissionCount):
@@ -613,6 +613,7 @@ class LOJ:
                         return None
 
                     print(f"Trying Problem: {solve}, {solveId}")
+                    print(apicaller.lojIsProblemSolved(problemDetails['handle']))
                     sid = str(self.submitProcess(solve, problemDetails['handle']))
                     if (sid == "-1"):
                         print("Submission failed. Try again later for this problem.")
@@ -622,9 +623,6 @@ class LOJ:
                         print()
                         successfullySubmitted = successfullySubmitted + 1
                         sleep(5)
-            elif (apicaller.lojIsProblemSolved(problemDetails['handle']) == 'error'):
-                print("\nCan't log into LightOJ. Submission aborted!")
-                break
             elif ((submitSolvedOnes == False)):
                 print(problemNumber + " - " + problemDetails['name'] + " -> solved already")
 
