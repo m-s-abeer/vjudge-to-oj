@@ -551,7 +551,7 @@ class LojLogin(QMainWindow):
         self.webview.load(QUrl("https://lightoj.com/auth/login"))
         self.setCentralWidget(self.webview)
         self.setFixedSize(480, 825)
-        self.setWindowTitle("Login to LightOJ")
+        self.webview.page().titleChanged.connect(self.setWindowTitle)
         self.webview.urlChanged.connect(self.update_url)
 
     def onCookieAdded(self, cookie):
@@ -574,8 +574,7 @@ class LojLogin(QMainWindow):
     def update_url(self, currentUrl):
         if currentUrl.toString() == "https://lightoj.com/home":
             print("Successfully Logged in to Lightoj")
-            # self.close()
-        elif currentUrl.toString == "https://lightoj.com/"
+            self.close()
 
 class LOJ:
     judgeSlug = "LightOJ"
@@ -624,7 +623,7 @@ class LOJ:
                         successfullySubmitted = successfullySubmitted + 1
                         sleep(5)
             elif (apicaller.lojIsProblemSolved(problemDetails['handle']) == 'error'):
-                print("\nNot logged into LightOJ. Can't submit.")
+                print("\nCan't log into LightOJ. Submission aborted!")
                 break
             elif ((submitSolvedOnes == False)):
                 print(problemNumber + " - " + problemDetails['name'] + " -> solved already")
