@@ -613,7 +613,6 @@ class LOJ:
                         return None
 
                     print(f"Trying Problem: {solve}, {solveId}")
-                    print(apicaller.lojIsProblemSolved(problemDetails['handle']))
                     sid = str(self.submitProcess(solve, problemDetails['handle']))
                     if (sid == "-1"):
                         print("Submission failed. Try again later for this problem.")
