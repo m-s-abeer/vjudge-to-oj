@@ -233,18 +233,21 @@ class ApiCaller:
             print("There's a problem. No problem data fetched.")
 
     def lojCookieSet(self):
-        jsonFile = open(lojCookiePath, )
-        data = json.load(jsonFile)
-        cookieStr = str()
-        for cookie in data:
-            if "lightoj.com" in cookie.values():
-                for name in cookie:
-                    if name == 'name':
-                        cookieStr += cookie[name] + '='
-                    elif name == 'value':
-                        cookieStr += cookie[name] + '; '
+        try:
+            jsonFile = open(lojCookiePath, )
+            data = json.load(jsonFile)
+            cookieStr = str()
+            for cookie in data:
+                if "lightoj.com" in cookie.values():
+                    for name in cookie:
+                        if name == 'name':
+                            cookieStr += cookie[name] + '='
+                        elif name == 'value':
+                            cookieStr += cookie[name] + '; '
 
-        self.lojCookieStr = cookieStr
+            self.lojCookieStr = cookieStr
+        except:
+            print("\nNo cookie found for LightOJ")
 
     def lojLoginChecker(self):
         api = 'https://lightoj.com/api/v1/user'

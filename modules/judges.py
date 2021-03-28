@@ -586,11 +586,15 @@ class LOJ:
         "py": "python3"
     }
     def __init__(self):
-        app = QApplication(sys.argv)
-        w = LojLogin()
-        w.show()
-        app.exec_()
         apicaller.lojCookieSet()
+        if apicaller.lojLoginChecker():
+            print("\nLightOJ Logged in from cookies\n")
+        else:
+            app = QApplication(sys.argv)
+            w = LojLogin()
+            w.show()
+            app.exec_()
+            apicaller.lojCookieSet()
 
     def loginErrorMsg(self):
         print("\nCan't log into LightOJ. Submission aborted!")
