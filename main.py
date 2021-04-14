@@ -1,16 +1,17 @@
 from modules import judges
 from modules.apiHandler import ApiCaller
 
-# '''
-# Refresh offline data
-# '''
+'''
+Refresh offline data
+'''
 # apicaller = ApiCaller()
 # apicaller.refreshUvaProblemList() # run only if you think UVa has added new problems
 
 # apicaller = ApiCaller()
 # apicaller.refreshCfProblemList() # run only if you've solved from CF's newly added problems
 
-
+# apicaller = ApiCaller()
+# apicaller.refreshLojProblemList() # run only if you've solved from CF's newly added problems
 
 '''
 Vjudge Login
@@ -43,6 +44,12 @@ CfPassword = input("Please enter your CodeForces password: ")
 cfUser = judges.CF(CfUserName, CfPassword)
 cfUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)
 
+
+'''
+LightOJ Login
+'''
+lojUser = judges.LOJ()
+lojUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)
 
 
 '''
