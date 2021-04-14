@@ -1,0 +1,1770 @@
+{
+    "1000": {
+        "name": "Greetings from LightOJ",
+        "handle": "greetings-from-lightoj"
+    },
+    "1001": {
+        "name": "Opposite Task",
+        "handle": "opposite-task"
+    },
+    "1002": {
+        "name": "Country Roads",
+        "handle": "country-roads"
+    },
+    "1003": {
+        "name": "Drunk",
+        "handle": "drunk"
+    },
+    "1004": {
+        "name": "Monkey Banana Problem",
+        "handle": "monkey-banana-problem"
+    },
+    "1005": {
+        "name": "Rooks",
+        "handle": "rooks"
+    },
+    "1006": {
+        "name": "Hex-a-bonacci",
+        "handle": "hex-a-bonacci"
+    },
+    "1007": {
+        "name": "Mathematically Hard",
+        "handle": "mathematically-hard"
+    },
+    "1008": {
+        "name": "Fibsieve's Fantabulous Birthday",
+        "handle": "fibsieves-fantabulous-birthday"
+    },
+    "1009": {
+        "name": "Back to Underworld",
+        "handle": "back-to-underworld"
+    },
+    "1010": {
+        "name": "Knights in Chessboard",
+        "handle": "knights-in-chessboard"
+    },
+    "1011": {
+        "name": "Marriage Ceremonies",
+        "handle": "marriage-ceremonies"
+    },
+    "1012": {
+        "name": "Guilty Prince",
+        "handle": "guilty-prince"
+    },
+    "1013": {
+        "name": "Love Calculator",
+        "handle": "love-calculator"
+    },
+    "1014": {
+        "name": "Iftar Party",
+        "handle": "iftar-party"
+    },
+    "1015": {
+        "name": "Brush (I)",
+        "handle": "brush-1"
+    },
+    "1016": {
+        "name": "Brush (II)",
+        "handle": "brush-2"
+    },
+    "1017": {
+        "name": "Brush (III)",
+        "handle": "brush-3"
+    },
+    "1018": {
+        "name": "Brush (IV)",
+        "handle": "brush-4"
+    },
+    "1019": {
+        "name": "Brush (V)",
+        "handle": "brush-5"
+    },
+    "1020": {
+        "name": "A Childhood Game",
+        "handle": "a-childhood-game"
+    },
+    "1021": {
+        "name": "Painful Bases",
+        "handle": "painful-bases"
+    },
+    "1022": {
+        "name": "Circle in Square",
+        "handle": "circle-in-square"
+    },
+    "1023": {
+        "name": "Discovering Permutations",
+        "handle": "discovering-permutations"
+    },
+    "1024": {
+        "name": "Eid",
+        "handle": "eid"
+    },
+    "1025": {
+        "name": "The Specials Menu",
+        "handle": "the-specials-menu"
+    },
+    "1026": {
+        "name": "Critical Links",
+        "handle": "critical-links"
+    },
+    "1027": {
+        "name": "A Dangerous Maze",
+        "handle": "a-dangerous-maze"
+    },
+    "1028": {
+        "name": "Trailing Zeroes (I)",
+        "handle": "trailing-zeroes-i"
+    },
+    "1029": {
+        "name": "Civil and Evil Engineer",
+        "handle": "civil-and-evil-engineer"
+    },
+    "1030": {
+        "name": "Discovering Gold",
+        "handle": "discovering-gold"
+    },
+    "1031": {
+        "name": "Easy Game",
+        "handle": "easy-game"
+    },
+    "1032": {
+        "name": "Fast Bit Calculations",
+        "handle": "fast-bit-calculations"
+    },
+    "1033": {
+        "name": "Generating Palindromes",
+        "handle": "generating-palindromes"
+    },
+    "1034": {
+        "name": "Hit the Light Switches",
+        "handle": "hit-the-light-switches"
+    },
+    "1035": {
+        "name": "Intelligent Factorial Factorization",
+        "handle": "intel-factor-factorization"
+    },
+    "1036": {
+        "name": "A Refining Company",
+        "handle": "a-refining-company"
+    },
+    "1037": {
+        "name": "Agent 47",
+        "handle": "agent-47"
+    },
+    "1038": {
+        "name": "Race to 1 Again",
+        "handle": "race-to-1-again"
+    },
+    "1039": {
+        "name": "A Toy Company",
+        "handle": "a-toy-company"
+    },
+    "1040": {
+        "name": "Donation",
+        "handle": "donation"
+    },
+    "1041": {
+        "name": "Road Construction",
+        "handle": "road-construction"
+    },
+    "1042": {
+        "name": "Secret Origins",
+        "handle": "secret-origins"
+    },
+    "1043": {
+        "name": "Triangle Partitioning",
+        "handle": "triangle-partitioning"
+    },
+    "1044": {
+        "name": "Palindrome Partitioning",
+        "handle": "palindrome-partitioning"
+    },
+    "1045": {
+        "name": "Digits of Factorial",
+        "handle": "digits-of-factorial"
+    },
+    "1046": {
+        "name": "Rider",
+        "handle": "rider"
+    },
+    "1047": {
+        "name": "Neighbor House",
+        "handle": "neighbor-house"
+    },
+    "1048": {
+        "name": "Conquering Keokradong",
+        "handle": "conquering-keokradong"
+    },
+    "1049": {
+        "name": "One Way Roads",
+        "handle": "one-way-roads"
+    },
+    "1050": {
+        "name": "Marbles",
+        "handle": "marbles"
+    },
+    "1051": {
+        "name": "Good or Bad",
+        "handle": "good-or-bad"
+    },
+    "1052": {
+        "name": "String Growth",
+        "handle": "string-growth"
+    },
+    "1053": {
+        "name": "Higher Math",
+        "handle": "higher-math"
+    },
+    "1054": {
+        "name": "Efficient Pseudo Code",
+        "handle": "efficient-pseudo-code"
+    },
+    "1055": {
+        "name": "Going Together",
+        "handle": "going-together"
+    },
+    "1056": {
+        "name": "Olympics",
+        "handle": "olympics"
+    },
+    "1057": {
+        "name": "Collecting Gold",
+        "handle": "collecting-gold"
+    },
+    "1058": {
+        "name": "Parallelogram Counting",
+        "handle": "parallelogram-counting"
+    },
+    "1059": {
+        "name": "Air Ports",
+        "handle": "air-ports"
+    },
+    "1060": {
+        "name": "nth Permutation",
+        "handle": "nth-permutation"
+    },
+    "1061": {
+        "name": "N Queen Again",
+        "handle": "n-queen-again"
+    },
+    "1062": {
+        "name": "Crossed Ladders",
+        "handle": "crossed-ladders"
+    },
+    "1063": {
+        "name": "Ant Hills",
+        "handle": "ant-hills"
+    },
+    "1064": {
+        "name": "Throwing Dice",
+        "handle": "throwing-dice"
+    },
+    "1065": {
+        "name": "Number Sequence",
+        "handle": "number-sequence"
+    },
+    "1066": {
+        "name": "Gathering Food",
+        "handle": "gathering-food"
+    },
+    "1067": {
+        "name": "Combinations",
+        "handle": "combinations"
+    },
+    "1068": {
+        "name": "Investigation",
+        "handle": "investigation"
+    },
+    "1069": {
+        "name": "Lift",
+        "handle": "lift"
+    },
+    "1070": {
+        "name": "Algebraic Problem",
+        "handle": "algebraic-problem"
+    },
+    "1071": {
+        "name": "Baker Vai",
+        "handle": "baker-vai"
+    },
+    "1072": {
+        "name": "Calm Down",
+        "handle": "calm-down"
+    },
+    "1073": {
+        "name": "DNA Sequence",
+        "handle": "dna-sequence"
+    },
+    "1074": {
+        "name": "Extended Traffic",
+        "handle": "extended-traffic"
+    },
+    "1075": {
+        "name": "Finding Routes",
+        "handle": "finding-routes"
+    },
+    "1076": {
+        "name": "Get the Containers",
+        "handle": "get-the-containers"
+    },
+    "1077": {
+        "name": "How Many Points?",
+        "handle": "how-many-points"
+    },
+    "1078": {
+        "name": "Integer Divisibility",
+        "handle": "integer-divisibility"
+    },
+    "1079": {
+        "name": "Just another Robbery",
+        "handle": "just-another-robbery"
+    },
+    "1080": {
+        "name": "Binary Simulation",
+        "handle": "binary-simulation"
+    },
+    "1081": {
+        "name": "Square Queries",
+        "handle": "square-queries"
+    },
+    "1082": {
+        "name": "Array Queries",
+        "handle": "array-queries"
+    },
+    "1083": {
+        "name": "Histogram",
+        "handle": "histogram"
+    },
+    "1084": {
+        "name": "Winter",
+        "handle": "winter"
+    },
+    "1085": {
+        "name": "All Possible Increasing Subsequences",
+        "handle": "all-possible-inc-subseq"
+    },
+    "1086": {
+        "name": "Jogging Trails",
+        "handle": "jogging-trails"
+    },
+    "1087": {
+        "name": "Diablo",
+        "handle": "diablo"
+    },
+    "1088": {
+        "name": "Points in Segments",
+        "handle": "points-in-segments"
+    },
+    "1089": {
+        "name": "Points in Segments (II)",
+        "handle": "points-in-segments-ii"
+    },
+    "1090": {
+        "name": "Trailing Zeroes (II)",
+        "handle": "trailing-zeroes-ii"
+    },
+    "1091": {
+        "name": "The Fastest Sorting Ever!",
+        "handle": "the-fastest-sorting-ever"
+    },
+    "1092": {
+        "name": "Lighted Panels",
+        "handle": "lighted-panels"
+    },
+    "1093": {
+        "name": "Ghajini",
+        "handle": "ghajini"
+    },
+    "1094": {
+        "name": "Farthest Nodes in a Tree",
+        "handle": "farthest-nodes-in-a-tree"
+    },
+    "1095": {
+        "name": "Arrange the Numbers",
+        "handle": "arrange-the-numbers"
+    },
+    "1096": {
+        "name": "nth Term",
+        "handle": "nth-term"
+    },
+    "1097": {
+        "name": "Lucky Number",
+        "handle": "lucky-number"
+    },
+    "1098": {
+        "name": "A New Function",
+        "handle": "a-new-function"
+    },
+    "1099": {
+        "name": "Not the Best",
+        "handle": "not-the-best"
+    },
+    "1100": {
+        "name": "Again Array Queries",
+        "handle": "again-array-queries"
+    },
+    "1101": {
+        "name": "A Secret Mission",
+        "handle": "a-secret-mission"
+    },
+    "1102": {
+        "name": "Problem Makes Problem",
+        "handle": "problem-makes-problem"
+    },
+    "1103": {
+        "name": "Castle Walls",
+        "handle": "castle-walls"
+    },
+    "1104": {
+        "name": "Birthday Paradox",
+        "handle": "birthday-paradox"
+    },
+    "1105": {
+        "name": "Fi Binary Number",
+        "handle": "fi-binary-number"
+    },
+    "1106": {
+        "name": "Gone Fishing",
+        "handle": "gone-fishing"
+    },
+    "1107": {
+        "name": "How Cow",
+        "handle": "how-cow"
+    },
+    "1108": {
+        "name": "Instant View of Big Bang",
+        "handle": "instant-view-of-big-bang"
+    },
+    "1109": {
+        "name": "False Ordering",
+        "handle": "false-ordering"
+    },
+    "1110": {
+        "name": "An Easy LCS",
+        "handle": "an-easy-lcs"
+    },
+    "1111": {
+        "name": "Best Picnic Ever",
+        "handle": "best-picnic-ever"
+    },
+    "1112": {
+        "name": "Curious Robin Hood",
+        "handle": "curious-robin-hood"
+    },
+    "1113": {
+        "name": "Discover the Web",
+        "handle": "discover-the-web"
+    },
+    "1114": {
+        "name": "Easily Readable",
+        "handle": "easily-readable"
+    },
+    "1115": {
+        "name": "Filling the Regions",
+        "handle": "filling-the-regions"
+    },
+    "1116": {
+        "name": "Ekka Dokka",
+        "handle": "ekka-dokka"
+    },
+    "1117": {
+        "name": "Helping Cicada",
+        "handle": "helping-cicada"
+    },
+    "1118": {
+        "name": "Incredible Molecules",
+        "handle": "incredible-molecules"
+    },
+    "1119": {
+        "name": "Pimp My Ride",
+        "handle": "pimp-my-ride"
+    },
+    "1120": {
+        "name": "Rectangle Union",
+        "handle": "rectangle-union"
+    },
+    "1121": {
+        "name": "15 Puzzle",
+        "handle": "15-puzzle"
+    },
+    "1122": {
+        "name": "Digit Count",
+        "handle": "digit-count"
+    },
+    "1123": {
+        "name": "Trail Maintenance",
+        "handle": "trail-maintenance"
+    },
+    "1124": {
+        "name": "Cricket Ranking",
+        "handle": "cricket-ranking"
+    },
+    "1125": {
+        "name": "Divisible Group Sums",
+        "handle": "divisible-group-sums"
+    },
+    "1126": {
+        "name": "Building Twin Towers",
+        "handle": "building-twin-towers"
+    },
+    "1127": {
+        "name": "Funny Knapsack",
+        "handle": "funny-knapsack"
+    },
+    "1128": {
+        "name": "Greatest Parent",
+        "handle": "greatest-parent"
+    },
+    "1129": {
+        "name": "Consistency Checker",
+        "handle": "consistency-checker"
+    },
+    "1130": {
+        "name": "Intersection between Circle and Rectangle",
+        "handle": "intersection-between-circle-a"
+    },
+    "1131": {
+        "name": "Just Two Functions",
+        "handle": "just-two-functions"
+    },
+    "1132": {
+        "name": "Summing up Powers",
+        "handle": "summing-up-powers"
+    },
+    "1133": {
+        "name": "Array Simulation",
+        "handle": "array-simulation"
+    },
+    "1134": {
+        "name": "Be Efficient",
+        "handle": "be-efficient"
+    },
+    "1135": {
+        "name": "Count the Multiples of 3",
+        "handle": "count-the-multiples-of-3"
+    },
+    "1136": {
+        "name": "Division by 3",
+        "handle": "division-by-3"
+    },
+    "1137": {
+        "name": "Expanding Rods",
+        "handle": "expanding-rods"
+    },
+    "1138": {
+        "name": "Trailing Zeroes (III)",
+        "handle": "trailing-zeroes-iii"
+    },
+    "1139": {
+        "name": "8 Puzzle",
+        "handle": "8-puzzle"
+    },
+    "1140": {
+        "name": "How Many Zeroes?",
+        "handle": "how-many-zeroes"
+    },
+    "1141": {
+        "name": "Number Transformation",
+        "handle": "number-transformation"
+    },
+    "1142": {
+        "name": "Summing up Powers (II)",
+        "handle": "summing-up-powers-ii"
+    },
+    "1143": {
+        "name": "Knights in FEN",
+        "handle": "knights-in-fen"
+    },
+    "1144": {
+        "name": "Ray Gun",
+        "handle": "ray-gun"
+    },
+    "1145": {
+        "name": "Dice (I)",
+        "handle": "dice-i"
+    },
+    "1146": {
+        "name": "Closest Distance",
+        "handle": "closest-distance"
+    },
+    "1147": {
+        "name": "Tug of War",
+        "handle": "tug-of-war"
+    },
+    "1148": {
+        "name": "Mad Counting",
+        "handle": "mad-counting"
+    },
+    "1149": {
+        "name": "Factors and Multiples",
+        "handle": "factors-and-multiples"
+    },
+    "1150": {
+        "name": "Ghosts!",
+        "handle": "ghosts"
+    },
+    "1151": {
+        "name": "Snakes and Ladders",
+        "handle": "snakes-and-ladders"
+    },
+    "1152": {
+        "name": "Hiding Gold",
+        "handle": "hiding-gold"
+    },
+    "1153": {
+        "name": "Internet Bandwidth",
+        "handle": "internet-bandwidth"
+    },
+    "1154": {
+        "name": "Penguins",
+        "handle": "penguins"
+    },
+    "1155": {
+        "name": "Power Transmission",
+        "handle": "power-transmission"
+    },
+    "1156": {
+        "name": "Jumping Frogs",
+        "handle": "jumping-frogs"
+    },
+    "1157": {
+        "name": "LCS Revisited",
+        "handle": "lcs-revisited"
+    },
+    "1158": {
+        "name": "Anagram Division",
+        "handle": "anagram-division"
+    },
+    "1159": {
+        "name": "Batman",
+        "handle": "batman"
+    },
+    "1160": {
+        "name": "Discovering Paths in Grid",
+        "handle": "discovering-paths-in-grid"
+    },
+    "1161": {
+        "name": "Extreme GCD",
+        "handle": "extreme-gcd"
+    },
+    "1162": {
+        "name": "Min Max Roads",
+        "handle": "min-max-roads"
+    },
+    "1163": {
+        "name": "Bank Robbery",
+        "handle": "bank-robbery"
+    },
+    "1164": {
+        "name": "Horrible Queries",
+        "handle": "horrible-queries"
+    },
+    "1165": {
+        "name": "Digit Dancing",
+        "handle": "digit-dancing"
+    },
+    "1166": {
+        "name": "Old Sorting",
+        "handle": "old-sorting"
+    },
+    "1167": {
+        "name": "Dangerous Tunnels",
+        "handle": "dangerous-tunnels"
+    },
+    "1168": {
+        "name": "Wishing Snake",
+        "handle": "wishing-snake"
+    },
+    "1169": {
+        "name": "Monkeys on Twin Tower",
+        "handle": "monkeys-on-twin-tower"
+    },
+    "1170": {
+        "name": "Counting Perfect BST",
+        "handle": "counting-perfect-bst"
+    },
+    "1171": {
+        "name": "Knights in Chessboard (II)",
+        "handle": "knights-in-chessboard-ii"
+    },
+    "1172": {
+        "name": "Krypton Number System",
+        "handle": "krypton-number-system"
+    },
+    "1173": {
+        "name": "The Vindictive Coach",
+        "handle": "the-vindictive-coach"
+    },
+    "1174": {
+        "name": "Commandos",
+        "handle": "commandos"
+    },
+    "1175": {
+        "name": "Jane and the Frost Giants",
+        "handle": "jane-and-the-frost-giants"
+    },
+    "1176": {
+        "name": "Getting a T-shirt",
+        "handle": "getting-a-t-shirt"
+    },
+    "1177": {
+        "name": "Angry Programmer",
+        "handle": "angry-programmer"
+    },
+    "1178": {
+        "name": "Trapezium",
+        "handle": "trapezium"
+    },
+    "1179": {
+        "name": "Josephus Problem",
+        "handle": "josephus-problem"
+    },
+    "1180": {
+        "name": "Software Company",
+        "handle": "software-company"
+    },
+    "1181": {
+        "name": "Odd Looking Average",
+        "handle": "odd-looking-average"
+    },
+    "1182": {
+        "name": "Parity",
+        "handle": "parity"
+    },
+    "1183": {
+        "name": "Computing Fast Average",
+        "handle": "computing-fast-average"
+    },
+    "1184": {
+        "name": "Marriage Media",
+        "handle": "marriage-media"
+    },
+    "1185": {
+        "name": "Escape",
+        "handle": "escape"
+    },
+    "1186": {
+        "name": "Incredible Chess",
+        "handle": "incredible-chess"
+    },
+    "1187": {
+        "name": "Lining up Students",
+        "handle": "lining-up-students"
+    },
+    "1188": {
+        "name": "Fast Queries",
+        "handle": "fast-queries"
+    },
+    "1189": {
+        "name": "Sum of Factorials",
+        "handle": "sum-of-factorials"
+    },
+    "1190": {
+        "name": "Sleepwalking",
+        "handle": "sleepwalking"
+    },
+    "1191": {
+        "name": "Bar Codes",
+        "handle": "bar-codes"
+    },
+    "1192": {
+        "name": "Left Right",
+        "handle": "left-right"
+    },
+    "1193": {
+        "name": "Dice (II)",
+        "handle": "dice-ii"
+    },
+    "1194": {
+        "name": "Colored T-Shirts",
+        "handle": "colored-t-shirts"
+    },
+    "1195": {
+        "name": "Similar Trees",
+        "handle": "similar-trees"
+    },
+    "1196": {
+        "name": "Inhabitants",
+        "handle": "inhabitants"
+    },
+    "1197": {
+        "name": "Help Hanzo",
+        "handle": "help-hanzo"
+    },
+    "1198": {
+        "name": "Karate Competition",
+        "handle": "karate-competition"
+    },
+    "1199": {
+        "name": "Partitioning Game",
+        "handle": "partitioning-game"
+    },
+    "1200": {
+        "name": "Thief",
+        "handle": "thief"
+    },
+    "1201": {
+        "name": "A Perfect Murder",
+        "handle": "a-perfect-murder"
+    },
+    "1202": {
+        "name": "Bishops",
+        "handle": "bishops"
+    },
+    "1203": {
+        "name": "Guarding Bananas",
+        "handle": "guarding-bananas"
+    },
+    "1204": {
+        "name": "Weird Advertisement",
+        "handle": "weird-advertisement"
+    },
+    "1205": {
+        "name": "Palindromic Numbers",
+        "handle": "palindromic-numbers"
+    },
+    "1206": {
+        "name": "Scheduling Taxi Cabs",
+        "handle": "scheduling-taxi-cabs"
+    },
+    "1207": {
+        "name": "Posters for Election",
+        "handle": "posters-for-election"
+    },
+    "1208": {
+        "name": "Dangerous Bull! Who Wants to Pull?",
+        "handle": "dangerous-bull-who-wants-to-p"
+    },
+    "1209": {
+        "name": "Strange Voting",
+        "handle": "strange-voting"
+    },
+    "1210": {
+        "name": "Efficient Traffic System",
+        "handle": "efficient-traffic-system"
+    },
+    "1211": {
+        "name": "Intersection of Cubes",
+        "handle": "intersection-of-cubes"
+    },
+    "1212": {
+        "name": "Double Ended Queue",
+        "handle": "double-ended-queue"
+    },
+    "1213": {
+        "name": "Fantasy of a Summation",
+        "handle": "fantasy-of-a-summation"
+    },
+    "1214": {
+        "name": "Large Division",
+        "handle": "large-division"
+    },
+    "1215": {
+        "name": "Finding LCM",
+        "handle": "finding-lcm"
+    },
+    "1216": {
+        "name": "Juice in the Glass",
+        "handle": "juice-in-the-glass"
+    },
+    "1217": {
+        "name": "Neighbor House (II)",
+        "handle": "neighbor-house-ii"
+    },
+    "1218": {
+        "name": "Multiple Free Subset",
+        "handle": "multiple-free-subset"
+    },
+    "1219": {
+        "name": "Mafia",
+        "handle": "mafia"
+    },
+    "1220": {
+        "name": "Mysterious Bacteria",
+        "handle": "mysterious-bacteria"
+    },
+    "1221": {
+        "name": "Travel Company",
+        "handle": "travel-company"
+    },
+    "1222": {
+        "name": "Gift Packing",
+        "handle": "gift-packing"
+    },
+    "1223": {
+        "name": "Testing Mailboxes",
+        "handle": "testing-mailboxes"
+    },
+    "1224": {
+        "name": "DNA Prefix",
+        "handle": "dna-prefix"
+    },
+    "1225": {
+        "name": "Palindromic Numbers (II)",
+        "handle": "palindromic-numbers-ii"
+    },
+    "1226": {
+        "name": "One Unit Machine",
+        "handle": "one-unit-machine"
+    },
+    "1227": {
+        "name": "Boiled Eggs",
+        "handle": "boiled-eggs"
+    },
+    "1228": {
+        "name": "e-Friends",
+        "handle": "e-friends"
+    },
+    "1229": {
+        "name": "Treblecross",
+        "handle": "treblecross"
+    },
+    "1230": {
+        "name": "Placing Lampposts",
+        "handle": "placing-lampposts"
+    },
+    "1231": {
+        "name": "Coin Change (I)",
+        "handle": "coin-change-i"
+    },
+    "1232": {
+        "name": "Coin Change (II)",
+        "handle": "coin-change-ii"
+    },
+    "1233": {
+        "name": "Coin Change (III)",
+        "handle": "coin-change-iii"
+    },
+    "1234": {
+        "name": "Harmonic Number",
+        "handle": "harmonic-number"
+    },
+    "1235": {
+        "name": "Coin Change (IV)",
+        "handle": "coin-change-iv"
+    },
+    "1236": {
+        "name": "Pairs Forming LCM",
+        "handle": "pairs-forming-lcm"
+    },
+    "1237": {
+        "name": "Cyber Cafe",
+        "handle": "cyber-cafe"
+    },
+    "1238": {
+        "name": "Power Puff Girls",
+        "handle": "power-puff-girls"
+    },
+    "1239": {
+        "name": "Convex Fence",
+        "handle": "convex-fence"
+    },
+    "1240": {
+        "name": "Point Segment Distance (3D)",
+        "handle": "point-segment-distance-3d"
+    },
+    "1241": {
+        "name": "Pinocchio",
+        "handle": "pinocchio"
+    },
+    "1242": {
+        "name": "Similar Trees (II)",
+        "handle": "similar-trees-ii"
+    },
+    "1243": {
+        "name": "Guardian Knights",
+        "handle": "guardian-knights"
+    },
+    "1244": {
+        "name": "Tiles",
+        "handle": "tiles"
+    },
+    "1245": {
+        "name": "Harmonic Number (II)",
+        "handle": "harmonic-number-ii"
+    },
+    "1246": {
+        "name": "Colorful Board",
+        "handle": "colorful-board"
+    },
+    "1247": {
+        "name": "Matrix Game",
+        "handle": "matrix-game"
+    },
+    "1248": {
+        "name": "Dice (III)",
+        "handle": "dice-iii"
+    },
+    "1249": {
+        "name": "Chocolate Thief",
+        "handle": "chocolate-thief"
+    },
+    "1250": {
+        "name": "Village Postman",
+        "handle": "village-postman"
+    },
+    "1251": {
+        "name": "Forming the Council",
+        "handle": "forming-the-council"
+    },
+    "1252": {
+        "name": "Maintaining Communities",
+        "handle": "maintaining-communities"
+    },
+    "1253": {
+        "name": "Misere Nim",
+        "handle": "misere-nim"
+    },
+    "1254": {
+        "name": "Prison Break",
+        "handle": "prison-break"
+    },
+    "1255": {
+        "name": "Substring Frequency",
+        "handle": "substring-frequency"
+    },
+    "1256": {
+        "name": "Word Puzzle",
+        "handle": "word-puzzle"
+    },
+    "1257": {
+        "name": "Farthest Nodes in a Tree (II)",
+        "handle": "farthest-nodes-in-a-tree-ii"
+    },
+    "1258": {
+        "name": "Making Huge Palindromes",
+        "handle": "making-huge-palindromes"
+    },
+    "1259": {
+        "name": "Goldbach's Conjecture",
+        "handle": "goldbach-s-conjecture"
+    },
+    "1260": {
+        "name": "Race Track",
+        "handle": "race-track"
+    },
+    "1261": {
+        "name": "K-SAT Problem",
+        "handle": "k-sat-problem"
+    },
+    "1262": {
+        "name": "Diagonal Sum",
+        "handle": "diagonal-sum"
+    },
+    "1263": {
+        "name": "Equalizing Money",
+        "handle": "equalizing-money"
+    },
+    "1264": {
+        "name": "Grouping Friends",
+        "handle": "grouping-friends"
+    },
+    "1265": {
+        "name": "Island of Survival",
+        "handle": "island-of-survival"
+    },
+    "1266": {
+        "name": "Points in Rectangle",
+        "handle": "points-in-rectangle"
+    },
+    "1267": {
+        "name": "Points in Rectangle (II)",
+        "handle": "points-in-rectangle-ii"
+    },
+    "1268": {
+        "name": "Unlucky Strings",
+        "handle": "unlucky-strings"
+    },
+    "1269": {
+        "name": "Consecutive Sum",
+        "handle": "consecutive-sum"
+    },
+    "1270": {
+        "name": "Tiles (II)",
+        "handle": "tiles-ii"
+    },
+    "1271": {
+        "name": "Better Tour",
+        "handle": "better-tour"
+    },
+    "1272": {
+        "name": "Maximum Subset Sum",
+        "handle": "maximum-subset-sum"
+    },
+    "1273": {
+        "name": "Strange Island",
+        "handle": "strange-island"
+    },
+    "1274": {
+        "name": "Beating the Dataset",
+        "handle": "beating-the-dataset"
+    },
+    "1275": {
+        "name": "Internet Service Providers",
+        "handle": "internet-service-providers"
+    },
+    "1276": {
+        "name": "Very Lucky Numbers",
+        "handle": "very-lucky-numbers"
+    },
+    "1277": {
+        "name": "Looking for a Subsequence",
+        "handle": "looking-for-a-subsequence"
+    },
+    "1278": {
+        "name": "Sum of Consecutive Integers",
+        "handle": "sum-of-consecutive-integers"
+    },
+    "1279": {
+        "name": "Graph Coloring",
+        "handle": "graph-coloring"
+    },
+    "1280": {
+        "name": "Best Grade",
+        "handle": "best-grade"
+    },
+    "1281": {
+        "name": "New Traffic System",
+        "handle": "new-traffic-system"
+    },
+    "1282": {
+        "name": "Leading and Trailing",
+        "handle": "leading-and-trailing"
+    },
+    "1283": {
+        "name": "Shelving Books",
+        "handle": "shelving-books"
+    },
+    "1284": {
+        "name": "Lights inside 3D Grid",
+        "handle": "lights-inside-3d-grid"
+    },
+    "1285": {
+        "name": "Drawing Simple Polygon",
+        "handle": "drawing-simple-polygon"
+    },
+    "1286": {
+        "name": "Space Shuttle Experiments",
+        "handle": "space-shuttle-experiments"
+    },
+    "1287": {
+        "name": "Where to Run?",
+        "handle": "where-to-run"
+    },
+    "1288": {
+        "name": "Subsets Forming Perfect Squares",
+        "handle": "subsets-forming-perfect-squar"
+    },
+    "1289": {
+        "name": "LCM from 1 to n",
+        "handle": "lcm-from-1-to-n"
+    },
+    "1290": {
+        "name": "The Great Merger",
+        "handle": "the-great-merger"
+    },
+    "1291": {
+        "name": "Real Life Traffic",
+        "handle": "real-life-traffic"
+    },
+    "1292": {
+        "name": "Laser Shot",
+        "handle": "laser-shot"
+    },
+    "1293": {
+        "name": "Document Analyzer",
+        "handle": "document-analyzer"
+    },
+    "1294": {
+        "name": "Positive Negative Sign",
+        "handle": "positive-negative-sign"
+    },
+    "1295": {
+        "name": "Lighting System Design",
+        "handle": "lighting-system-design"
+    },
+    "1296": {
+        "name": "Again Stone Game",
+        "handle": "again-stone-game"
+    },
+    "1297": {
+        "name": "Largest Box",
+        "handle": "largest-box"
+    },
+    "1298": {
+        "name": "One Theorem, One Year",
+        "handle": "one-theorem-one-year"
+    },
+    "1299": {
+        "name": "Fantasy Cricket",
+        "handle": "fantasy-cricket"
+    },
+    "1300": {
+        "name": "Odd Personality",
+        "handle": "odd-personality"
+    },
+    "1301": {
+        "name": "Monitoring Processes",
+        "handle": "monitoring-processes"
+    },
+    "1302": {
+        "name": "Independent Attacking Zones",
+        "handle": "independent-attacking-zones"
+    },
+    "1303": {
+        "name": "Ferris Wheel",
+        "handle": "ferris-wheel"
+    },
+    "1304": {
+        "name": "The Best Contest Site Ever",
+        "handle": "the-best-contest-site-ever"
+    },
+    "1305": {
+        "name": "Area of a Parallelogram",
+        "handle": "area-of-a-parallelogram"
+    },
+    "1306": {
+        "name": "Solutions to an Equation",
+        "handle": "solutions-to-an-equation"
+    },
+    "1307": {
+        "name": "Counting Triangles",
+        "handle": "counting-triangles"
+    },
+    "1308": {
+        "name": "Ant Network",
+        "handle": "ant-network"
+    },
+    "1309": {
+        "name": "Children's Math",
+        "handle": "children-s-math"
+    },
+    "1310": {
+        "name": "Tiles (III)",
+        "handle": "tiles-iii"
+    },
+    "1311": {
+        "name": "Unlucky Bird",
+        "handle": "unlucky-bird"
+    },
+    "1312": {
+        "name": "Corrupted Tax Department",
+        "handle": "corrupted-tax-department"
+    },
+    "1313": {
+        "name": "Protect the Mines",
+        "handle": "protect-the-mines"
+    },
+    "1314": {
+        "name": "Names for Babies",
+        "handle": "names-for-babies"
+    },
+    "1315": {
+        "name": "Game of Hyper Knights",
+        "handle": "game-of-hyper-knights"
+    },
+    "1316": {
+        "name": "A Wedding Party",
+        "handle": "a-wedding-party"
+    },
+    "1317": {
+        "name": "Throwing Balls into the Baskets",
+        "handle": "throwing-balls-into-the-baske"
+    },
+    "1318": {
+        "name": "Strange Game",
+        "handle": "strange-game"
+    },
+    "1319": {
+        "name": "Monkey Tradition",
+        "handle": "monkey-tradition"
+    },
+    "1320": {
+        "name": "Farmers' Tale",
+        "handle": "farmers-tale"
+    },
+    "1321": {
+        "name": "Sending Packets",
+        "handle": "sending-packets"
+    },
+    "1322": {
+        "name": "Worst Case Trie",
+        "handle": "worst-case-trie"
+    },
+    "1323": {
+        "name": "Billiard Balls",
+        "handle": "billiard-balls"
+    },
+    "1324": {
+        "name": "Equivalent Boolean Expressions",
+        "handle": "equivalent-boolean-expression"
+    },
+    "1325": {
+        "name": "Distributing Chocolates",
+        "handle": "distributing-chocolates"
+    },
+    "1326": {
+        "name": "Race",
+        "handle": "race"
+    },
+    "1327": {
+        "name": "Help the Winners",
+        "handle": "help-the-winners"
+    },
+    "1328": {
+        "name": "A Gift from the Setter",
+        "handle": "a-gift-from-the-setter"
+    },
+    "1329": {
+        "name": "Playing Cards",
+        "handle": "playing-cards"
+    },
+    "1330": {
+        "name": "Binary Matrix",
+        "handle": "binary-matrix"
+    },
+    "1331": {
+        "name": "Agent J",
+        "handle": "agent-j"
+    },
+    "1332": {
+        "name": "Kings in Chessboard",
+        "handle": "kings-in-chessboard"
+    },
+    "1333": {
+        "name": "Grid Coloring",
+        "handle": "grid-coloring"
+    },
+    "1334": {
+        "name": "Genes in DNA",
+        "handle": "genes-in-dna"
+    },
+    "1335": {
+        "name": "Planar Graph",
+        "handle": "planar-graph"
+    },
+    "1336": {
+        "name": "Sigma Function",
+        "handle": "sigma-function"
+    },
+    "1337": {
+        "name": "The Crystal Maze",
+        "handle": "the-crystal-maze"
+    },
+    "1338": {
+        "name": "Hidden Secret!",
+        "handle": "hidden-secret"
+    },
+    "1339": {
+        "name": "Strongest Community",
+        "handle": "strongest-community"
+    },
+    "1340": {
+        "name": "Story of Tomisu Ghost",
+        "handle": "story-of-tomisu-ghost"
+    },
+    "1341": {
+        "name": "Aladdin and the Flying Carpet",
+        "handle": "aladdin-and-the-flying-carpet"
+    },
+    "1342": {
+        "name": "Aladdin and the Magical Sticks",
+        "handle": "aladdin-and-the-magical-stick"
+    },
+    "1343": {
+        "name": "Aladdin and the Black Stones",
+        "handle": "aladdin-and-the-black-stones"
+    },
+    "1344": {
+        "name": "Aladdin and the Game of Bracelets",
+        "handle": "aladdin-and-the-game-of-brace"
+    },
+    "1345": {
+        "name": "Aladdin and the Happy Garden",
+        "handle": "aladdin-and-the-happy-garden"
+    },
+    "1346": {
+        "name": "Aladdin and the Rocky Mountains",
+        "handle": "aladdin-and-the-rocky-mountai"
+    },
+    "1347": {
+        "name": "Aladdin and the Magical Lamp",
+        "handle": "aladdin-and-the-magical-lamp"
+    },
+    "1348": {
+        "name": "Aladdin and the Return Journey",
+        "handle": "aladdin-and-the-return-journe"
+    },
+    "1349": {
+        "name": "Aladdin and the Optimal Invitation",
+        "handle": "aladdin-and-the-optimal-invit"
+    },
+    "1350": {
+        "name": "Aladdin and the Grand Feast",
+        "handle": "aladdin-and-the-grand-feast"
+    },
+    "1351": {
+        "name": "Ordered Flips",
+        "handle": "ordered-flips"
+    },
+    "1352": {
+        "name": "Strange Summation",
+        "handle": "strange-summation"
+    },
+    "1353": {
+        "name": "Paths in a Tree",
+        "handle": "paths-in-a-tree"
+    },
+    "1354": {
+        "name": "IP Checking",
+        "handle": "ip-checking"
+    },
+    "1355": {
+        "name": "Game of CS",
+        "handle": "game-of-cs"
+    },
+    "1356": {
+        "name": "Prime Independence",
+        "handle": "prime-independence"
+    },
+    "1357": {
+        "name": "Corrupted Friendship",
+        "handle": "corrupted-friendship"
+    },
+    "1358": {
+        "name": "Fukushima Nuclear Blast",
+        "handle": "fukushima-nuclear-blast"
+    },
+    "1359": {
+        "name": "Sabotaging Contest",
+        "handle": "sabotaging-contest"
+    },
+    "1360": {
+        "name": "Skyscraper",
+        "handle": "skyscraper"
+    },
+    "1361": {
+        "name": "Component Placement",
+        "handle": "component-placement"
+    },
+    "1362": {
+        "name": "Electricity Connection",
+        "handle": "electricity-connection"
+    },
+    "1363": {
+        "name": "Binary Matrix (II)",
+        "handle": "binary-matrix-ii"
+    },
+    "1364": {
+        "name": "Expected Cards",
+        "handle": "expected-cards"
+    },
+    "1365": {
+        "name": "ICPC Guards",
+        "handle": "icpc-guards"
+    },
+    "1366": {
+        "name": "Pair of Touching Circles",
+        "handle": "pair-of-touching-circles"
+    },
+    "1367": {
+        "name": "Pizza and Inner Peace",
+        "handle": "pizza-and-inner-peace"
+    },
+    "1368": {
+        "name": "Truchet Tiling",
+        "handle": "truchet-tiling"
+    },
+    "1369": {
+        "name": "Answering Queries",
+        "handle": "answering-queries"
+    },
+    "1370": {
+        "name": "Bi-shoe and Phi-shoe",
+        "handle": "bi-shoe-and-phi-shoe"
+    },
+    "1371": {
+        "name": "Energetic Pandas",
+        "handle": "energetic-pandas"
+    },
+    "1372": {
+        "name": "Hexagonal Bamboo Fort",
+        "handle": "hexagonal-bamboo-fort"
+    },
+    "1373": {
+        "name": "Strongly Connected Chemicals",
+        "handle": "strongly-connected-chemicals"
+    },
+    "1374": {
+        "name": "Confusion in the Problemset",
+        "handle": "confusion-in-the-problemset"
+    },
+    "1375": {
+        "name": "LCM Extreme",
+        "handle": "lcm-extreme"
+    },
+    "1376": {
+        "name": "Tetromino",
+        "handle": "tetromino"
+    },
+    "1377": {
+        "name": "Blade and Sword",
+        "handle": "blade-and-sword"
+    },
+    "1378": {
+        "name": "The Falling Circle",
+        "handle": "the-falling-circle"
+    },
+    "1379": {
+        "name": "Toll Management",
+        "handle": "toll-management"
+    },
+    "1380": {
+        "name": "Teleport",
+        "handle": "teleport"
+    },
+    "1381": {
+        "name": "Scientific Experiment",
+        "handle": "scientific-experiment"
+    },
+    "1382": {
+        "name": "The Queue",
+        "handle": "the-queue"
+    },
+    "1383": {
+        "name": "Underwater Snipers",
+        "handle": "underwater-snipers"
+    },
+    "1384": {
+        "name": "Stream My Contest",
+        "handle": "stream-my-contest"
+    },
+    "1385": {
+        "name": "Kingdom Division",
+        "handle": "kingdom-division"
+    },
+    "1386": {
+        "name": "Jaguar King",
+        "handle": "jaguar-king"
+    },
+    "1387": {
+        "name": "Setu",
+        "handle": "setu"
+    },
+    "1388": {
+        "name": "Trapezium Drawing",
+        "handle": "trapezium-drawing"
+    },
+    "1389": {
+        "name": "Scarecrow",
+        "handle": "scarecrow"
+    },
+    "1390": {
+        "name": "Weight Comparison",
+        "handle": "weight-comparison"
+    },
+    "1391": {
+        "name": "Speed Zones",
+        "handle": "speed-zones"
+    },
+    "1392": {
+        "name": "Multi Round Matches",
+        "handle": "multi-round-matches"
+    },
+    "1393": {
+        "name": "Crazy Calendar",
+        "handle": "crazy-calendar"
+    },
+    "1394": {
+        "name": "Disable the Wand",
+        "handle": "disable-the-wand"
+    },
+    "1395": {
+        "name": "A Dangerous Maze (II)",
+        "handle": "a-dangerous-maze-ii"
+    },
+    "1396": {
+        "name": "Palindromic Numbers (III)",
+        "handle": "palindromic-numbers-iii"
+    },
+    "1397": {
+        "name": "Sudoku Solver",
+        "handle": "sudoku-solver"
+    },
+    "1398": {
+        "name": "Winger Trial",
+        "handle": "winger-trial"
+    },
+    "1399": {
+        "name": "Politeness",
+        "handle": "politeness"
+    },
+    "1400": {
+        "name": "Employment",
+        "handle": "employment"
+    },
+    "1401": {
+        "name": "No More Tic-tac-toe",
+        "handle": "no-more-tic-tac-toe"
+    },
+    "1402": {
+        "name": "Line Chart",
+        "handle": "line-chart"
+    },
+    "1403": {
+        "name": "Air Raid",
+        "handle": "air-raid"
+    },
+    "1404": {
+        "name": "Sending Secret Messages",
+        "handle": "sending-secret-messages"
+    },
+    "1405": {
+        "name": "The Great Escape",
+        "handle": "the-great-escape"
+    },
+    "1406": {
+        "name": "Assassin's Creed",
+        "handle": "assassin-s-creed"
+    },
+    "1407": {
+        "name": "Explosion",
+        "handle": "explosion"
+    },
+    "1408": {
+        "name": "Batting Practice",
+        "handle": "batting-practice"
+    },
+    "1409": {
+        "name": "Rent a Car",
+        "handle": "rent-a-car"
+    },
+    "1410": {
+        "name": "Consistent Verdicts",
+        "handle": "consistent-verdicts"
+    },
+    "1411": {
+        "name": "Rip Van Winkle's Code",
+        "handle": "rip-van-winkle-s-code"
+    },
+    "1412": {
+        "name": "Visiting Islands",
+        "handle": "visiting-islands"
+    },
+    "1413": {
+        "name": "Polynomial Multiplication",
+        "handle": "polynomial-multiplication"
+    },
+    "1414": {
+        "name": "February 29",
+        "handle": "february-29"
+    },
+    "1415": {
+        "name": "Save the Trees",
+        "handle": "save-the-trees"
+    },
+    "1416": {
+        "name": "Superb Sequence",
+        "handle": "superb-sequence"
+    },
+    "1417": {
+        "name": "Forwarding Emails",
+        "handle": "forwarding-emails"
+    },
+    "1418": {
+        "name": "Trees on My Island",
+        "handle": "trees-on-my-island"
+    },
+    "1419": {
+        "name": "Necklace",
+        "handle": "necklace"
+    },
+    "1420": {
+        "name": "Subsequences forming Strings",
+        "handle": "subsequences-forming-strings"
+    },
+    "1421": {
+        "name": "Wavio Sequence",
+        "handle": "wavio-sequence"
+    },
+    "1422": {
+        "name": "Halloween Costumes",
+        "handle": "halloween-costumes"
+    },
+    "1423": {
+        "name": "Olympic Swimming",
+        "handle": "olympic-swimming"
+    },
+    "1424": {
+        "name": "New Land",
+        "handle": "new-land"
+    },
+    "1425": {
+        "name": "The Monkey and the Oiled Bamboo",
+        "handle": "the-monkey-and-the-oiled-bamb"
+    },
+    "1426": {
+        "name": "Blind Escape",
+        "handle": "blind-escape"
+    },
+    "1427": {
+        "name": "Substring Frequency (II)",
+        "handle": "substring-frequency-ii"
+    },
+    "1428": {
+        "name": "Melody Comparison",
+        "handle": "melody-comparison"
+    },
+    "1429": {
+        "name": "Assassin's Creed (II)",
+        "handle": "assassin-s-creed-ii"
+    },
+    "1430": {
+        "name": "A Question of Time",
+        "handle": "a-question-of-time"
+    },
+    "1431": {
+        "name": "The Party for the Rich",
+        "handle": "the-party-for-the-rich"
+    },
+    "1432": {
+        "name": "Overlapping Sticks",
+        "handle": "overlapping-sticks"
+    },
+    "1433": {
+        "name": "Minimum Arc Distance",
+        "handle": "minimum-arc-distance"
+    },
+    "1434": {
+        "name": "Patch Quilt",
+        "handle": "patch-quilt"
+    },
+    "1436": {
+        "name": "The Ultimate Device",
+        "handle": "ultimate-device"
+    },
+    "1437": {
+        "name": "Beehives",
+        "handle": "beehives"
+    },
+    "1438": {
+        "name": "Repeated Digit Sum",
+        "handle": "repeated-digit-sum"
+    },
+    "1439": {
+        "name": "Reduce the Maintenance Cost",
+        "handle": "reduce-cost"
+    },
+    "1440": {
+        "name": "Disguised Giveaway",
+        "handle": "disguised-giveaway"
+    },
+    "1442": {
+        "name": "Traveling Fool",
+        "handle": "traveling-fool"
+    },
+    "1444": {
+        "name": "The Frog Game",
+        "handle": "frog-game"
+    }
+}

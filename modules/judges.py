@@ -10,9 +10,17 @@ import time
 import os
 import pathlib
 import zipfile
+import sys
+from PyQt5.QtCore import *
+from PyQt5.QtWebEngineWidgets import *
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtNetwork import QNetworkCookie
+from time import sleep
 from modules import scrapers
 
 path = os.path.dirname(__file__)
+lojCookiePath = path + os.sep + "cookies" + os.sep + "lojUserCookie.json"
+
 apicaller = ApiCaller()
 scrape = scrapers.ScraperCaller()
 
@@ -527,3 +535,104 @@ class SPOJ:
 
         # then we should check if the verdict has been given
         # should check repeatedly delaying 5-10 secs and stop when a verdict is given
+
+class LojLogin(QMainWindow):
+
+    def __init__(self, *args, **kwargs):
+        QMainWindow.__init__(self, *args, **kwargs)
+        self.webview = QWebEngineView()
+        profile = QWebEngineProfile("storage", self.webview)
+        cookie_store = profile.cookieStore()
+        cookie_store.cookieAdded.connect(self.onCookieAdded)
+        self.cookies = []
+        webpage = QWebEnginePage(profile, self.webview)
+        self.webview.setPage(webpage)
+        self.webview.load(QUrl("https://lightoj.com/auth/login"))
+        self.setCentralWidget(self.webview)
+        self.setFixedSize(480, 825)
+        self.webview.page().titleChanged.connect(self.setWindowTitle)
+        self.webview.urlChanged.connect(self.update_url)
+
+    def onCookieAdded(self, cookie):
+        for c in self.cookies:
+            if c.hasSameIdentifier(cookie):
+                return
+        self.cookies.append(QNetworkCookie(cookie))
+        cookies_list_info = []
+        for c in self.cookies:
+            data = {"name": bytearray(c.name()).decode(), "domain": c.domain(), "value": bytearray(c.value()).decode(),
+                    "path": c.path(), "expirationDate": c.expirationDate().toString(Qt.ISODate), "secure": c.isSecure(),
+                    "httponly": c.isHttpOnly()}
+            cookies_list_info.append(data)
+        import json
+        json = json.dumps(cookies_list_info)
+        f = open(lojCookiePath, "w")
+        f.write(json)
+        f.close()
+
+    def update_url(self, currentUrl):
+        if currentUrl.toString() == "https://lightoj.com/home":
+            print("Successfully Logged in to Lightoj")
+            self.close()
+
+class LOJ:
+    judgeSlug = "LightOJ"
+    localSubsURL = path + os.sep + "solutions" + os.sep + "LightOJ"
+    extentionStr = {
+        "c": "c",
+        "java": "java",
+        "cpp": "cpp14",
+        "c++": "cpp17",
+        "py": "python3"
+    }
+    def __init__(self):
+        apicaller.lojCookieSet()
+        if apicaller.lojLoginChecker():
+            print("\nLightOJ Logged in from cookies\n")
+        else:
+            app = QApplication(sys.argv)
+            w = LojLogin()
+            w.show()
+            app.exec_()
+            apicaller.lojCookieSet()
+
+    def loginErrorMsg(self):
+        print("\nCan't log into LightOJ. Submission aborted!")
+
+    def submitAll(self, submitSolvedOnes=False, limitSubmissionCount=10):
+        if (apicaller.lojLoginChecker() == False):
+            print("Not logged into LightOJ. Can't submit.")
+            return None
+        successfullySubmitted = 0
+        for problemNumber in os.listdir(self.localSubsURL):
+            problemLocalUrl = self.localSubsURL + os.sep + problemNumber
+            problemDetails = apicaller.getLojProblemDataUsingProblemNumber(problemNumber)
+            if(problemDetails['handle']=='error'):
+                print("Problem " + problemNumber + " Skipped")
+            elif ((submitSolvedOnes == True) or (apicaller.lojIsProblemSolved(problemDetails['handle']) == False)):
+                problem = LightojProblem(problemLocalUrl, problemNumber)
+                for solve, solveId in problem.solutions:
+                    if (successfullySubmitted == limitSubmissionCount):
+                        print("Submission Limit Reached. Please run again")
+                        return None
+
+                    print(f"Trying Problem: {solve}, {solveId}")
+                    sid = str(self.submitProcess(solve, problemDetails['handle']))
+                    if (sid == "-1"):
+                        print("Submission failed. Try again later for this problem.")
+                    else:
+                        print(f"Problem submitted: submission id = {sid}")
+                        problem.saveSolution(solveId, sid)
+                        print()
+                        successfullySubmitted = successfullySubmitted + 1
+                        sleep(5)
+            elif ((submitSolvedOnes == False)):
+                print(problemNumber + " - " + problemDetails['name'] + " -> solved already")
+
+        pass
+
+    def submitProcess(self, solution, handle):
+        lang = self.extentionStr[solution.solutionExt]
+        code = solution.solutionCode
+        submissionID = apicaller.lojSubmit(lang, code, handle)
+        return submissionID

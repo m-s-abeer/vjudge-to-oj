@@ -261,3 +261,77 @@ class SpojProblem(Problem):
         '''
         self.mkdir_p(os.path.dirname(path))
         return open(path, 'w')
+
+class LightojProblem(Problem):
+    problemHandle = str()
+    problemName = str()
+    savingPath = path + os.sep + "Submitted" + os.sep + "LightOJ"
+
+    def __init__(self, problemDir, problemNumber, judgeSlug="LightOJ"):
+        super().__init__(problemDir, problemNumber, judgeSlug)
+        problemData = apicaller.getLojProblemDataUsingProblemNumber(problemNumber)
+        self.problemHandle = str(problemData['handle'])
+        self.problemName = str(problemData['name'])
+        solCnt = 0
+        for subName in os.listdir(problemDir):
+            self.solutions.append(
+                list([Solution(problemDir + os.sep + subName, problemNumber, self.problemName), solCnt]))
+            solCnt = solCnt + 1
+
+    """
+    Important when saving solution.
+    Fobidden printable ascii characters while saving:-
+
+    Linux/Unix:
+    / (forward slash)
+
+    Windows:
+    < (less than)
+    > (greater than)
+    : (colon - sometimes works, but is actually NTFS Alternate Data Streams)
+    " (double quote)
+    / (forward slash)
+    \ (backslash)
+    | (vertical bar or pipe)
+    ? (question mark)
+    * (asterisk)
+
+    """
+
+    def fileNameCleaner(self, fileName):
+        forbidden = {'/', '\\', '<', '>', ':', '"', '|', '?', '*'}
+        newName = ""
+        for c in fileName:
+            if (c not in forbidden):
+                newName = newName + str(c)
+        return newName
+
+    def saveSolution(self, solutionId, submissionId):
+        fileName = self.problemNumber + " - " + self.problemName
+        fileName = fileName + "(" + str(solutionId) + ", " + str(submissionId) + ")." + self.solutions[solutionId][
+            0].solutionExt
+        fileName = self.fileNameCleaner(fileName)
+        savePath = self.savingPath + os.sep + fileName
+        print("Saving on : ", savePath)
+        with self.safe_open_w(savePath) as f:
+            f.write(self.solutions[solutionId][0].solutionCode)
+
+    def mkdir_p(self, path):
+        try:
+            os.makedirs(path)
+            if (os.path.exists(path)):
+                print("path created on ", path)
+            else:
+                print("path not created")
+
+        except OSError as exc:  # Python >2.5
+            if exc.errno == errno.EEXIST and os.path.isdir(path):
+                pass
+            else:
+                raise
+
+    def safe_open_w(self, path):
+        ''' Open "path" for writing, creating any parent directories as needed.
+        '''
+        self.mkdir_p(os.path.dirname(path))
+        return open(path, 'w')
