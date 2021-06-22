@@ -1,9 +1,9 @@
 # vjudge-to-oj
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![GitHub license](https://img.shields.io/github/license/M-S-Abeer/vjudge-to-oj.svg)](https://github.com/M-S-Abeer/vjudge-to-oj/blob/master/LICENSE)
-[![GitHub forks](https://img.shields.io/github/forks/M-S-Abeer/vjudge-to-oj.svg?style=social&label=Fork)](https://github.com/M-S-Abeer/vjudge-to-oj)
-[![GitHub stars](https://img.shields.io/github/stars/M-S-Abeer/vjudge-to-oj.svg?style=social&label=Stars)](https://github.com/M-S-Abeer/vjudge-to-oj)
-[![HitCount](http://hits.dwyl.io/M-S-Abeer/badges.svg)](http://hits.dwyl.io/M-S-Abeer/badges)
+[![GitHub license](https://img.shields.io/github/license/m-s-abeer/vjudge-to-oj.svg)](https://github.com/m-s-abeer/vjudge-to-oj/blob/master/LICENSE)
+[![GitHub forks](https://img.shields.io/github/forks/m-s-abeer/vjudge-to-oj.svg?style=social&label=Fork)](https://github.com/m-s-abeer/vjudge-to-oj)
+[![GitHub stars](https://img.shields.io/github/stars/m-s-abeer/vjudge-to-oj.svg?style=social&label=Stars)](https://github.com/m-s-abeer/vjudge-to-oj)
+[![HitCount](http://hits.dwyl.io/m-s-abeer/badges.svg)](http://hits.dwyl.io/m-s-abeer/badges)
 
 Competitive programmers spend thousands of hours practicing programming problems and participating contests.
 Vjudge has been an amazing platform for participating/hosting programming contests and problem-solving.
@@ -26,7 +26,7 @@ Hope you enjoy. <3
 
 ## Installation Guide:
 1. Download/clone the repository from github.
-  * If you have git write```git clone https://github.com/M-S-Abeer/vjudge-to-oj.git``` opening cmd from the project directory.
+  * If you have git write```git clone https://github.com/m-s-abeer/vjudge-to-oj.git``` opening cmd from the project directory.
   * Otherwise just download the repository normally.
 1. Download python 3(version 3.7 or above preferred) or anaconda if you're comfortable with it. Direct python download link: https://www.python.org/downloads/.
 1. If python package installer (pip) is working install the requirements. For that, get inside extracted project folder of "vjudge-to-oj"(i.e: `C:\projects\vjudge-to-oj\`), write `cmd` clearing the addressbar if you are on Windows OS.
