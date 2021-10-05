@@ -298,8 +298,8 @@ class CF:
     extentionId = {
         "c" : "43", #GNU GCC C11 5.1.0
         "java" : "36", #Java 1.8.0_241
-        "cpp" : "42", #GNU G++11 5.1.0
-        "c++" : "42", #GNU G++11 5.1.0
+        "cpp" : "54", #GNU G++17 7.3.0
+        "c++" : "54", #GNU G++17 7.3.0
         "py" : "41" #PyPy 3.6 (7.2.0)
     }
     br = mechanize.Browser()
@@ -636,3 +636,4 @@ class LOJ:
         code = solution.solutionCode
         submissionID = apicaller.lojSubmit(lang, code, handle)
         return submissionID
+
