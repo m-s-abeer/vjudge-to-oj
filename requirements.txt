@@ -3,7 +3,7 @@ mechanize==0.4.5
 pathlib==1.0.1
 http-client==0.1.22
 requests==2.20.0
-lxml==4.6.3
+lxml==4.6.5
 pycurl==7.43.0.5
 numpy==1.20.1
 beautifulsoup4==4.6.0
