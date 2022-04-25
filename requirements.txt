@@ -5,7 +5,7 @@ http-client==0.1.22
 requests==2.20.0
 lxml==4.6.5
 pycurl==7.43.0.5
-numpy==1.20.1
+numpy==1.21.0
 beautifulsoup4==4.6.0
 PyQt5==5.15.4
 PyQtWebEngine==5.15.4
