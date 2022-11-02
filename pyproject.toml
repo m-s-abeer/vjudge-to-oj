@@ -1,0 +1,68 @@
+[tool.poetry]
+name = "vjudge-to-oj"
+version = "0.1.0"
+description = ""
+authors = ["Mahmud Sajjad Abeer <mahmudsajjad.abeer@gmail.com>"]
+readme = "README.md"
+packages = [{include = "vjudge_to_oj"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+beautifulsoup4 = "^4.11.1"
+mechanize = "^0.4.8"
+pyqt6 = "^6.4.0"
+pyqt6-webengine = "^6.4.0"
+requests = "^2.28.1"
+numpy = "^1.23.4"
+python-dotenv = "^0.21.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.10.0"
+isort = "^5.10.1"
+flake8 = "^5.0.4"
+pylint = "^2.15.5"
+autoflake = "^1.7.7"
+pytest = "^7.2.0"
+mypy = "^0.982"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.isort]
+profile = "black"
+float_to_top = true
+
+[tool.black]
+line-length = 120
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  # The following are specific to Black, you probably don't want those.
+  | blib2to3
+  | tests/data
+  | profiling
+)/
+'''
+
+[tool.pylint]
+ignore='.venv'
+fail-under=7
+max-line-length = 120
+disable=[
+    "missing-function-docstring",
+    "missing-module-docstring",
+    "missing-class-docstring"
+]

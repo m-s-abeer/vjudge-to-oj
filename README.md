@@ -3,7 +3,7 @@
 [![GitHub license](https://img.shields.io/github/license/m-s-abeer/vjudge-to-oj.svg)](https://github.com/m-s-abeer/vjudge-to-oj/blob/master/LICENSE)
 [![GitHub forks](https://img.shields.io/github/forks/m-s-abeer/vjudge-to-oj.svg?style=social&label=Fork)](https://github.com/m-s-abeer/vjudge-to-oj)
 [![GitHub stars](https://img.shields.io/github/stars/m-s-abeer/vjudge-to-oj.svg?style=social&label=Stars)](https://github.com/m-s-abeer/vjudge-to-oj)
-[![HitCount](http://hits.dwyl.io/m-s-abeer/badges.svg)](http://hits.dwyl.io/m-s-abeer/badges)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fm-s-abeer%2Fvjudge-to-oj%2Fhit-counter&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 Competitive programmers spend thousands of hours practicing programming problems and participating contests.
 Vjudge has been an amazing platform for participating/hosting programming contests and problem-solving.
