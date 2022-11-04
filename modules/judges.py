@@ -1,3 +1,5 @@
+from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEnginePage
+
 from .submissions import *
 from .apiHandler import ApiCaller
 from requests import session
@@ -124,6 +126,8 @@ class Vjudge:
     def moveGymSolToCF(self):
         cfLocalSubsURL = path + os.sep + "solutions" + os.sep + "CodeForces"
         gymLocalSubsURL = path + os.sep + "solutions" + os.sep + "Gym"
+        if not os.path.exists(gymLocalSubsURL):
+            return
         for eachSolution in os.listdir(gymLocalSubsURL):
             try:
                 shutil.move(os.path.join(gymLocalSubsURL, eachSolution), cfLocalSubsURL)
@@ -561,7 +565,7 @@ class LojLogin(QMainWindow):
         cookies_list_info = []
         for c in self.cookies:
             data = {"name": bytearray(c.name()).decode(), "domain": c.domain(), "value": bytearray(c.value()).decode(),
-                    "path": c.path(), "expirationDate": c.expirationDate().toString(Qt.ISODate), "secure": c.isSecure(),
+                    "path": c.path(), "expirationDate": c.expirationDate().toString(Qt.DateFormat.ISODate), "secure": c.isSecure(),
                     "httponly": c.isHttpOnly()}
             cookies_list_info.append(data)
         import json
@@ -593,7 +597,7 @@ class LOJ:
             app = QApplication(sys.argv)
             w = LojLogin()
             w.show()
-            app.exec_()
+            app.exec()
             apicaller.lojCookieSet()
 
     def loginErrorMsg(self):

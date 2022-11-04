@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Mahmud Sajjad Abeer <mahmudsajjad.abeer@gmail.com>"]
 readme = "README.md"
-packages = [{include = "vjudge_to_oj"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.10"

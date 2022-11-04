@@ -386,3 +386,9 @@ fabric.properties
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django,pycharm,visualstudiocode
+
+# Project specific ignores
+solutions/
+cookies/
+submitted/
+zip-files/

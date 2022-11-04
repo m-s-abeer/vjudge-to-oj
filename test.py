@@ -1,9 +1,9 @@
 from modules import judges
 from modules import apiHandler
 
-# vjUserName = "abeer6764"
-# vjPassword = "pass"
-
+# vjUserName = "test_vj2oj"
+# vjPassword = "3jeyLXXHXmTs92"
+#
 # vjudgeUser = judges.Vjudge(vjUserName, vjPassword)
 # vjudgeUser.downloadSubmissions()
 
@@ -19,3 +19,9 @@ from modules import apiHandler
 # apicaller.refreshUvaProblemList()
 
 # print(apicaller.getUvaProblemDataUsingProblemNumberOffline("100"))
+
+# '''
+# LightOJ Login
+# '''
+# lojUser = judges.LOJ()
+# lojUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)
