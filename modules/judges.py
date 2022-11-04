@@ -1,3 +1,5 @@
+from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEnginePage
+
 from .submissions import *
 from .apiHandler import ApiCaller
 from requests import session
@@ -11,10 +13,10 @@ import os
 import pathlib
 import zipfile
 import sys
-from PyQt5.QtCore import *
-from PyQt5.QtWebEngineWidgets import *
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtNetwork import QNetworkCookie
+from PyQt6.QtCore import *
+from PyQt6.QtWebEngineWidgets import *
+from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtNetwork import QNetworkCookie
 from time import sleep
 from modules import scrapers
 
@@ -51,7 +53,7 @@ class Vjudge:
         self.username = username
         self.password = password
         self.login()
-    
+
     # Thanks to Mehedi Imam Shafi for this Vjudge sign-in approach
     def login(self):
         payLoad = {
@@ -101,7 +103,7 @@ class Vjudge:
         else:
             print("Bad Zip file. Run again")
             exit(1)  # If its a bad zip file then exiting
-    
+
     def downloadUrl(self, url, sess, save_path, chunk_size=128):
         r = sess.get(url, stream=True)
         with open(save_path, 'wb') as fd:
@@ -124,6 +126,8 @@ class Vjudge:
     def moveGymSolToCF(self):
         cfLocalSubsURL = path + os.sep + "solutions" + os.sep + "CodeForces"
         gymLocalSubsURL = path + os.sep + "solutions" + os.sep + "Gym"
+        if not os.path.exists(gymLocalSubsURL):
+            return
         for eachSolution in os.listdir(gymLocalSubsURL):
             try:
                 shutil.move(os.path.join(gymLocalSubsURL, eachSolution), cfLocalSubsURL)
@@ -174,7 +178,7 @@ class UVA:
         self.br.addheaders = [('User-agent', 'Chrome')]
         if(self.login()):
             self.saveSolveData()
-    
+
     def login(self):
         # The site we will navigate into, handling it's session
         self.br.open(self.loginURL)
@@ -223,7 +227,7 @@ class UVA:
 
     def submitAll(self, submitSolvedOnes = False, limitSubmissionCount = 10):
         if(self.loggedIn == False):
-            print("Not logged into UVa. Can't submit.")            
+            print("Not logged into UVa. Can't submit.")
             return None
         successfullySubmitted = 0
         for problemNumber in os.listdir(self.localSubsURL):
@@ -236,7 +240,7 @@ class UVA:
                     if(successfullySubmitted == limitSubmissionCount):
                         print("SubmissionLimitReached. Please run again")
                         return None
-                    
+
                     print(f"Trying Problem: {solve}, {solveId}")
                     sid = str(self.submitSolution(solve))
                     while(str(sid) == ""):
@@ -250,7 +254,7 @@ class UVA:
 
                     successfullySubmitted  = successfullySubmitted + 1
                     # check verdict and verify
-                    # timeout = 
+                    # timeout =
                     # while(1)
             elif((submitSolvedOnes == False)):
                 print(problemNumber + " - " + problemDetails[1] + " -> solved already")
@@ -269,7 +273,7 @@ class UVA:
 # URL : /api/subs-nums/{user-ids-csv}/{nums-csv}/{min-subs-id}.
 
 # This is exactly the same as before, except that the problems is given in problem numbers, not problem ids.
-    
+
     def submitSolution(self, solution):
         self.br.open(self.submissionURL)
         # for f in br.forms():
@@ -374,7 +378,7 @@ class CF:
                     if(successfullySubmitted == limitSubmissionCount):
                         print("SubmissionLimitReached. Please run again")
                         return None
-                    
+
                     print(f"Trying Problem: {solve}, {solveId}")
                     sid = str(self.submitSolution(solve))
                     if(sid == ""):
@@ -386,7 +390,7 @@ class CF:
 
                     successfullySubmitted  = successfullySubmitted + 1
                     # check verdict and verify
-                    # timeout = 
+                    # timeout =
                     # while(1)
             elif((submitSolvedOnes == False)):
                 print(problemNumber + " - " + problemDetails[1] + " -> solved already")
@@ -561,7 +565,7 @@ class LojLogin(QMainWindow):
         cookies_list_info = []
         for c in self.cookies:
             data = {"name": bytearray(c.name()).decode(), "domain": c.domain(), "value": bytearray(c.value()).decode(),
-                    "path": c.path(), "expirationDate": c.expirationDate().toString(Qt.ISODate), "secure": c.isSecure(),
+                    "path": c.path(), "expirationDate": c.expirationDate().toString(Qt.DateFormat.ISODate), "secure": c.isSecure(),
                     "httponly": c.isHttpOnly()}
             cookies_list_info.append(data)
         import json
@@ -593,7 +597,7 @@ class LOJ:
             app = QApplication(sys.argv)
             w = LojLogin()
             w.show()
-            app.exec_()
+            app.exec()
             apicaller.lojCookieSet()
 
     def loginErrorMsg(self):
