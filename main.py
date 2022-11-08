@@ -1,62 +1,53 @@
 from modules import judges
 from modules.apiHandler import ApiCaller
+from environ import VJ_USER, VJ_PASS, UVA_USER, UVA_PASS, CF_USER, CF_PASS, SPOJ_USER, SPOJ_PASS, \
+    REFRESH_OFFLINE_PROBLEM_DATA, SUBMISSION_LIMIT
+from environ import USE_VJ, USE_UVA, USE_CF, USE_SPOJ, USE_LOJ
 
 '''
 Refresh offline data
 '''
-# apicaller = ApiCaller()
-# apicaller.refreshUvaProblemList() # run only if you think UVa has added new problems
+if REFRESH_OFFLINE_PROBLEM_DATA is True:
+    apicaller = ApiCaller()
+    apicaller.refreshUvaProblemList() # run only if you think UVa has added new problems
 
-# apicaller = ApiCaller()
-# apicaller.refreshCfProblemList() # run only if you've solved from CF's newly added problems
+    apicaller = ApiCaller()
+    apicaller.refreshCfProblemList() # run only if you've solved from CF's newly added problems
 
-# apicaller = ApiCaller()
-# apicaller.refreshLojProblemList() # run only if you've solved from CF's newly added problems
+    apicaller = ApiCaller()
+    apicaller.refreshLojProblemList() # run only if you've solved from CF's newly added problems
 
 '''
 Vjudge Login
 '''
-vjUserName = input("Please enter your vjudge username: ")
-vjPassword = input("Please enter your vjudge password: ")
-
-vjudgeUser = judges.Vjudge(vjUserName, vjPassword)
-vjudgeUser.downloadSubmissions()
-
-
+if USE_VJ is True:
+    vjudgeUser = judges.Vjudge(VJ_USER, VJ_PASS)
+    vjudgeUser.downloadSubmissions()
 
 '''
 UVa Login
 '''
-UVaUserName = input("Please enter your UVa username: ")
-UVaPassword = input("Please enter your UVa password: ")
-
-uvaUser = judges.UVA(UVaUserName, UVaPassword)
-uvaUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)
-
-
+if USE_UVA is True:
+    uvaUser = judges.UVA(UVA_USER, UVA_PASS)
+    uvaUser.submitAll(submitSolvedOnes=False, limitSubmissionCount=SUBMISSION_LIMIT)
 
 '''
 CodeForces Login
 '''
-CfUserName = input("Please enter your CodeForces username: ")
-CfPassword = input("Please enter your CodeForces password: ")
-
-cfUser = judges.CF(CfUserName, CfPassword)
-cfUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)
-
+if USE_CF is True:
+    cfUser = judges.CF(CF_USER, CF_PASS)
+    cfUser.submitAll(submitSolvedOnes=False, limitSubmissionCount=SUBMISSION_LIMIT)
 
 '''
 LightOJ Login
 '''
-lojUser = judges.LOJ()
-lojUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)
-
+if USE_LOJ is True:
+    lojUser = judges.LOJ()
+    lojUser.submitAll(submitSolvedOnes=False, limitSubmissionCount=SUBMISSION_LIMIT)
 
 '''
 SPOJ Login
 '''
-SpojUserName = input("Please enter your SPOJ username: ")
-SpojPassword = input("Please enter your SPOJ password: ")
-
-SpojUser = judges.SPOJ(SpojUserName, SpojPassword)
-SpojUser.submitAll(submitSolvedOnes = False, limitSubmissionCount = 20)
+if USE_SPOJ is True:
+    SpojUser = judges.SPOJ(SPOJ_USER, SPOJ_PASS)
+    SpojUser.submitAll(submitSolvedOnes=False, limitSubmissionCount=SUBMISSION_LIMIT)

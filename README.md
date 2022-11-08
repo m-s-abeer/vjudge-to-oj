@@ -46,32 +46,20 @@ Hope you enjoy. <3
 1. Write `source ./.venv/activate` for Linux, MacOS, WSL. For windows write `.\.venv\Scripts\activate` to activate the python environment
 1. Run `pip install --upgrade pip` and then `pip install -r requirements.txt` to install all the dependencies/packages
 
+### Set your .env file:-
+1. Create a file named `.env` in the project directory.
+1. Copy the contents of `.env.example` and paste it in `.env` file.
+1. Read the comments in `.env` file and set the values accordingly.
 
 ## How it should work:
 1. Complete the #installation-guide and run the following command inside project root from cmd/terminal to activate the environment:-
    * Poetry users: `poetry shell`
    * Linux, MacOS, WSL users: `source ./.venv/activate`
    * Windows users: `.\.venv\Scripts\activate`
-2. Run `python main.py` from the project root
-3. Set your Vjudge handle and password when asked. Or change the following code segment from `main.py` from
-```
-vjUserName = input("Please enter your vjudge username: ")
-vjPassword = input("Please enter your vjudge password: ")
-```
-to
-```
-vjUserName = "yourVjudgeHandle"
-vjPassword = "yourVjudgePassword"
-```
-in case you don't like writing your username and password everytime you run it.
-
-4. Insert other judge handle and password(comment out those codes from `main.py` for the one's you don't need) when asked or set it as mentioned above. For LightOJ, you will require logging from a popup window as it has recaptcha.
-5. The program will automatically download your Accepted solutions from vjudge and then submit them one by one and store the submitted solutions to another folder(modules>Submitted>UVA>).
-6. It'll show you the status report as it runs. It may look messy, but it actually helps you see what's going on.
-* Default parameters of uvaUser.submitAll() and cfUser.submitAll() function is ```submitAll(submitSolvedOnes = False, limitSubmissionCount = 10)```. Change as you need. In case anything goes wrong, close the command prompt.
-  * If submitSolvedOnes is set to True, it'll submit the solution regardless of your solve status to actual judge.
-  * limitSubmissionCount is set to 10 for safety. It means it will submit upto 10 solutions and then stop the program. Change as required.
-* It can automatically detect languages(C, C/C++, Java, Python) But as there are two versions of C++(C++ and C++11) in UVa and vjudge doesn't export that information, it's only submitted to C++11. There's a work-around I guess but it would be more complex. At least a large portion of submissions would surely get AC.
-* No login data is bypassed/redirected to anywhere else. Vjudge login data is stored inside "vjudge-to-oj>modules>cookies" this directory. You can empty that folder if you're concerned or have issues loggin in.
+2. Make sure you have set the values in `.env` file correctly.
+3. Run `python main.py` from the project root
+4. The program will automatically download your Accepted solutions from vjudge and then submit them one by one and store the submitted solutions to another folder(modules>Submitted>UVA>).
+5. It'll show you the status report as it runs. It may look messy, but it actually helps you see what's going on.
+* No login data is bypassed/redirected to anywhere else. Vjudge login data is stored inside "vjudge-to-oj>modules>cookies" this directory. You can empty that folder if you're concerned or have issues logging in.
 
 **N.B: Please don't run it when the corresponding judge is already busy and many submissions are already in queue. It's built only for personal uses. This program is in no way meant to hamper the solving environment of a judging platform.**
