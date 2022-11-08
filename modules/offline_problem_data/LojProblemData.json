@@ -3,10 +3,6 @@
         "name": "Greetings from LightOJ",
         "handle": "greetings-from-lightoj"
     },
-    "1001": {
-        "name": "Opposite Task",
-        "handle": "opposite-task"
-    },
     "1002": {
         "name": "Country Roads",
         "handle": "country-roads"
@@ -398,6 +394,10 @@
     "1099": {
         "name": "Not the Best",
         "handle": "not-the-best"
+    },
+    "1001": {
+        "name": "Opposite Task",
+        "handle": "opposite-task"
     },
     "1100": {
         "name": "Again Array Queries",
@@ -1651,10 +1651,6 @@
         "name": "Visiting Islands",
         "handle": "visiting-islands"
     },
-    "1413": {
-        "name": "Polynomial Multiplication",
-        "handle": "polynomial-multiplication"
-    },
     "1414": {
         "name": "February 29",
         "handle": "february-29"
@@ -1747,10 +1743,6 @@
         "name": "Beehives",
         "handle": "beehives"
     },
-    "1438": {
-        "name": "Repeated Digit Sum",
-        "handle": "repeated-digit-sum"
-    },
     "1439": {
         "name": "Reduce the Maintenance Cost",
         "handle": "reduce-cost"
@@ -1763,8 +1755,36 @@
         "name": "Traveling Fool",
         "handle": "traveling-fool"
     },
-    "1444": {
-        "name": "The Frog Game",
-        "handle": "frog-game"
+    "1413": {
+        "name": "Polynomial Multiplication",
+        "handle": "polynomial-multiplication"
+    },
+    "1438": {
+        "name": "Repeated Digit Sum",
+        "handle": "repeated-digit-sum"
+    },
+    "1446": {
+        "name": "Ride Sharing Dilemma",
+        "handle": "ride-sharing-dilemma"
+    },
+    "1441": {
+        "name": "Restoring Middle Earth",
+        "handle": "restoring-middle-earth"
+    },
+    "1443": {
+        "name": "Printing Divisors",
+        "handle": "printing-divisors"
+    },
+    "1445": {
+        "name": "Trux it Up",
+        "handle": "trux-it-up"
+    },
+    "1447": {
+        "name": "Shadow Sum",
+        "handle": "shadow-sum"
+    },
+    "1449": {
+        "name": "Redirect URL",
+        "handle": "redirect-url"
     }
 }
