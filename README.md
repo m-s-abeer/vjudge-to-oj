@@ -54,7 +54,7 @@ Hope you enjoy. <3
 ## How it should work:
 1. Complete the #installation-guide and run the following command inside project root from cmd/terminal to activate the environment:-
    * Poetry users: `poetry shell`
-   * Linux, MacOS, WSL users: `source ./.venv/activate`
+   * Linux, MacOS, WSL users: `source ./.venv/bin/activate`
    * Windows users: `.\.venv\Scripts\activate`
 2. Make sure you have set the values in `.env` file correctly.
 3. Run `python main.py` from the project root
